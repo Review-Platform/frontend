@@ -60,9 +60,9 @@ const KeepLoggedIn = styled.div`
 const FindIdPassword = styled.div`
   width: calc((167.5 / 408.5) * 100%);
   height: calc((25 / 567) * 100%);
+  max-width: 130px;
   position: absolute;
-  left: 59%;
-  right: 0%;
+  right: 3%;
   top: 77.78%;
   bottom: 17.81%;
   font-weight: 400;

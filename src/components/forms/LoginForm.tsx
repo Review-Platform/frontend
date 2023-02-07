@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { Input, Label } from "./FormStyles";
+import { useNavigate } from "react-router-dom";
 
 const Form = styled.form`
   position: relative;
@@ -84,6 +85,7 @@ const Register = styled.span`
 `;
 
 function LoginForm() {
+  const navigate = useNavigate();
   return (
     <Form>
       <IdWrapper>
@@ -96,12 +98,25 @@ function LoginForm() {
       </PasswordWrapper>
       <LoginBtn>로그인</LoginBtn>
       <FindIdPassword>
-        <FindId>아이디</FindId> / <FindPassword>비밀번호 찾기</FindPassword>
+        <FindId
+          onClick={() => {
+            navigate("/find-id");
+          }}
+        >
+          아이디
+        </FindId>{" "}
+        / <FindPassword>비밀번호 찾기</FindPassword>
         {`>`}
       </FindIdPassword>
       <RegisterDiv>
         <span>아직 회원이 아니라면?</span>
-        <Register>회원가입하기</Register>
+        <Register
+          onClick={() => {
+            navigate("/signup");
+          }}
+        >
+          회원가입하기
+        </Register>
       </RegisterDiv>
     </Form>
   );

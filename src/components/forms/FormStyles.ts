@@ -12,6 +12,7 @@ export const Input = styled.input`
 `;
 
 export const Label = styled.label`
+  margin: 5px 0;
   font-weight: 700;
   font-size: 16px;
   line-height: 29px;

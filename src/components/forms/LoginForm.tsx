@@ -41,6 +41,21 @@ const LoginBtn = styled.button`
   cursor: pointer;
 `;
 
+const KeepLoggedIn = styled.div`
+  width: calc((141 / 408.5) * 100%);
+  height: calc((23 / 567) * 100%);
+  position: absolute;
+  left: 2.69%;
+  right: 62.79%;
+  top: 77.78%;
+  bottom: 18.17%;
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 12px;
+  }
+`;
+
 const FindIdPassword = styled.div`
   width: calc((167.5 / 408.5) * 100%);
   height: calc((25 / 567) * 100%);
@@ -52,6 +67,9 @@ const FindIdPassword = styled.div`
   font-weight: 400;
   line-height: 23px;
   font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 const FindId = styled.span`
   cursor: pointer;
@@ -92,11 +110,15 @@ function LoginForm() {
         <Label htmlFor="id">아이디</Label>
         <Input name="id" type="text" />
       </IdWrapper>
+
       <PasswordWrapper>
         <Label htmlFor="password">비밀번호</Label>
         <Input name="password" type="password" />
       </PasswordWrapper>
       <LoginBtn>로그인</LoginBtn>
+      <KeepLoggedIn>
+        <input type="checkbox" /> <span>로그인 유지하기</span>
+      </KeepLoggedIn>
       <FindIdPassword>
         <FindId
           onClick={() => {
@@ -105,8 +127,15 @@ function LoginForm() {
         >
           아이디
         </FindId>{" "}
-        / <FindPassword>비밀번호 찾기</FindPassword>
-        {`>`}
+        /{" "}
+        <FindPassword
+          onClick={() => {
+            navigate("/find-password");
+          }}
+        >
+          비밀번호 찾기
+        </FindPassword>
+        {` >`}
       </FindIdPassword>
       <RegisterDiv>
         <span>아직 회원이 아니라면?</span>

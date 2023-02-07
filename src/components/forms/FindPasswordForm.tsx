@@ -7,7 +7,7 @@ const Form = styled.form`
   display: flex;
   justify-content: center;
   width: calc((408.5 / 1920) * 100vw);
-  height: calc((416 / 1080) * 100vh);
+  height: calc((468 / 1080) * 100vh);
 `;
 const Title = styled.div`
   width: 100%;
@@ -19,14 +19,15 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 const IdWrapper = styled.div`
   width: 100%;
   position: absolute;
+  display: flex;
+  flex-direction: column;
   left: 0%;
   right: 0%;
-  top: 29.09%;
-  bottom: 51.68%;
+  top: 25.43%;
+  bottom: 51.71%;
 `;
 
 const EmailWrapper = styled.div`
@@ -34,17 +35,17 @@ const EmailWrapper = styled.div`
   position: absolute;
   left: 0%;
   right: 0%;
-  top: 54.33%;
-  bottom: 26.44%;
+  top: 53.63%;
+  bottom: 23.5%;
 `;
 
 const ConfirmBtn = styled.button`
   width: 100%;
-  height: calc((60 / 416) * 100%);
+  height: calc((60 / 468) * 100%);
   position: absolute;
   left: 0%;
   right: 0%;
-  top: 85.58%;
+  top: 87.18%;
   bottom: 0%;
   background: #000000;
   border-radius: 40px;
@@ -52,12 +53,12 @@ const ConfirmBtn = styled.button`
   cursor: pointer;
 `;
 
-function FindIdForm() {
+function FindPasswordForm() {
   return (
     <Form>
-      <Title>아이디 찾기</Title>
+      <Title>비밀번호 찾기</Title>
       <IdWrapper>
-        <Label htmlFor="id">이름을 입력해주세요.</Label>
+        <Label htmlFor="id">아이디를 입력해주세요.</Label>
         <Input name="id" type="text" />
       </IdWrapper>
       <EmailWrapper>
@@ -68,4 +69,4 @@ function FindIdForm() {
     </Form>
   );
 }
-export default FindIdForm;
+export default FindPasswordForm;

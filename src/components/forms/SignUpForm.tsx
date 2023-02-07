@@ -143,25 +143,19 @@ function SignUpForm() {
       <IdWrapper>
         <Label>아이디</Label>
         <Input type="text" />
-        <CofirmBtn>
-          <span>|</span> <span>확인</span>
-        </CofirmBtn>
+
         <span>8~20자의 영문 대/소문자, 숫자, 특수문자로 설정해주세요.</span>
       </IdWrapper>
       <PasswordWrapper>
         <Label>비밀번호</Label>
         <Input type="password" />
-        <CofirmBtn>
-          <span>|</span> <span>확인</span>
-        </CofirmBtn>
+
         <span>10글자 이하로 비밀번호를 입력해주세요.</span>
       </PasswordWrapper>
       <EmailWrapper>
         <Label>비밀번호</Label>
         <Input type="password" />
-        <CofirmBtn>
-          <span>|</span> <span>확인</span>
-        </CofirmBtn>
+
         <span>계정을 찾으실 경우 필요한 정보입니다.</span>
       </EmailWrapper>
       <SignUpBtn>회원가입하기</SignUpBtn>

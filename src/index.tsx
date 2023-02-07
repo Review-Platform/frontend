@@ -52,8 +52,8 @@ table {
   box-sizing: border-box;
 }
 body{
-	width:1920px;
-	height:1080px;
+	width:100vw;
+	height:100vh;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 a{

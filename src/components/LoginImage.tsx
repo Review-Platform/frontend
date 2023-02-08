@@ -6,6 +6,7 @@ const Container = styled.div`
   background-size: cover;
   height: 100%;
   width: 50%;
+  min-width: 600px;
 `;
 
 function LoginImage() {

@@ -18,7 +18,8 @@ const FormContainer = styled.div`
   width: calc((582 / 1920) * 100vw);
   margin-left: calc((15 / 1920) * 100vw);
   height: 100%;
-
+  min-width: 400px;
+  min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;

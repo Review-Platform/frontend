@@ -8,6 +8,8 @@ const Form = styled.form`
   justify-content: center;
   width: calc((408.5 / 1920) * 100vw);
   height: calc((468 / 1080) * 100vh);
+  min-width: 300px;
+  min-height: 500px;
 `;
 const Title = styled.div`
   width: 100%;

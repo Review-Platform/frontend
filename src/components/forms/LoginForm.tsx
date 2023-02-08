@@ -8,6 +8,8 @@ const Form = styled.form`
   width: calc((408.5 / 1920) * 100vw);
   height: calc((567 / 1080) * 100vh);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  min-width: 300px;
+  min-height: 500px;
 `;
 
 const IdWrapper = styled.div`

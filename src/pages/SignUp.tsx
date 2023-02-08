@@ -3,6 +3,9 @@ import Header from "../components/Header";
 import LoginImage from "../components/LoginImage";
 import LoginForm from "../components/forms/LoginForm";
 import SignUpForm from "../components/forms/SignUpForm";
+
+
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;

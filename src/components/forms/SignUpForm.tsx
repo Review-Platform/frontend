@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { Input, Label } from "./FormStyles";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
-interface FormInputs {
-  singleErrorInput: string;
-}
+const ID_CHECK_URL = "https://9f50-218-155-186-175.jp.ngrok.io/checkId";
+const SIGNUP_URL = "https://9f50-218-155-186-175.jp.ngrok.io/signup";
 
 const Form = styled.form`
   position: relative;
@@ -149,18 +149,36 @@ function SignUpForm() {
     },
   });
   const watchId = watch("id");
-  console.log(watchId);
   const handleIdCheck = (event: React.MouseEvent) => {
-    console.log(getValues("id"));
+    const id = getValues("id");
+    axios
+      .post(ID_CHECK_URL, {
+        userId: id,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
     setIdChecked(true);
-    console.log(idChecked);
   };
 
   const onValid = (data: IForm) => {
     if (data.password !== data.verifyPassword) {
       setError("verifyPassword", { message: "비밀번호가 일치하지 않습니다." });
     } else {
-      alert("success");
+      const name = getValues("name");
+      const id = getValues("id");
+      const password = getValues("password");
+      const email = getValues("email");
+      axios
+        .post(SIGNUP_URL, {
+          userName: name,
+          userId: id,
+          password,
+          userEmail: email,
+        })
+        .then((res) => console.log(res))
+        .catch((error) => console.log(error));
     }
   };
 

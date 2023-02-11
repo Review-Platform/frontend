@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import FindId from "./pages/FindId";
-import FindPassword from "./pages/FindPassword";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import FindIdForm from "./components/forms/FindIdForm";
+import FindPasswordForm from "./components/forms/FindPasswordForm";
+import LoginForm from "./components/forms/LoginForm";
 
 const router = createBrowserRouter([
   {
@@ -18,18 +19,24 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+        children: [
+          {
+            path: "",
+            element: <LoginForm />,
+          },
+          {
+            path: "find-id",
+            element: <FindIdForm />,
+          },
+          {
+            path: "find-password",
+            element: <FindPasswordForm />,
+          },
+        ],
       },
       {
         path: "signup",
         element: <SignUp />,
-      },
-      {
-        path: "find-id",
-        element: <FindId />,
-      },
-      {
-        path: "find-password",
-        element: <FindPassword />,
       },
     ],
   },

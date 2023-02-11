@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { Input, Label } from "./FormStyles";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Form = styled.form`
   position: relative;
@@ -123,17 +123,13 @@ function LoginForm() {
         <input type="checkbox" /> <span>로그인 유지하기</span>
       </KeepLoggedIn>
       <FindIdPassword>
-        <FindId
-          onClick={() => {
-            navigate("/find-id");
-          }}
-        >
-          아이디
+        <FindId>
+          <Link to="find-id">아이디</Link>
         </FindId>{" "}
         /{" "}
         <FindPassword
           onClick={() => {
-            navigate("/find-password");
+            navigate("find-password");
           }}
         >
           비밀번호 찾기

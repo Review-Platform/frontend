@@ -148,8 +148,7 @@ function SignUpForm() {
       email: "",
     },
   });
-  const watchId = watch("id");
-  const handleIdCheck = (event: React.MouseEvent) => {
+  const handleIdCheck = () => {
     const id = getValues("id");
     axios
       .post(ID_CHECK_URL, {
@@ -253,7 +252,7 @@ function SignUpForm() {
         {dirtyFields.password ? (
           <ErrorMessage>{errors?.password?.message}</ErrorMessage>
         ) : (
-          <Notice>10글자 이하로 비밀번호를 입력해주세요.</Notice>
+          <Notice>10글자 이상 입력해주세요.</Notice>
         )}
       </PasswordWrapper>
       <VerifyPasswordWrapper>

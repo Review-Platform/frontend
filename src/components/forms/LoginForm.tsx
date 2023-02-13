@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { Input, Label } from "./FormStyles";
+import { Input, Label } from "../../styles/FormStyles";
 import { Link, useNavigate } from "react-router-dom";
+import { ILoginForm } from "../../interfaces/form";
+import { loginPost } from "../../api/userApi";
+import { useState } from "react";
 
 const Form = styled.form`
   position: relative;
   width: calc((408.5 / 1920) * 100vw);
   height: calc((567 / 1080) * 100vh);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   min-width: 300px;
   min-height: 500px;
 `;
@@ -105,19 +107,44 @@ const Register = styled.span`
   margin-left: 8px;
 `;
 
+const ErrorMessage = styled.div`
+  position: absolute;
+  left: 6.12%;
+  right: 1.35%;
+  top: 54.95%;
+  bottom: 42.78%;
+  font-size: 12px;
+  color: tomato;
+`;
+
 function LoginForm() {
   const navigate = useNavigate();
+  const [loginFail, setLoginFail] = useState(false);
+  const { register, handleSubmit } = useForm<ILoginForm>();
+  const onValid = async ({ id, password }: ILoginForm) => {
+    try {
+      await loginPost({ id, password });
+      navigate("/");
+    } catch (error) {
+      setLoginFail(true);
+    }
+  };
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onValid)}>
       <IdWrapper>
         <Label htmlFor="id">아이디</Label>
-        <Input name="id" type="text" />
+        <Input {...register("id", { required: true })} type="text" />
       </IdWrapper>
 
       <PasswordWrapper>
         <Label htmlFor="password">비밀번호</Label>
-        <Input name="password" type="password" />
+        <Input {...register("password", { required: true })} type="password" />
       </PasswordWrapper>
+      {loginFail ? (
+        <ErrorMessage>
+          가입되지 않은 계정이거나, 아이디 또는 비밀번호가 옳지 않습니다.
+        </ErrorMessage>
+      ) : null}
       <LoginBtn>로그인</LoginBtn>
       <KeepLoggedIn>
         <input type="checkbox" /> <span>로그인 유지하기</span>

@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { Input, Label } from "./FormStyles";
+import { Input, Label } from "../../styles/FormStyles";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-const ID_CHECK_URL = "https://9f50-218-155-186-175.jp.ngrok.io/checkId";
-const SIGNUP_URL = "https://9f50-218-155-186-175.jp.ngrok.io/signup";
+import { ISignupForm } from "../../interfaces/form";
+import { idCheckPost, signupPost } from "../../api/userApi";
+import { getValue } from "@testing-library/user-event/dist/utils";
+import { sign } from "crypto";
+import React from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Form = styled.form`
   position: relative;
@@ -120,16 +123,17 @@ const SignUpBtn = styled.button`
   cursor: pointer;
 `;
 
-interface IForm {
-  name: string;
-  id: string;
-  password: string;
-  verifyPassword: string;
-  email: string;
-}
-
 function SignUpForm() {
+  const navigate = useNavigate();
   const [idChecked, setIdChecked] = useState(false);
+  const [validId, setValidId] = useState(true);
+  const [submit, setSubmit] = useState(false);
+  const [signupForm, setSignupForm] = useState<ISignupForm>({
+    name: "",
+    id: "",
+    password: "",
+    email: "",
+  });
 
   const {
     register,
@@ -137,47 +141,43 @@ function SignUpForm() {
     formState: { errors, dirtyFields },
     setError,
     getValues,
-    watch,
     trigger,
-  } = useForm<IForm>({
-    defaultValues: {
-      name: "",
-      id: "",
-      password: "",
-      verifyPassword: "",
-      email: "",
-    },
+  } = useForm<ISignupForm>({
+    defaultValues: signupForm,
   });
-  const handleIdCheck = () => {
+
+  const handleIdCheck = async () => {
     const id = getValues("id");
-    axios
-      .post(ID_CHECK_URL, {
-        userId: id,
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => console.log(error));
     setIdChecked(true);
+    // try {
+    //   await idCheckPost(id).then((res) => {
+    //     console.log(res.data);
+    //   });
+    //   setValidId(true);
+    //   setIdChecked(true);
+    // } catch (error) {
+    //   setValidId(false);
+    //   setIdChecked(true);
+    //   console.log(error);
+    // }
   };
 
-  const onValid = (data: IForm) => {
+  const onValid = async (data: ISignupForm) => {
+    console.log("!");
     if (data.password !== data.verifyPassword) {
       setError("verifyPassword", { message: "비밀번호가 일치하지 않습니다." });
     } else {
-      const name = getValues("name");
-      const id = getValues("id");
-      const password = getValues("password");
-      const email = getValues("email");
-      axios
-        .post(SIGNUP_URL, {
-          userName: name,
-          userId: id,
-          password,
-          userEmail: email,
-        })
-        .then((res) => console.log(res))
-        .catch((error) => console.log(error));
+      console.log("success");
+      try {
+        await signupPost({
+          name: data.name,
+          id: data.id,
+          password: data.password,
+          email: data.email,
+        }).then(() => navigate("/"));
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -224,7 +224,11 @@ function SignUpForm() {
           errors?.id?.message ? (
             <ErrorMessage>{errors.id?.message}</ErrorMessage>
           ) : idChecked ? (
-            <CheckedMessage>사용가능한 아이디입니다.</CheckedMessage>
+            validId ? (
+              <CheckedMessage>사용가능한 아이디입니다.</CheckedMessage>
+            ) : (
+              <ErrorMessage>사용중인 아이디입니다.</ErrorMessage>
+            )
           ) : (
             <ErrorMessage>중복검사 해주세요.</ErrorMessage>
           )
@@ -296,8 +300,9 @@ function SignUpForm() {
           <Notice>계정을 찾으실 경우 필요한 정보입니다.</Notice>
         )}
       </EmailWrapper>
-      <SignUpBtn type="submit">회원가입하기</SignUpBtn>
+      <SignUpBtn>회원가입하기</SignUpBtn>
     </Form>
   );
 }
+
 export default SignUpForm;

@@ -4,6 +4,7 @@ import { Input, Label } from "../../../styles/AccountStyles";
 import { IFindIdForm } from "../../../interfaces/form";
 import { useNavigate } from "react-router-dom";
 import { findIdPost } from "../../../api/accountApi";
+import { useState } from "react";
 
 const Form = styled.form`
   position: relative;
@@ -12,7 +13,7 @@ const Form = styled.form`
   width: calc((408.5 / 1920) * 100vw);
   height: calc((416 / 1080) * 100vh);
   min-width: 300px;
-  min-height:350px;
+  min-height: 350px;
 `;
 const Title = styled.div`
   width: 100%;
@@ -57,14 +58,26 @@ const ConfirmBtn = styled.button`
   cursor: pointer;
 `;
 
+const SubmitFail = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 74.33%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 19px;
+  color: #ff5c00;
+`;
+
 function FindIdForm() {
   const navigate = useNavigate();
+  const [submitFail, setSubmitFail] = useState(false);
   const { register, handleSubmit } = useForm<IFindIdForm>();
   const onValid = async ({ name, email }: IFindIdForm) => {
-       //아이디를 찾고, 찾은 아이디를 navigate에서 state로 다음 넘겨줘야한다.
+    //아이디를 찾고, 찾은 아이디를 navigate에서 state로 다음 넘겨줘야한다.
     //...아이디 찾아오는 코드
     try {
-      // await findIdPost({ name, email });
+      await findIdPost({ name, email });
       navigate("success", {
         state: {
           //여기에 아이디 넣어준다.
@@ -72,8 +85,9 @@ function FindIdForm() {
           email,
         },
       });
-    } catch (error) {}
- 
+    } catch (error) {
+      setSubmitFail(true);
+    }
   };
   return (
     <Form onSubmit={handleSubmit(onValid)}>
@@ -86,6 +100,10 @@ function FindIdForm() {
         <Label>이메일을 입력해주세요.</Label>
         <Input {...register("email", { required: true })} />
       </EmailWrapper>
+      {submitFail ? (
+        <SubmitFail> 이름 또는 이메일이 올바르지 않습니다.</SubmitFail>
+      ) : null}
+
       <ConfirmBtn>확인</ConfirmBtn>
     </Form>
   );

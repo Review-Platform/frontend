@@ -107,26 +107,26 @@ const Register = styled.span`
   margin-left: 8px;
 `;
 
-const ErrorMessage = styled.div`
+const SubmitFail = styled.div`
   position: absolute;
-  left: 6.12%;
-  right: 1.35%;
+  left: 10px;
   top: 54.95%;
   bottom: 42.78%;
-  font-size: 12px;
-  color: tomato;
+  font-size: 13px;
+  font-weight: 400;
+  color: #ff5c00;
 `;
 
 function LoginForm() {
   const navigate = useNavigate();
-  const [loginFail, setLoginFail] = useState(false);
+  const [submitFail, setSubmitFail] = useState(false);
   const { register, handleSubmit } = useForm<ILoginForm>();
   const onValid = async ({ id, password }: ILoginForm) => {
     try {
       await loginPost({ id, password });
       navigate("/");
     } catch (error) {
-      setLoginFail(true);
+      setSubmitFail(true);
     }
   };
   return (
@@ -140,10 +140,10 @@ function LoginForm() {
         <Label htmlFor="password">비밀번호</Label>
         <Input {...register("password", { required: true })} type="password" />
       </PasswordWrapper>
-      {loginFail ? (
-        <ErrorMessage>
+      {submitFail ? (
+        <SubmitFail>
           가입되지 않은 계정이거나, 아이디 또는 비밀번호가 옳지 않습니다.
-        </ErrorMessage>
+        </SubmitFail>
       ) : null}
       <LoginBtn>로그인</LoginBtn>
       <KeepLoggedIn>

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { Input, Label } from "../../../styles/AccountStyles";
+import { IFindPasswordForm } from "../../../interfaces/form";
+import { findPasswordPost } from "../../../api/accountApi";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Form = styled.form`
   position: relative;
@@ -9,7 +13,7 @@ const Form = styled.form`
   width: calc((408.5 / 1920) * 100vw);
   height: calc((468 / 1080) * 100vh);
   min-width: 300px;
-  min-height: 500px;
+  min-height: 350px;
 `;
 const Title = styled.div`
   width: 100%;
@@ -55,18 +59,51 @@ const ConfirmBtn = styled.button`
   cursor: pointer;
 `;
 
+const SubmitFail = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 74.44%;
+  bottom: 23.5%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 19px;
+  color: #ff5c00;
+`;
+
 function FindPasswordForm() {
+  const navigate = useNavigate();
+  const [submitFail, setSubmitFail] = useState(false);
+  const { register, handleSubmit } = useForm<IFindPasswordForm>();
+  const onValid = async ({ id, email }: IFindPasswordForm) => {
+    try {
+      // await findPasswordPost({ id, email });
+      if (
+        window.confirm(
+          "임시 비밀번호가 이메일로 전송되었습니다. 이메일을 확인해주세요."
+        )
+      ) {
+        navigate("/");
+      }
+    } catch (error) {
+      setSubmitFail(true);
+    }
+  };
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onValid)}>
       <Title>비밀번호 찾기</Title>
       <IdWrapper>
-        <Label htmlFor="id">아이디를 입력해주세요.</Label>
-        <Input name="id" type="text" />
+        <Label>아이디를 입력해주세요.</Label>
+        <Input {...register("id", { required: true })} />
       </IdWrapper>
       <EmailWrapper>
-        <Label htmlFor="password">이메일을 입력해주세요.</Label>
-        <Input name="password" type="email" />
+        <Label>이메일을 입력해주세요.</Label>
+        <Input {...register("email", { required: true })} />
       </EmailWrapper>
+      {submitFail ? (
+        <SubmitFail>아이디 또는 이메일이 올바르지 않습니다.</SubmitFail>
+      ) : null}
+
       <ConfirmBtn>확인</ConfirmBtn>
     </Form>
   );

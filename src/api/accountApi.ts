@@ -1,11 +1,17 @@
 import axios from "axios";
-import { IFindIdForm, ILoginForm, ISignupForm } from "../interfaces/form";
+import {
+  IFindIdForm,
+  IFindPasswordForm,
+  ILoginForm,
+  ISignupForm,
+} from "../interfaces/form";
 
-export const BASE_URL = "https://eb94-218-155-186-175.jp.ngrok.io";
-export const ID_CHECK_URL = "checkId";
-export const SIGNUP_URL = "signup";
-export const LOGIN_URL = "login";
-export const FIND_ID_URL = "";
+const BASE_URL = "https://eb94-218-155-186-175.jp.ngrok.io";
+const ID_CHECK_URL = "checkId";
+const SIGNUP_URL = "signup";
+const LOGIN_URL = "login";
+const FIND_ID_URL = "";
+const FIND_PASSWORD_URL = "";
 
 export const idCheckPost = (id: string) =>
   axios.post(`${BASE_URL}/${ID_CHECK_URL}`, {
@@ -28,5 +34,10 @@ export const loginPost = (loginForm: ILoginForm) =>
 
 export const findIdPost = (findIdForm: IFindIdForm) =>
   axios.post(`${BASE_URL}/${FIND_ID_URL}`, {
+    //변수명 확인 후 추가 예정
+  });
+
+export const findPasswordPost = (findPasswordForm: IFindPasswordForm) =>
+  axios.post(`${BASE_URL}/${FIND_PASSWORD_URL}`, {
     //변수명 확인 후 추가 예정
   });

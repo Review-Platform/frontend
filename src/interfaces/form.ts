@@ -11,3 +11,7 @@ export interface IFindIdForm {
   name: string;
   email: string;
 }
+export interface IFindPasswordForm {
+  id: string;
+  email: string;
+}

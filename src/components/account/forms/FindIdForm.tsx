@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { Input, Label } from "../../styles/FormStyles";
+import { Input, Label } from "../../../styles/AccountStyles";
+import { IFindIdForm } from "../../../interfaces/form";
+import { useNavigate } from "react-router-dom";
+import { findIdPost } from "../../../api/accountApi";
 
 const Form = styled.form`
   position: relative;
@@ -9,7 +12,7 @@ const Form = styled.form`
   width: calc((408.5 / 1920) * 100vw);
   height: calc((416 / 1080) * 100vh);
   min-width: 300px;
-  min-height: 500px;
+  min-height:350px;
 `;
 const Title = styled.div`
   width: 100%;
@@ -55,16 +58,33 @@ const ConfirmBtn = styled.button`
 `;
 
 function FindIdForm() {
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm<IFindIdForm>();
+  const onValid = async ({ name, email }: IFindIdForm) => {
+       //아이디를 찾고, 찾은 아이디를 navigate에서 state로 다음 넘겨줘야한다.
+    //...아이디 찾아오는 코드
+    try {
+      // await findIdPost({ name, email });
+      navigate("success", {
+        state: {
+          //여기에 아이디 넣어준다.
+          name,
+          email,
+        },
+      });
+    } catch (error) {}
+ 
+  };
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onValid)}>
       <Title>아이디 찾기</Title>
       <IdWrapper>
-        <Label htmlFor="id">이름을 입력해주세요.</Label>
-        <Input name="id" type="text" />
+        <Label>이름을 입력해주세요.</Label>
+        <Input {...register("name", { required: true })} />
       </IdWrapper>
       <EmailWrapper>
-        <Label htmlFor="password">이메일을 입력해주세요.</Label>
-        <Input name="password" type="email" />
+        <Label>이메일을 입력해주세요.</Label>
+        <Input {...register("email", { required: true })} />
       </EmailWrapper>
       <ConfirmBtn>확인</ConfirmBtn>
     </Form>

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { Input, Label } from "../../styles/FormStyles";
+import { Input, Label } from "../../../styles/AccountStyles";
 import { Link, useNavigate } from "react-router-dom";
-import { ILoginForm } from "../../interfaces/form";
-import { loginPost } from "../../api/userApi";
+import { ILoginForm } from "../../../interfaces/form";
+import { loginPost } from "../../../api/accountApi";
 import { useState } from "react";
 
 const Form = styled.form`

@@ -7,3 +7,7 @@ export interface ISignupForm extends ILoginForm {
   verifyPassword?: string;
   email: string;
 }
+export interface IFindIdForm {
+  name: string;
+  email: string;
+}

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { Input, Label } from "../../styles/FormStyles";
+import { Input, Label } from "../../../styles/AccountStyles";
 
 const Form = styled.form`
   position: relative;

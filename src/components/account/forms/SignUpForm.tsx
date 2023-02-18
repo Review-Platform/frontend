@@ -149,17 +149,17 @@ function SignUpForm() {
   const handleIdCheck = async () => {
     const id = getValues("id");
     setIdChecked(true);
-    // try {
-    //   await idCheckPost(id).then((res) => {
-    //     console.log(res.data);
-    //   });
-    //   setValidId(true);
-    //   setIdChecked(true);
-    // } catch (error) {
-    //   setValidId(false);
-    //   setIdChecked(true);
-    //   console.log(error);
-    // }
+    try {
+      await idCheckPost(id).then((res) => {
+        console.log(res.data);
+      });
+      setValidId(true);
+      setIdChecked(true);
+    } catch (error) {
+      setValidId(false);
+      setIdChecked(true);
+      console.log(error);
+    }
   };
 
   const onValid = async (data: ISignupForm) => {

@@ -63,7 +63,7 @@ const Id = styled.div`
   width: calc((284 / 1920) * 100vw);
   height: calc((51 / 1080) * 100vh);
   min-width: 210px;
-  min-height:38px;
+  min-height: 38px;
 
   position: absolute;
   left: 0.98%;
@@ -118,14 +118,13 @@ const FindPassword = styled.div`
 function FindIdSuccess() {
   const navigate = useNavigate();
   const location = useLocation();
-  const name = location.state.name;
-  console.log(name);
+  const id = location.state.foundId;
   return (
     <Container>
       <Title>계정 안내</Title>
       <ShowId>
         <YourIdIs>000님의 아이디는</YourIdIs>
-        <Id>{`${name}`}</Id>
+        <Id>{`${id}`}</Id>
         <입니다>입니다.</입니다>
       </ShowId>
       <LoginBtn onClick={() => navigate("/login")}>로그인하러 가기</LoginBtn>

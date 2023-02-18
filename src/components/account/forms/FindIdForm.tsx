@@ -72,17 +72,19 @@ const SubmitFail = styled.div`
 function FindIdForm() {
   const navigate = useNavigate();
   const [submitFail, setSubmitFail] = useState(false);
+  const [foundId, setFoundId] = useState("");
   const { register, handleSubmit } = useForm<IFindIdForm>();
   const onValid = async ({ name, email }: IFindIdForm) => {
     //아이디를 찾고, 찾은 아이디를 navigate에서 state로 다음 넘겨줘야한다.
     //...아이디 찾아오는 코드
     try {
-      await findIdPost({ name, email });
+      await findIdPost({ name, email }).then((res) => {
+        console.log(res.data);
+        setFoundId(res.data.userId);
+      });
       navigate("success", {
         state: {
-          //여기에 아이디 넣어준다.
-          name,
-          email,
+          foundId,
         },
       });
     } catch (error) {

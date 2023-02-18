@@ -77,7 +77,7 @@ function FindPasswordForm() {
   const { register, handleSubmit } = useForm<IFindPasswordForm>();
   const onValid = async ({ id, email }: IFindPasswordForm) => {
     try {
-      // await findPasswordPost({ id, email });
+      await findPasswordPost({ id, email });
       if (
         window.confirm(
           "임시 비밀번호가 이메일로 전송되었습니다. 이메일을 확인해주세요."

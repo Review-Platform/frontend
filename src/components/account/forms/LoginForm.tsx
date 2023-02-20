@@ -46,7 +46,7 @@ const LoginBtn = styled.button`
   cursor: pointer;
 `;
 
-const KeepLoggedIn = styled.div`
+const Remember = styled.div`
   width: calc((141 / 408.5) * 100%);
   height: calc((23 / 567) * 100%);
   position: absolute;
@@ -121,9 +121,9 @@ function LoginForm() {
   const navigate = useNavigate();
   const [submitFail, setSubmitFail] = useState(false);
   const { register, handleSubmit } = useForm<ILoginForm>();
-  const onValid = async ({ id, password }: ILoginForm) => {
+  const onValid = async ({ id, password, remember }: ILoginForm) => {
     try {
-      await loginPost({ id, password });
+      await loginPost({ id, password, remember });
       navigate("/");
     } catch (error) {
       setSubmitFail(true);
@@ -146,9 +146,10 @@ function LoginForm() {
         </SubmitFail>
       ) : null}
       <LoginBtn>로그인</LoginBtn>
-      <KeepLoggedIn>
-        <input type="checkbox" /> <span>로그인 유지하기</span>
-      </KeepLoggedIn>
+      <Remember>
+        <input {...register("remember")} type="checkbox" />{" "}
+        <span>로그인 유지하기</span>
+      </Remember>
       <FindIdPassword>
         <FindId>
           <Link to="find-id">아이디</Link>

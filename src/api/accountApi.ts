@@ -6,7 +6,7 @@ import {
   ISignupForm,
 } from "../interfaces/form";
 
-const BASE_URL = "https://0f5b-175-125-183-151.jp.ngrok.io";
+const BASE_URL = "https://229b-175-125-183-151.jp.ngrok.io";
 const ID_CHECK_URL = "auth/checkId";
 const SIGNUP_URL = "auth/signup";
 const LOGIN_URL = "auth/login";
@@ -19,7 +19,7 @@ export const idCheckPost = (id: string) =>
   });
 
 export const signupPost = (signupForm: ISignupForm) =>
-  axios.post(`${BASE_URL}/auth/signup`, {
+  axios.post(`${BASE_URL}/${SIGNUP_URL}`, {
     userName: signupForm.name,
     userId: signupForm.id,
     password: signupForm.password,
@@ -27,9 +27,15 @@ export const signupPost = (signupForm: ISignupForm) =>
   });
 
 export const loginPost = (loginForm: ILoginForm) =>
-  axios.post(`${BASE_URL}/${LOGIN_URL}`, null, {
-    params: { userId: loginForm.id, password: loginForm.password },
-  });
+  axios.post(
+    `${BASE_URL}/${LOGIN_URL}`,
+    {
+      userId: loginForm.id,
+      password: loginForm.password,
+      remember: loginForm.remember,
+    },
+    { withCredentials: true }
+  );
 
 export const findIdPost = (findIdForm: IFindIdForm) =>
   axios.post(`${BASE_URL}/${FIND_ID_URL}`, {

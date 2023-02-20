@@ -167,7 +167,6 @@ function SignUpForm() {
     if (data.password !== data.verifyPassword) {
       setError("verifyPassword", { message: "비밀번호가 일치하지 않습니다." });
     } else {
-      console.log("success");
       try {
         await signupPost({
           name: data.name,

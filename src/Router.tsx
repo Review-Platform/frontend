@@ -7,6 +7,8 @@ import FindIdForm from "./components/account/forms/FindIdForm";
 import FindPasswordForm from "./components/account/forms/FindPasswordForm";
 import LoginForm from "./components/account/forms/LoginForm";
 import FindIdSuccess from "./components/account/FindIdRedirect";
+import Product from "./pages/product/Product";
+import Review from "./pages/review/Review";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp />,
+      },
+      {
+        path: "product",
+        element: <Product />,
+      },
+      {
+        path: "review",
+        element: <Review />,
       },
     ],
   },

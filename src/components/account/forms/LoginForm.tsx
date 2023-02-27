@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Input, Label } from "../../../styles/AccountStyles";
 import { Link, useNavigate } from "react-router-dom";
 import { ILoginForm } from "../../../interfaces/form";
-import { loginPost } from "../../../api/accountApi";
+import { loginPost, rememberPost } from "../../../api/accountApi";
 import { useState } from "react";
 
 const Form = styled.form`
@@ -123,7 +123,8 @@ function LoginForm() {
   const { register, handleSubmit } = useForm<ILoginForm>();
   const onValid = async ({ id, password, remember }: ILoginForm) => {
     try {
-      await loginPost({ id, password, remember });
+      await loginPost({ id, password });
+      await rememberPost(remember);
       navigate("/");
     } catch (error) {
       setSubmitFail(true);

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import MainHeader from "../components/MainHeader";
+import { useEffect } from "react";
+import { getLoggedInInfo } from "../api/accountApi";
 
 const IntroArea = styled.div`
   display: flex;
@@ -57,6 +59,9 @@ const IntroText = styled.span`
 `;
 
 function Home() {
+  useEffect(() => {
+    getLoggedInInfo().then((res) => console.log(res));
+  }, []);
   return (
     <>
       <MainHeader />

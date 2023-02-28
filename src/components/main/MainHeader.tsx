@@ -1,44 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-
-const Header = styled.header`
-  background-color: #e5e5e5;
-  margin: 0px 10vw;
-`;
-
-const TopNav = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
-const BottomNav = styled.div``;
-
-const ImgArea = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const LogoImg = styled.img.attrs({
-  src: require("../imgs/Logo.png"),
-})`
-  height: 162px;
-  width: 336px;
-  cursor: pointer;
-`;
-
-const NavList = styled.ul`
-  display: flex;
-  margin-right: 20px;
-`;
-
-const Nav = styled.li`
-  color: #ff4a00;
-  font-size: 15px;
-  padding: 20px 5px;
-  margin-left: 10px;
-  cursor: pointer;
-`;
+import {
+  Header,
+  TopNav,
+  BottomNav,
+  ImgArea,
+  LogoImg,
+  NavList,
+  Nav,
+} from "../../styles/MainHeaderStyle";
 
 const MainHeader = () => {
   const navigate = useNavigate();

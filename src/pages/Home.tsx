@@ -62,15 +62,6 @@ const IntroText = styled.span`
 `;
 
 function Home() {
-  const [loggedIn, setLoggedIn] = useRecoilState<ILoggedInAtom>(loggedInAtom);
-  useEffect(() => {
-    getLoggedInInfo().then((res) => {
-      res.data === ""
-        ? setLoggedIn({ isLoggedIn: false, id: "" })
-        : setLoggedIn({ isLoggedIn: true, id: res.data });
-    });
-  }, []);
-  console.log(loggedIn);
   return (
     <>
       <MainHeader />

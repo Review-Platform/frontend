@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { postLogout } from "../api/accountApi";
+import { getLoggedInInfo, postLogout } from "../api/accountApi";
 import { ILoggedInAtom, loggedInAtom } from "../atoms/loggedInAtom";
 
 const Header = styled.header`
@@ -48,7 +48,11 @@ const MainHeader = () => {
   const [loggedIn, setLoggedIn] = useRecoilState<ILoggedInAtom>(loggedInAtom);
   const handleLogoutClick = async () => {
     await postLogout();
-    window.location.href = "/";
+    await getLoggedInInfo().then((res) => {
+      res.data === ""
+        ? setLoggedIn({ isLoggedIn: false, id: "" })
+        : setLoggedIn({ isLoggedIn: true, id: res.data });
+    });
   };
   return (
     <Header>

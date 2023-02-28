@@ -37,11 +37,12 @@ export const loginPost = (loginForm: ILoginForm) =>
     { withCredentials: true }
   );
 
-export const rememberPost = (remember: boolean | undefined) =>
+export const rememberPost = (loginForm: ILoginForm) =>
   axios.post(
     `${BASE_URL}/auth/autoLogin`,
     {
-      remember,
+      remember: loginForm.remember,
+      userId: loginForm.id,
     },
     { withCredentials: true }
   );

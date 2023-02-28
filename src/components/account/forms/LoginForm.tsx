@@ -131,7 +131,7 @@ function LoginForm() {
   const onValid = async ({ id, password, remember }: ILoginForm) => {
     try {
       await loginPost({ id, password });
-      await rememberPost(remember);
+      await rememberPost({ remember, id });
       await getLoggedInInfo().then((res) => {
         res.data === ""
           ? setLoggedIn({ isLoggedIn: false, id: "" })

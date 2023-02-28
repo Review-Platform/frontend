@@ -1,5 +1,10 @@
 import styled from "styled-components";
 import MainHeader from "../components/MainHeader";
+import { useEffect, useState } from "react";
+import { getLoggedInInfo } from "../api/accountApi";
+import useLoggedIn from "../hooks/useLoggedIn";
+import { useRecoilState } from "recoil";
+import { ILoggedInAtom, loggedInAtom } from "../atoms/loggedInAtom";
 
 const IntroArea = styled.div`
   display: flex;

@@ -1,10 +1,16 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { Input, Label } from "../../../styles/AccountStyles";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ILoginForm } from "../../../interfaces/form";
-import { loginPost } from "../../../api/accountApi";
+import {
+  getLoggedInInfo,
+  loginPost,
+  rememberPost,
+} from "../../../api/accountApi";
 import { useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { loggedInAtom } from "../../../atoms/loggedInAtom";
 
 const Form = styled.form`
   position: relative;
@@ -119,12 +125,19 @@ const SubmitFail = styled.div`
 
 function LoginForm() {
   const navigate = useNavigate();
+  const setLoggedIn = useSetRecoilState(loggedInAtom);
   const [submitFail, setSubmitFail] = useState(false);
   const { register, handleSubmit } = useForm<ILoginForm>();
   const onValid = async ({ id, password, remember }: ILoginForm) => {
     try {
-      await loginPost({ id, password, remember });
-      navigate("/");
+      await loginPost({ id, password });
+      await rememberPost(remember);
+      await getLoggedInInfo().then((res) => {
+        res.data === ""
+          ? setLoggedIn({ isLoggedIn: false, id: "" })
+          : setLoggedIn({ isLoggedIn: true, id: res.data });
+      });
+      navigate(-1);
     } catch (error) {
       setSubmitFail(true);
     }

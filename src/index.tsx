@@ -4,6 +4,7 @@ import App from "./App";
 import { createGlobalStyle } from "styled-components";
 import { RouterProvider } from "react-router-dom";
 import router from "./Router";
+import { RecoilRoot } from "recoil";
 const GlobalStyle = createGlobalStyle`
  html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -66,7 +67,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <>
-    <GlobalStyle />
-    <RouterProvider router={router} />
+    <RecoilRoot>
+      <GlobalStyle />
+      <RouterProvider router={router} />
+    </RecoilRoot>
   </>
 );

@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import MainHeader from "../components/MainHeader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getLoggedInInfo } from "../api/accountApi";
+import useLoggedIn from "../hooks/useLoggedIn";
+import { useRecoilState } from "recoil";
+import { ILoggedInAtom, loggedInAtom } from "../atoms/loggedInAtom";
 
 const IntroArea = styled.div`
   display: flex;
@@ -59,9 +62,15 @@ const IntroText = styled.span`
 `;
 
 function Home() {
+  const [loggedIn, setLoggedIn] = useRecoilState<ILoggedInAtom>(loggedInAtom);
   useEffect(() => {
-    getLoggedInInfo().then((res) => console.log(res));
+    getLoggedInInfo().then((res) => {
+      res.data === ""
+        ? setLoggedIn({ isLoggedIn: false, id: "" })
+        : setLoggedIn({ isLoggedIn: true, id: res.data });
+    });
   }, []);
+  console.log(loggedIn);
   return (
     <>
       <MainHeader />

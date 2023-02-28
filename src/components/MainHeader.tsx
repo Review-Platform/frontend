@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { getLogout } from "../api/accountApi";
+import { ILoggedInAtom, loggedInAtom } from "../atoms/loggedInAtom";
 
 const Header = styled.header`
   background-color: #e5e5e5;
@@ -42,13 +45,25 @@ const Nav = styled.li`
 
 const MainHeader = () => {
   const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useRecoilState<ILoggedInAtom>(loggedInAtom);
+  const handleLogoutClick = async () => {
+    await getLogout();
+    window.location.href = "/";
+  };
   return (
     <Header>
       <TopNav>
-        <NavList>
-          <Nav onClick={() => navigate("/login")}>로그인</Nav>
-          <Nav onClick={() => navigate("/signup")}>회원가입</Nav>
-        </NavList>
+        {loggedIn.isLoggedIn ? (
+          <NavList>
+            <Nav>{loggedIn.id}님</Nav>
+            <Nav onClick={handleLogoutClick}>로그아웃</Nav>
+          </NavList>
+        ) : (
+          <NavList>
+            <Nav onClick={() => navigate("/login")}>로그인</Nav>
+            <Nav onClick={() => navigate("/signup")}>회원가입</Nav>
+          </NavList>
+        )}
       </TopNav>
       <ImgArea>
         <LogoImg onClick={() => navigate("/")} />

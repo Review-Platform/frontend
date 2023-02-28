@@ -60,5 +60,5 @@ export const findPasswordPost = (findPasswordForm: IFindPasswordForm) =>
 export const getLoggedInInfo = () =>
   axios.get(`${BASE_URL}/isLogin`, { withCredentials: true });
 
-export const getLogout = () =>
-  axios.get(`${BASE_URL}/auth/logout`, { withCredentials: true });
+export const postLogout = () =>
+  axios.post(`${BASE_URL}/auth/logout`, {}, { withCredentials: true });

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { getLogout } from "../api/accountApi";
+import { postLogout } from "../api/accountApi";
 import { ILoggedInAtom, loggedInAtom } from "../atoms/loggedInAtom";
 
 const Header = styled.header`
@@ -47,7 +47,7 @@ const MainHeader = () => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useRecoilState<ILoggedInAtom>(loggedInAtom);
   const handleLogoutClick = async () => {
-    await getLogout();
+    await postLogout();
     window.location.href = "/";
   };
   return (

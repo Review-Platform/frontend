@@ -1,16 +1,18 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
-  background-color: #e5e5e5;
   margin: 0px 10vw;
 `;
 
 export const TopNav = styled.div`
   display: flex;
   justify-content: flex-end;
+  padding-right: 10px;
 `;
 
-export const BottomNav = styled.div``;
+export const BottomNav = styled.div`
+  padding-left: 10px;
+`;
 
 export const ImgArea = styled.div`
   display: flex;

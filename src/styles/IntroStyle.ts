@@ -4,7 +4,7 @@ export const IntroArea = styled.div`
   display: flex;
   background-color: #ffefdf;
   border-top: 2px solid #ff8a3b;
-  height: 340px;
+  height: 400px;
   width: 100vw;
 `;
 
@@ -53,4 +53,10 @@ export const IntroTextTop = styled.span`
 
 export const IntroText = styled.span`
   margin: 8px 0;
+`;
+
+export const IntroBottom = styled.img.attrs({
+  src: require("../imgs/IntroBottom.png"),
+})`
+  width: 100%;
 `;

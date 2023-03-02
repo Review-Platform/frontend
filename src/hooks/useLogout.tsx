@@ -4,11 +4,11 @@ import { useQueryClient } from "react-query";
 
 function useLogout() {
   const queryClient = useQueryClient();
-  const { mutateAsync } = useMutation(postLogout, {
+  const { mutate } = useMutation(postLogout, {
     onSuccess: () => queryClient.invalidateQueries(["loggedInInfo"]),
   });
-  const handleLogout = async () => {
-    await mutateAsync();
+  const handleLogout = () => {
+    mutate();
   };
   return { handleLogout };
 }

@@ -46,13 +46,13 @@ const MainHeader = () => {
   const navigate = useNavigate();
   const loggedIn = useRecoilValue<ILoggedInAtom>(loggedInAtom);
   const { handleLogout } = useLogout();
-  const handleLogoutClick = async () => {
-    await handleLogout();
+  const handleLogoutClick = () => {
+    handleLogout();
   };
   return (
     <Header>
       <TopNav>
-        {loggedIn.isLoggedIn ? (
+        {loggedIn.loggedIn ? (
           <NavList>
             <Nav>{loggedIn.id}님</Nav>
             <Nav onClick={handleLogoutClick}>로그아웃</Nav>

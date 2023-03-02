@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { getLoggedInInfo, postLogout } from "../api/accountApi";
-import { ILoggedInAtom, loggedInAtom } from "../atoms/loggedInAtom";
+import { getLoggedInInfo, postLogout } from "../../api/accountApi";
+import { ILoggedInAtom, loggedInAtom } from "../../atoms/loggedInAtom";
 
 const Header = styled.header`
   background-color: #e5e5e5;
@@ -23,7 +23,7 @@ const ImgArea = styled.div`
 `;
 
 const LogoImg = styled.img.attrs({
-  src: require("../imgs/Logo.png"),
+  src: require("../../imgs/Logo.png"),
 })`
   height: 162px;
   width: 336px;

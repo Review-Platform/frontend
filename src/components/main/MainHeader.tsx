@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { getLoggedInInfo, postLogout } from "../../api/accountApi";
 import { ILoggedInAtom, loggedInAtom } from "../../atoms/loggedInAtom";
+import useLogout from "../../hooks/useLogout";
 
 const Header = styled.header`
   background-color: #e5e5e5;
@@ -45,14 +44,10 @@ const Nav = styled.li`
 
 const MainHeader = () => {
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useRecoilState<ILoggedInAtom>(loggedInAtom);
+  const loggedIn = useRecoilValue<ILoggedInAtom>(loggedInAtom);
+  const { handleLogout } = useLogout();
   const handleLogoutClick = async () => {
-    await postLogout();
-    await getLoggedInInfo().then((res) => {
-      res.data === ""
-        ? setLoggedIn({ isLoggedIn: false, id: "" })
-        : setLoggedIn({ isLoggedIn: true, id: res.data });
-    });
+    await handleLogout();
   };
   return (
     <Header>

@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { Outlet } from "react-router-dom";
-import {  useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { getLoggedInInfo } from "./api/accountApi";
 import { ILoggedInAtom, loggedInAtom } from "./atoms/loggedInAtom";
@@ -14,9 +14,8 @@ function App() {
   const setLoggedIn = useSetRecoilState<ILoggedInAtom>(loggedInAtom);
   const { data } = useQuery(["loggedInInfo"], getLoggedInInfo, {
     onSuccess: (data) => {
-      data.data === ""
-        ? setLoggedIn({ isLoggedIn: false, id: "" })
-        : setLoggedIn({ isLoggedIn: true, id: data.data });
+      console.log(data.data);
+      setLoggedIn(data.data);
     },
   });
   return (

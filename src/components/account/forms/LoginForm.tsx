@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { loggedInAtom } from "../../../atoms/loggedInAtom";
+import useLogin from "../../../hooks/useLogin";
 
 const Form = styled.form`
   position: relative;
@@ -125,20 +126,14 @@ const SubmitFail = styled.div`
 
 function LoginForm() {
   const navigate = useNavigate();
-  const setLoggedIn = useSetRecoilState(loggedInAtom);
   const [submitFail, setSubmitFail] = useState(false);
   const { register, handleSubmit } = useForm<ILoginForm>();
-  const onValid = async ({ id, password, remember }: ILoginForm) => {
-    try {
-      await loginPost({ id, password });
-      await rememberPost(remember);
-      await getLoggedInInfo().then((res) => {
-        res.data === ""
-          ? setLoggedIn({ isLoggedIn: false, id: "" })
-          : setLoggedIn({ isLoggedIn: true, id: res.data });
-      });
+  const { handleLogin } = useLogin();
+  const onValid = async (loginForm: ILoginForm) => {
+    const success = await handleLogin(loginForm);
+    if (success) {
       navigate(-1);
-    } catch (error) {
+    } else {
       setSubmitFail(true);
     }
   };

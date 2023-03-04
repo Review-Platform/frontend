@@ -1,6 +1,6 @@
 export interface ILoginForm {
   id: string;
-  password: string;
+  password?: string;
   remember?: boolean;
 }
 export interface ISignupForm extends ILoginForm {

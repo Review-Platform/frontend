@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import { useQuery } from "react-query";
 import { Outlet } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { getLoggedInInfo } from "./api/accountApi";
 import { ILoggedInAtom, loggedInAtom } from "./atoms/loggedInAtom";
@@ -11,14 +11,13 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  const [loggedIn, setLoggedIn] = useRecoilState<ILoggedInAtom>(loggedInAtom);
-  useEffect(() => {
-    getLoggedInInfo().then((res) => {
-      res.data === ""
-        ? setLoggedIn({ isLoggedIn: false, id: "" })
-        : setLoggedIn({ isLoggedIn: true, id: res.data });
-    });
-  }, []);
+  const setLoggedIn = useSetRecoilState<ILoggedInAtom>(loggedInAtom);
+  const { data } = useQuery(["loggedInInfo"], getLoggedInInfo, {
+    onSuccess: (data) => {
+      console.log(data.data);
+      setLoggedIn(data.data);
+    },
+  });
   return (
     <Wrapper>
       <Outlet />

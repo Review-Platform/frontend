@@ -5,7 +5,6 @@ import { ILoggedInAtom, loggedInAtom } from "../../atoms/loggedInAtom";
 import useLogout from "../../hooks/useLogout";
 
 const Header = styled.header`
-  background-color: #e5e5e5;
   margin: 0px 10vw;
 `;
 

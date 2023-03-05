@@ -42,20 +42,24 @@ export const IntroImg = styled.img`
 export const TextLogo = styled.img.attrs({
   src: require("../imgs/TextLogo.png"),
 })`
-  margin-bottom: 15px;
   height: 40px;
   width: 270px;
 `;
 
-export const IntroTextTop = styled.span`
+export const TextTop = styled.span`
   color: #ff8a3b;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 20px;
 `;
 
-export const IntroText = styled.span`
+export const Text = styled.span`
   margin: 8px 0;
+  line-height: 150%;
 `;
 
-export const IntroBottom = styled.img.attrs({
+export const BottomImg = styled.img.attrs({
   src: require("../imgs/IntroBottom.png"),
 })`
   width: 100%;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const RoutineArea = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 10vw;
+  margin: 0 10vw 10vh 10vw;
 `;
 
 export const RoutineTopArea = styled.div`
@@ -64,6 +64,7 @@ export const CardTextTitle = styled.span`
 export const CardText = styled.span`
   max-width: 75%;
   font-size: 15px;
+  line-height: 140%;
 `;
 
 export const CardSnackImg = styled.img`

@@ -4,41 +4,58 @@ import styled from "styled-components";
 import { ILoggedInAtom, loggedInAtom } from "../../atoms/loggedInAtom";
 import useLogout from "../../hooks/useLogout";
 
+const HeaderContainer = styled.div`
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+`;
+
 const Header = styled.header`
-  margin: 0px 10vw;
+  width: 1200px;
+  background-color: white;
 `;
 
 const TopNav = styled.div`
   display: flex;
   justify-content: flex-end;
+  padding-top: 40px;
 `;
 
-const BottomNav = styled.div``;
+const BottomNav = styled.div`
+  margin: 50px 0 10px 0;
+`;
 
 const ImgArea = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-const LogoImg = styled.img.attrs({
-  src: require("../../imgs/Logo.png"),
-})`
-  height: 162px;
-  width: 336px;
+const LogoImg = styled.img`
+  width: 230px;
+  height: 110.82px;
   cursor: pointer;
 `;
 
 const NavList = styled.ul`
   display: flex;
-  margin-right: 20px;
+  margin-right: 30px;
 `;
 
-const Nav = styled.li`
-  color: #ff4a00;
-  font-size: 15px;
-  padding: 20px 5px;
-  margin-left: 10px;
+const TopNavItem = styled.li`
+  color: var(--textColor);
+  font-size: 16px;
+  margin-left: 50px;
   cursor: pointer;
+`;
+
+const BottomNavItem = styled.li`
+  color: var(--textColor);
+  font-size: 16px;
+  margin-left: 80px;
+  cursor: pointer;
+  &:first-child {
+    margin-left: 0;
+  }
 `;
 
 const MainHeader = () => {
@@ -53,24 +70,36 @@ const MainHeader = () => {
       <TopNav>
         {loggedIn.loggedIn ? (
           <NavList>
-            <Nav>{loggedIn.id}님</Nav>
-            <Nav onClick={handleLogoutClick}>로그아웃</Nav>
+            <TopNavItem>{loggedIn.id}님</TopNavItem>
+            <TopNavItem onClick={handleLogoutClick}>로그아웃</TopNavItem>
           </NavList>
         ) : (
           <NavList>
-            <Nav onClick={() => navigate("/login")}>로그인</Nav>
-            <Nav onClick={() => navigate("/signup")}>회원가입</Nav>
+            <TopNavItem onClick={() => navigate("/login")}>로그인</TopNavItem>
+            <TopNavItem onClick={() => navigate("/signup")}>
+              회원가입
+            </TopNavItem>
           </NavList>
         )}
       </TopNav>
       <ImgArea>
-        <LogoImg onClick={() => navigate("/")} />
+        <LogoImg
+          src="/images/logo/mainLogo.png"
+          onClick={() => navigate("/")}
+        />
       </ImgArea>
       <BottomNav>
         <NavList>
-          <Nav onClick={() => navigate("/")}>SNACK VILLAGE</Nav>
-          <Nav onClick={() => navigate("/product")}>PRODUCT</Nav>
-          <Nav onClick={() => navigate("/review")}>REVIEW</Nav>
+          <BottomNavItem onClick={() => navigate("/")}>
+            SNACK VILLAGE
+          </BottomNavItem>
+          <BottomNavItem onClick={() => navigate("/product")}>
+            PRODUCT
+          </BottomNavItem>
+          <BottomNavItem onClick={() => navigate("/review")}>
+            REVIEW
+          </BottomNavItem>
+          <BottomNavItem>RECORD</BottomNavItem>
         </NavList>
       </BottomNav>
     </Header>

@@ -54,5 +54,10 @@ body{
 a{
   text-decoration:none;
   color:inherit;
-}`;
+}
+:root{
+	--textColor:rgba(255, 74, 0, 1);
+
+}
+`;
 export default GlobalStyle;

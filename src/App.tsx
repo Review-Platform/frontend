@@ -6,8 +6,10 @@ import { getLoggedInInfo } from "./api/accountApi";
 import { ILoggedInAtom, loggedInAtom } from "./atoms/loggedInAtom";
 
 const Wrapper = styled.div`
-  width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 function App() {

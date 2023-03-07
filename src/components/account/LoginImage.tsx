@@ -10,7 +10,6 @@ const Container = styled.div`
 `;
 
 function LoginImage() {
-  console.log("LoginImage rendered");
   return <Container></Container>;
 }
 export default LoginImage;

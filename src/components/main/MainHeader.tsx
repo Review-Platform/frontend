@@ -4,12 +4,6 @@ import styled from "styled-components";
 import { ILoggedInAtom, loggedInAtom } from "../../atoms/loggedInAtom";
 import useLogout from "../../hooks/useLogout";
 
-const HeaderContainer = styled.div`
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-`;
-
 const Header = styled.header`
   width: 1200px;
   background-color: white;
@@ -22,7 +16,7 @@ const TopNav = styled.div`
 `;
 
 const BottomNav = styled.div`
-  margin: 50px 0 10px 0;
+  margin: 80px 0 10px 0;
 `;
 
 const ImgArea = styled.div`
@@ -43,14 +37,18 @@ const NavList = styled.ul`
 
 const TopNavItem = styled.li`
   color: var(--textColor);
+  font-weight: 600;
   font-size: 16px;
+  line-height: 19px;
   margin-left: 50px;
   cursor: pointer;
 `;
 
 const BottomNavItem = styled.li`
   color: var(--textColor);
+  font-weight: 600;
   font-size: 16px;
+  line-height: 19px;
   margin-left: 80px;
   cursor: pointer;
   &:first-child {

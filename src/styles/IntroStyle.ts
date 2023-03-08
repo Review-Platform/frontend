@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const IntroArea = styled.div`
   display: flex;
   background-color: #ffefdf;
-  border-top: 2px solid #ff8a3b;
   height: 400px;
   width: 100vw;
 `;

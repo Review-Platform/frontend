@@ -10,6 +10,7 @@ import FindIdSuccess from "./components/account/FindIdRedirect";
 import Product from "./pages/Contents/product/Product";
 import Review from "./pages/Contents/review/Review";
 import Contents from "./pages/Contents/Contents";
+import ProductDetail from "./pages/Contents/productDetail/ProductDetail";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
           {
             path: "product",
             element: <Product />,
+          },
+          {
+            path: "product/temp",
+            element: <ProductDetail />,
           },
           {
             path: "review",

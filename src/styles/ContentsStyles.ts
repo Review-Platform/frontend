@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ContentsWrapper = styled.div`
   background: url("/images/background/mainBackground.png");
+  border-top:4px solid var(--textColor);
   width: 100%;
   height: auto;
   display: flex;

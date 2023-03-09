@@ -1,8 +1,7 @@
 import * as S from "./style";
 import useStarCalc from "../../hooks/useStarCalc";
 function Rating({ rating }: { rating: number }) {
-  const { starCalc } = useStarCalc();
-  const { filledArr, halfArr, emptyArr } = starCalc(rating);
+  const { filledArr, halfArr, emptyArr } = useStarCalc(rating);
   return (
     <S.Stars>
       {filledArr.map((i, index) => (

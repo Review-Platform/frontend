@@ -23,7 +23,10 @@ export const ImgContainer = styled.div`
   align-items: center;
 `;
 
-export const Img = styled.img``;
+export const Img = styled.img`
+  width: 270px;
+  height: 300px;
+`;
 
 export const InfoContainer = styled.div`
   width: auto;

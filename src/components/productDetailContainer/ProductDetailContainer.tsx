@@ -1,19 +1,25 @@
 import Rating from "../rating/Rating";
 import * as S from "./style";
-function ProductDetailContainer() {
+import { IProductDetail } from "../../interfaces/productDetail";
+function ProductDetailContainer({
+  product,
+}: {
+  product: IProductDetail | undefined;
+}) {
+  console.log(product);
   return (
     <S.DetailContainer>
       <S.ImgContainer>
-        <S.Img src="/images/example.png" />
+        <S.Img src={product?.originPath} />
       </S.ImgContainer>
       <S.InfoContainer>
-        <S.InfoBrandName>농심</S.InfoBrandName>
-        <S.InfoProductName>농심 포테토칩 사워크림어니언</S.InfoProductName>
-        <Rating rating={3.2} />
+        <S.InfoBrandName>{product?.brand}</S.InfoBrandName>
+        <S.InfoProductName>{product?.name}</S.InfoProductName>
+        <Rating rating={product?.rating ? product.rating : 0} />
         <S.CreateReviewBtn>리뷰작성하기</S.CreateReviewBtn>
         <S.InfoCalorie>
           <S.CalorieTitle>칼로리</S.CalorieTitle>
-          <S.Calorie>345Kcal</S.Calorie>
+          <S.Calorie>{product?.kcal}Kcal</S.Calorie>
         </S.InfoCalorie>
         <S.InfoHashtags>
           <S.HashtagsTitle>추천 해시태그</S.HashtagsTitle>

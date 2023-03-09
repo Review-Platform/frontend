@@ -13,7 +13,7 @@ function ProductDetailContainer({
         <S.Img src={product?.originPath} />
       </S.ImgContainer>
       <S.InfoContainer>
-        <S.InfoBrandName>농심</S.InfoBrandName>
+        <S.InfoBrandName>{product?.brand}</S.InfoBrandName>
         <S.InfoProductName>{product?.name}</S.InfoProductName>
         <Rating rating={product?.rating ? product.rating : 0} />
         <S.CreateReviewBtn>리뷰작성하기</S.CreateReviewBtn>

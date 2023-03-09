@@ -12,6 +12,8 @@ const SIGNUP_URI = "auth/signup";
 const LOGIN_URI = "auth/login";
 const FIND_ID_URI = "findId";
 const FIND_PASSWORD_URI = "sendMail";
+const LOGIN_INFO_URI = "isLogin";
+const LOGOUT_URI = "auth/logout";
 
 export const idCheckPost = (id: string) =>
   baseApi.post(ID_CHECK_URI, {
@@ -50,6 +52,6 @@ export const findPasswordPost = (findPasswordForm: IFindPasswordForm) =>
     userEmail: findPasswordForm.email,
   });
 
-export const getLoggedInInfo = () => baseApi.get(`isLogin`);
+export const getLoggedInInfo = () => baseApi.get(LOGIN_INFO_URI);
 
-export const postLogout = () => baseApi.post(`auth/logout`, {});
+export const postLogout = () => baseApi.post(LOGOUT_URI, {});

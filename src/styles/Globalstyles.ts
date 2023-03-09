@@ -56,8 +56,10 @@ a{
   color:inherit;
 }
 :root{
+	--mainColor: #FF4A00;
 	--textColor:rgba(255, 74, 0, 1);
 	--subColor:#F48722;
+	--yellowColor:rgba(255, 176, 1, 1);
 	--blackColor:rgba(25, 25, 25, 1);
 }
 `;

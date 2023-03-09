@@ -1,4 +1,4 @@
-import { postLogout, getLoggedInInfo } from "../api/accountApi";
+import { postLogout, getLoggedInInfo } from "../apis/api/accountApi";
 import { useMutation } from "react-query";
 import { useQueryClient } from "react-query";
 

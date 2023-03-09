@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Input, Label } from "../../../styles/AccountStyles";
 import { IFindIdForm } from "../../../interfaces/form";
 import { useNavigate } from "react-router-dom";
-import { findIdPost } from "../../../api/accountApi";
+import { findIdPost } from "../../../apis/api/accountApi";
 import { useState } from "react";
 
 const Form = styled.form`

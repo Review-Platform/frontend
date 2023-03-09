@@ -7,7 +7,7 @@ import {
   getLoggedInInfo,
   loginPost,
   rememberPost,
-} from "../../../api/accountApi";
+} from "../../../apis/api/accountApi";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { loggedInAtom } from "../../../atoms/loggedInAtom";

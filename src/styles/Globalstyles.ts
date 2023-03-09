@@ -57,7 +57,8 @@ a{
 }
 :root{
 	--textColor:rgba(255, 74, 0, 1);
-
+	--subColor:#F48722;
+	--blackColor:rgba(25, 25, 25, 1);
 }
 `;
 export default GlobalStyle;

@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { Outlet } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { getLoggedInInfo } from "./api/accountApi";
+import { getLoggedInInfo } from "./apis/api/accountApi";
 import { ILoggedInAtom, loggedInAtom } from "./atoms/loggedInAtom";
 
 const Wrapper = styled.div`

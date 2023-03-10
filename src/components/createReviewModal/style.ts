@@ -79,9 +79,9 @@ export const ImgContainer = styled.div`
   margin-left: 57px;
 `;
 export const ProductName = styled.div`
+  width: 100%;
   text-align: center;
   margin-top: 20px;
-  margin-left: 89px;
   color: var(--mainColor);
   font-weight: 700;
   font-size: 24px;
@@ -148,4 +148,22 @@ export const Rating = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+`;
+export const FlavorCheck = styled.div`
+  margin-top: 26px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--mainColor);
+  display: flex;
+  flex-direction: column;
+`;
+export const HashTags = styled.div`
+  margin-top: 26px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--mainColor);
+  display: flex;
+  flex-direction: column;
 `;

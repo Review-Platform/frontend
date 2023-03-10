@@ -2,6 +2,9 @@ import * as S from "./style";
 import { IProductDetail } from "../../interfaces/productDetail";
 import { useRecoilValue } from "recoil";
 import { ILoggedInAtom, loggedInAtom } from "../../atoms/loggedInAtom";
+import StarRadio from "../inputs/starRadio/StarRadio";
+import FlavorRadio from "../inputs/flavorRadio/FlavorRadio";
+import HashtagCheckbox from "../inputs/hashtag/HashtagCheckbox";
 
 function CreateReviewModal({
   setModalOpen,
@@ -32,8 +35,17 @@ function CreateReviewModal({
               <S.UserName>{loggedInInfo.id}</S.UserName>
             </S.UserInfoBox>
             <S.Rating>
-                별점
+              별점
+              <StarRadio />
             </S.Rating>
+            <S.FlavorCheck>
+              내 입맛 체크
+              <FlavorRadio />
+            </S.FlavorCheck>
+            <S.HashTags>
+              추천 해시태그
+              <HashtagCheckbox />
+            </S.HashTags>
           </S.Container>
         </S.Containers>
       </S.Modal>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { Input, Label } from "../../../styles/AccountStyles";
-import { IFindIdForm } from "../../../interfaces/form";
+import { IFindIdForm } from "../../../interfaces/accountForm";
 import { useNavigate } from "react-router-dom";
 import { findIdPost } from "../../../apis/api/accountApi";
 import { useState } from "react";

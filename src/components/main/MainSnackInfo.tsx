@@ -1,88 +1,21 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
-const SnackInfo = styled.div`
-  display: flex;
-  width: 45%;
-  border: 2px solid #ff8a3b;
-  border-radius: 15px;
-  background-color: white;
-  margin-right: 15px;
-`;
-
-const SnackArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  width: 40%;
-`;
-
-const SnackImg = styled.img`
-  height: 80%;
-`;
-
-const SnackName = styled.span``;
-
-const ProfileArea = styled.div`
-  height: 25%;
-  display: flex;
-  align-items: center;
-`;
-
-const ProfileImg = styled.img`
-  background-color: #ffc107;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-`;
-
-const RateArea = styled.div`
-  height: 25%;
-  display: flex;
-  align-items: center;
-`;
-
-const RateLeftText = styled.span`
-  font-size: 15px;
-  margin-right: 5px;
-`;
-
-const RateRightText = styled(RateLeftText)`
-  color: #ffc107;
-  margin-left: 5px;
-`;
-
-const RateImg = styled.img`
-  width: 16px;
-  height: 16px;
-`;
-
-const HashTagArea = styled.div`
-  height: 20%;
-`;
-
-const HashTag = styled.span`
-  border: 1px solid black;
-  border-radius: 12px;
-  padding: 3px;
-  font-size: 15px;
-  margin: 0 10px 10px 0;
-`;
-
-const ReviewText = styled.span`
-  height: 30%;
-  font-size: 15px;
-`;
-
-const ReviewArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 60%;
-  padding: 5% 0;
-`;
+import {
+  HashTag,
+  HashTagArea,
+  ProfileArea,
+  ProfileImg,
+  RateArea,
+  RateImg,
+  RateLeftText,
+  RateRightText,
+  ReviewArea,
+  ReviewText,
+  SnackArea,
+  SnackImg,
+  SnackInfo,
+  SnackName,
+} from "../../styles/MainSnackInfoStyles";
 
 const MainSnackReview = () => {
   const [snackImgUrl, setSnackImgUrl] = useState("");

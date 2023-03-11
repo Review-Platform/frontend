@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-const FooterArea = styled.footer``;
+const FooterArea = styled.footer`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
 const ContentArea = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 10vw;
+  padding: 0 12vw;
   height: 450px;
   margin-top: 5vh;
 `;
@@ -32,20 +36,21 @@ const RoutineText = styled.span`
 `;
 
 const ImgArea = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: 5vh;
 `;
 
 const Img = styled.img`
-  height: 260px;
-  width: 200px;
+  height: 100%;
+  width: 18%;
   background-color: red;
 `;
 
 const BottomArea = styled.div`
   height: 15vh;
+  width: 100%;
   background-color: #ff8a3b;
 `;
 

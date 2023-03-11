@@ -1,4 +1,8 @@
+import axios from "axios";
+import { useQuery } from "react-query";
+import { getProduct } from "../../../apis/api/productApi";
 import ProductInformation from "../../../components/product/ProductInformation";
+import { IProductInfo } from "../../../interfaces/productInfo";
 import { ContentsWrapper } from "../../../styles/ContentsStyles";
 import {
   Category,
@@ -9,17 +13,7 @@ import {
   FilterArea,
   FilterTitle,
   ProductArea,
-  ProductBackgroundImage,
-  ProductContainer,
-  ProductImage,
-  ProductImageArea,
-  ProductInfo,
-  ProductName,
-  ProductNameArea,
-  ProductRating,
   RankingNavImg,
-  RateImg,
-  RateText,
   RoutineArea,
   RoutineImg,
   RoutineText,
@@ -31,6 +25,9 @@ import {
 } from "../../../styles/ProductStyles";
 
 const Product = () => {
+  const { data } = useQuery<IProductInfo[]>("product", () => getProduct());
+  console.log(data);
+
   return (
     <ContentsWrapper>
       <RankingNavImg
@@ -101,7 +98,9 @@ const Product = () => {
         </SearchArea>
       </SearchFilterArea>
       <ProductArea>
-        <ProductInformation />
+        {data?.map((product) => (
+          <ProductInformation product={product} />
+        ))}
       </ProductArea>
     </ContentsWrapper>
   );

@@ -17,7 +17,7 @@ export const RoutineArea = styled.div`
 
 export const RoutineImg = styled.img`
   height: 5vh;
-  width: 32vw;
+  width: 30vw;
   margin-bottom: 20px;
 `;
 
@@ -110,15 +110,17 @@ export const SearchButton = styled.button`
 
 export const ProductArea = styled.div`
   display: flex;
-  justify-content: space-between;
-  height: 1000px;
+  flex-wrap: wrap;
   width: 100%;
-  padding: 5vh 4vw;
+  padding: 2vh 0 2vh 4vw;
+  /* padding: 2vh 4vw; */
 `;
 
 export const ProductContainer = styled.div`
-  height: 41vh;
+  height: 45vh;
   width: 20vw;
+  margin-right: 4vw;
+  margin-bottom: 10vh;
 `;
 
 export const ProductInfo = styled.div`
@@ -138,6 +140,7 @@ export const ProductImageArea = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const ProductBackgroundImage = styled.img`
@@ -147,7 +150,8 @@ export const ProductBackgroundImage = styled.img`
 
 export const ProductImage = styled.img`
   position: absolute;
-  width: 100%;
+  height: 90%;
+  width: 90%;
 `;
 
 export const ProductNameArea = styled.div`
@@ -155,12 +159,14 @@ export const ProductNameArea = styled.div`
   justify-content: center;
   align-items: center;
   height: 15%;
+  padding: 0 10px;
 `;
 
 export const ProductName = styled.span`
   color: white;
-  font-size: 1.4vw;
+  font-size: 1.3vw;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 export const ProductRating = styled.div`

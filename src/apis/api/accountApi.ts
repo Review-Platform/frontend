@@ -5,7 +5,7 @@ import {
   IFindPasswordForm,
   ILoginForm,
   ISignupForm,
-} from "../../interfaces/form";
+} from "../../interfaces/accountForm";
 
 const ID_CHECK_URI = "auth/checkId";
 const SIGNUP_URI = "auth/signup";

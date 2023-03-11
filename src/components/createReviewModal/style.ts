@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ModalBg = styled.form`
+export const ModalBg = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -12,7 +12,7 @@ export const ModalBg = styled.form`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
-export const Modal = styled.div`
+export const Modal = styled.form`
   width: 806px;
   height: 718px;
   border: 5px solid #e76100;

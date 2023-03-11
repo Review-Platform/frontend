@@ -1,4 +1,6 @@
 import * as S from "./style";
+import { useFormContext } from "react-hook-form";
+import { ICreateReviewForm } from "../../../../interfaces/createReviewForm";
 
 function HashtagCheckboxInput({
   i,
@@ -13,6 +15,7 @@ function HashtagCheckboxInput({
   setSelected: React.Dispatch<React.SetStateAction<boolean[]>>;
   big: boolean;
 }) {
+  const { register } = useFormContext<ICreateReviewForm>();
   const toggleSelected = (index: number) => {
     setSelected((prev) => {
       const temp = [...prev];
@@ -27,7 +30,7 @@ function HashtagCheckboxInput({
           #{i}
         </S.HashtagBox>
       </S.Label>
-      <S.CheckBox id={i} type="checkbox" />
+      <S.CheckBox id={i} {...register("hashtags")} type="checkbox" />
     </>
   );
 }

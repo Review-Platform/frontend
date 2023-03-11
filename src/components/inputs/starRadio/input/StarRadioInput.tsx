@@ -1,3 +1,4 @@
+import { useFormContext } from "react-hook-form";
 import * as S from "./style";
 
 function StarRadioInput({
@@ -9,6 +10,8 @@ function StarRadioInput({
   value: number;
   setValue: React.Dispatch<React.SetStateAction<number>>;
 }) {
+  const { register } = useFormContext();
+
   return (
     <>
       <S.Star
@@ -26,8 +29,9 @@ function StarRadioInput({
       <S.StarInput
         type="radio"
         id={`rate${inputNumber}`}
-        name="rate"
         value={inputNumber}
+        {...register("grade")}
+        defaultChecked={inputNumber === 5 ? true : false}
       />
     </>
   );

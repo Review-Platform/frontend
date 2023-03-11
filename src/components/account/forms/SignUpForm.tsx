@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Input, Label } from "../../../styles/AccountStyles";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ISignupForm } from "../../../interfaces/form";
+import { ISignupForm } from "../../../interfaces/accountForm";
 import { idCheckPost, signupPost } from "../../../apis/api/accountApi";
 import { getValue } from "@testing-library/user-event/dist/utils";
 import { sign } from "crypto";

@@ -9,7 +9,7 @@ function FlavorRadio() {
       {flavorArray.map((i, index) => (
         <S.FlavorRadioContainer key={i}>
           {i}
-          <FlavorInput key={i} flavor={i} />
+          <FlavorInput key={i} flavor={i} index={index} />
         </S.FlavorRadioContainer>
       ))}
     </S.FlavorRadios>

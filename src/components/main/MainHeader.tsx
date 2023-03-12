@@ -5,7 +5,7 @@ import { ILoggedInAtom, loggedInAtom } from "../../atoms/loggedInAtom";
 import useLogout from "../../hooks/useLogout";
 
 const Header = styled.header`
-  width: 1200px;
+  width: 100%;
   background-color: white;
 `;
 
@@ -33,6 +33,7 @@ const LogoImg = styled.img`
 const NavList = styled.ul`
   display: flex;
   margin-right: 30px;
+  margin-left: 8vw;
 `;
 
 const TopNavItem = styled.li`

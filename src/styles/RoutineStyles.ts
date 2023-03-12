@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const RoutineArea = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 10vw 10vh 10vw;
+  width: 100%;
+  padding: 0 15vw;
+  margin: 0 0 10vh 0;
 `;
 
 export const RoutineTopArea = styled.div`
@@ -18,8 +20,8 @@ export const RoutineBottomArea = styled.div`
 `;
 
 export const RoutineTextLogo = styled.img`
-  height: 34px;
-  width: 340px;
+  height: 42px;
+  width: 400px;
   margin-bottom: 20px;
 `;
 

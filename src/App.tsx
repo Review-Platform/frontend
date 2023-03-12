@@ -4,6 +4,7 @@ import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { getLoggedInInfo } from "./apis/api/accountApi";
 import { ILoggedInAtom, loggedInAtom } from "./atoms/loggedInAtom";
+import ScrollToTop from "./components/ScrollToTop";
 
 const Wrapper = styled.div`
   height: 100%;
@@ -22,6 +23,7 @@ function App() {
   });
   return (
     <Wrapper>
+      <ScrollToTop />
       <Outlet />
     </Wrapper>
   );

@@ -3,7 +3,11 @@ import Header from "../../components/account/Header";
 import LoginImage from "../../components/account/LoginImage";
 import LoginForm from "../../components/account/forms/LoginForm";
 import { Outlet } from "react-router-dom";
-import { Container, FormContainer, Grid } from "../../styles/AccountStyles";
+import {
+  Container,
+  FormContainer,
+  Grid,
+} from "../../components/account/AccountStyles";
 
 function Login() {
   return (

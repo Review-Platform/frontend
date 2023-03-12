@@ -1,8 +1,8 @@
-import MainHeader from "../../../components/main/MainHeader";
-import Introduction from "../../../components/main/Introduction";
-import Routine from "../../../components/main/Routine";
-import Record from "../../../components/main/Record";
-import Footer from "../../../components/main/Footer";
+import MainHeader from "../../../components/mainHeader/MainHeader";
+import Introduction from "../../../components/main/introduction/Introduction";
+import Routine from "../../../components/main/routine/Routine";
+import Record from "../../../components/main/record/Record";
+import Footer from "../../../components/main/footer/Footer";
 
 function Home() {
   return (

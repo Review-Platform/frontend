@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { Input, Label } from "../../../styles/AccountStyles";
+import { Input, Label } from "../AccountStyles";
 import { IFindPasswordForm } from "../../../interfaces/accountForm";
 import { findPasswordPost } from "../../../apis/api/accountApi";
 import { useState } from "react";

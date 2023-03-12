@@ -46,7 +46,7 @@ export const TasteFilter = styled(Filter)`
 export const ProductArea = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 92%;
   padding: 2vh 0 2vh 4vw;
   /* padding: 2vh 4vw; */
 `;

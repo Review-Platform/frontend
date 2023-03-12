@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IProductInfo } from "../../interfaces/productInfo";
 import * as S from "./style";

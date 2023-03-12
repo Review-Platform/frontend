@@ -72,7 +72,7 @@ export const Container = styled.div`
 export const ImgContainer = styled.div`
   width: 298.42px;
   height: 189px;
-  background-image: url("/images/background/productImgBackground.png");
+  background-image: url("/images/productImgBackground.png");
   background-size: cover;
   border-radius: 10px;
   margin-top: 50px;

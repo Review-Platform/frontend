@@ -43,7 +43,9 @@ function CreateReviewModal({
             </S.Container>
             <S.Container>
               <S.UserInfoBox>
-                <S.UserImage src="/images/profileImg/defaultProfileImg.png" />
+                <S.UserImage
+                  src={require("../../imgs/profileImg/defaultProfileImg.png")}
+                />
                 <S.UserName>{loggedInInfo.id}</S.UserName>
               </S.UserInfoBox>
               <S.Rating>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { Input, Label } from "../../../styles/AccountStyles";
+import { Input, Label } from "../AccountStyles";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ILoginForm } from "../../../interfaces/accountForm";
 import {

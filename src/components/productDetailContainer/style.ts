@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const DetailContainer = styled.div`
   margin-top: 30px;
   display: grid;
@@ -15,7 +14,7 @@ export const ImgContainer = styled.div`
   width: 460px;
   height: 310px;
   margin-left: 110px;
-  background: url("/images/background/productImgBackground.png");
+  background: url("/images/productImgBackground.png");
   background-size: cover;
   align-self: center;
   display: flex;

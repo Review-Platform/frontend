@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { Input, Label } from "../../../styles/AccountStyles";
+import { Input, Label } from "../AccountStyles";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ISignupForm } from "../../../interfaces/accountForm";

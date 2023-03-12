@@ -28,7 +28,7 @@ export const IntroImgLeft = styled.div`
 `;
 
 export const IntroImgRight = styled.img.attrs({
-  src: require("../imgs/Artboard14.png"),
+  src: require("../../../imgs/mainPage/Artboard14.png"),
 })`
   height: 100%;
   width: 50%;
@@ -39,7 +39,7 @@ export const IntroImg = styled.img`
 `;
 
 export const TextLogo = styled.img.attrs({
-  src: require("../imgs/TextLogo.png"),
+  src: require("../../../imgs/mainPage/TextLogo.png"),
 })`
   height: 40px;
   width: 270px;
@@ -59,7 +59,7 @@ export const Text = styled.span`
 `;
 
 export const BottomImg = styled.img.attrs({
-  src: require("../imgs/IntroBottom.png"),
+  src: require("../../../imgs/mainPage/IntroBottom.png"),
 })`
   width: 100%;
 `;

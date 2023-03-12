@@ -1,5 +1,5 @@
 import React from "react";
-import MainHeader from "../../../components/main/MainHeader";
+import MainHeader from "../../../components/mainHeader/MainHeader";
 
 const Review = () => {
   return (

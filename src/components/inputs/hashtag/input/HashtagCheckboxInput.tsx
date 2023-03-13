@@ -30,7 +30,7 @@ function HashtagCheckboxInput({
           #{i}
         </S.HashtagBox>
       </S.Label>
-      <S.CheckBox id={i} {...register("hashtags")} type="checkbox" />
+      <S.CheckBox id={i} {...register(`hashtags.${index}`)} type="checkbox" />
     </>
   );
 }

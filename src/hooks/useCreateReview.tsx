@@ -15,8 +15,19 @@ export function useCreateReview() {
       content: createReviewForm.content,
       grade: createReviewForm.grade,
     };
-    console.log(createReviewForm);
     formData.append("image", createReviewForm.image[0]);
+    formData.append(
+      "flavor",
+      new Blob([JSON.stringify(createReviewForm.flavor)], {
+        type: "application/json",
+      })
+    );
+    formData.append(
+      "tag",
+      new Blob([JSON.stringify(createReviewForm.hashtags)], {
+        type: "application/json",
+      })
+    );
     formData.append(
       "dto",
       new Blob([JSON.stringify(dto)], { type: "application/json" })

@@ -3,14 +3,21 @@ import * as S from "./style";
 import { IProductDetail } from "../../interfaces/productDetail";
 import { useState } from "react";
 import CreateReviewModal from "../createReviewModal/CreateReviewModal";
+import { useRecoilValue } from "recoil";
+import { ILoggedInAtom, loggedInAtom } from "../../atoms/loggedInAtom";
 function ProductDetailContainer({
   product,
 }: {
   product: IProductDetail | undefined;
 }) {
   const [modalOpen, setModalOpen] = useState(false);
+  const loggedInInfo = useRecoilValue<ILoggedInAtom>(loggedInAtom);
   const handleCreateReviewClick = () => {
-    setModalOpen(true);
+    if (loggedInInfo.loggedIn) {
+      setModalOpen(true);
+    } else {
+      alert("로그인 후 이용해주세요.");
+    }
   };
   return (
     <>

@@ -1,8 +1,10 @@
 import { ICreateReviewForm } from "../interfaces/createReviewForm";
 import { IProductDetail } from "../interfaces/productDetail";
 import { postCreateReview } from "../apis/api/createReview";
+import { useQueryClient } from "react-query";
 
 export function useCreateReview() {
+  const queryClient = useQueryClient();
   const handleCreateReview = async ({
     createReviewForm,
     product,
@@ -36,6 +38,7 @@ export function useCreateReview() {
       await postCreateReview(formData, product?.id).then((res) =>
         console.log(res)
       );
+      await queryClient.invalidateQueries(["product", product?.id]);
       console.log("success");
     } catch {
       console.log("error");

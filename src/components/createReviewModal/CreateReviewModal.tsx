@@ -23,6 +23,8 @@ function CreateReviewModal({
   const methods = useForm<ICreateReviewForm>();
   const onValid = (createReviewForm: ICreateReviewForm) => {
     handleCreateReview({ createReviewForm, product });
+    setModalOpen(false);
+    
   };
   return (
     <S.ModalBg>

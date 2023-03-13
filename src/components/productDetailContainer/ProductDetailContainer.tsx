@@ -28,7 +28,7 @@ function ProductDetailContainer({
         <S.InfoContainer>
           <S.InfoBrandName>{product?.brand}</S.InfoBrandName>
           <S.InfoProductName>{product?.name}</S.InfoProductName>
-          <Rating rating={product?.rating ? product.rating : 0} />
+          <Rating rating={product?.avg_grade ? product.avg_grade : 0} />
           <S.CreateReviewBtn onClick={handleCreateReviewClick}>
             리뷰작성하기
           </S.CreateReviewBtn>

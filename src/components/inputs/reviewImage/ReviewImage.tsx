@@ -14,7 +14,7 @@ function ReviewImage({ product }: { product: IProductDetail | undefined }) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = () => {
-        setImgSrc(reader.result as any);
+        setImgSrc(reader.result + "");
       };
     }
   };

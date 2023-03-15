@@ -5,5 +5,5 @@ export interface IProductDetail {
   kcal: number;
   originPath: string;
   localPath: string;
-  rating?: number;
+  avg_grade?: number;
 }

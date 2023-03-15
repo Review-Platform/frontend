@@ -9,7 +9,7 @@ function ProductDetail() {
   const product: IProductDetail = useProductDetail(Number(id));
   return (
     <S.MainWrapper>
-      <S.Title>Review {">"} Record</S.Title>
+      <S.Title>Review</S.Title>
       <ProductDetailContainer product={product} />
     </S.MainWrapper>
   );

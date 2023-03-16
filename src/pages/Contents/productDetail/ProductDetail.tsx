@@ -7,6 +7,7 @@ import useProductDetail from "../../../hooks/useProductDetail";
 function ProductDetail() {
   const { id } = useParams();
   const product: IProductDetail = useProductDetail(Number(id));
+  console.log(product);
   return (
     <S.MainWrapper>
       <S.Title>Review</S.Title>

@@ -1,6 +1,6 @@
 import { ICreateReviewForm } from "../interfaces/createReviewForm";
 import { IProductDetail } from "../interfaces/productDetail";
-import { postCreateReview } from "../apis/api/createReview";
+import { postCreateReview } from "../apis/api/reviewApi";
 import { useQueryClient } from "react-query";
 
 export function useCreateReview() {
@@ -29,9 +29,9 @@ export function useCreateReview() {
         console.log(res)
       );
       await queryClient.invalidateQueries(["product", product?.id]);
-      console.log("success");
+      await queryClient.invalidateQueries(["AllReviews"]);
     } catch {
-      console.log("error");
+      console.log("리뷰 등록 에러 발생");
     }
   };
   return handleCreateReview;

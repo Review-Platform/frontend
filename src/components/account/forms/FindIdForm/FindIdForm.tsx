@@ -16,34 +16,41 @@ function FindIdForm() {
     try {
       await findIdPost({ name, email }).then((res) => {
         console.log(res.data);
-        setFoundId(res.data.userId);
-      });
-      navigate("success", {
-        state: {
-          foundId,
-        },
+        navigate("success", {
+          state: {
+            name,
+            id: res.data,
+          },
+        });
       });
     } catch (error) {
       setSubmitFail(true);
     }
   };
   return (
-    <S.Form onSubmit={handleSubmit(onValid)}>
-      <S.Title>아이디 찾기</S.Title>
-      <S.IdWrapper>
-        <S.Label>이름을 입력해주세요.</S.Label>
-        <S.Input {...register("name", { required: true })} />
-      </S.IdWrapper>
-      <S.EmailWrapper>
-        <S.Label>이메일을 입력해주세요.</S.Label>
-        <S.Input {...register("email", { required: true })} />
-      </S.EmailWrapper>
-      {submitFail ? (
-        <S.SubmitFail> 이름 또는 이메일이 올바르지 않습니다.</S.SubmitFail>
-      ) : null}
+    <S.FormContainer>
+      <S.Form onSubmit={handleSubmit(onValid)}>
+        <S.Title>아이디 찾기</S.Title>
+        <S.IdWrapper>
+          <S.Label>이름을 입력해주세요.</S.Label>
+          <S.Input {...register("name", { required: true })} />
+        </S.IdWrapper>
+        <S.EmailWrapper>
+          <S.Label>이메일을 입력해주세요.</S.Label>
+          <S.Input {...register("email", { required: true })} />
+        </S.EmailWrapper>
+        {submitFail ? (
+          <S.SubmitFail> 이름 또는 이메일이 올바르지 않습니다.</S.SubmitFail>
+        ) : (
+          <S.SubmitFail></S.SubmitFail>
+        )}
+        <S.ConfirmBtn>확인</S.ConfirmBtn>
+      </S.Form>
+    </S.FormContainer>
+    // <S.Form onSubmit={handleSubmit(onValid)}>
+    //
 
-      <S.ConfirmBtn>확인</S.ConfirmBtn>
-    </S.Form>
+    // </S.Form>
   );
 }
 export default FindIdForm;

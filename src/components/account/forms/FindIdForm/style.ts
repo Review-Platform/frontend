@@ -1,84 +1,87 @@
 import styled from "styled-components";
-export const Form = styled.form`
-  position: relative;
+export const FormContainer = styled.div`
+  width: 500px;
+  height: 100%;
+  min-height: 740px;
+  background-color: #fffaf5;
   display: flex;
   justify-content: center;
-  width: calc((408.5 / 1920) * 100vw);
-  height: calc((416 / 1080) * 100vh);
-  min-width: 300px;
-  min-height: 350px;
+`;
+
+export const Form = styled.form`
+  width: 386px;
+  height: 570px;
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 export const Title = styled.div`
-  width: 100%;
-  height: calc((51 / 717) * 100%);
   font-weight: 700;
-  font-size: 40px;
-  line-height: 520px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 26px;
+  line-height: 31px;
+  color: #ff4a00;
 `;
 
 export const IdWrapper = styled.div`
-  width: 100%;
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 29.09%;
-  bottom: 51.68%;
+  width: 386px;
+  height: 75px;
+  margin-top: 80px;
 `;
 
 export const EmailWrapper = styled.div`
-  width: 100%;
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 54.33%;
-  bottom: 26.44%;
+  width: 386px;
+  height: 75px;
+  margin-top: 20px;
 `;
 
 export const ConfirmBtn = styled.button`
-  width: 100%;
-  height: calc((60 / 416) * 100%);
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 85.58%;
-  bottom: 0%;
-  background: #000000;
+  width: 270px;
+  margin-top: 50px;
+  min-height: 50px;
+  border: 0;
+  background: #e76100;
   border-radius: 40px;
   color: white;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
   cursor: pointer;
 `;
 
 export const SubmitFail = styled.div`
-  position: absolute;
-  left: 10px;
-  top: 74.33%;
-  font-style: normal;
+  width: 350px;
+  height: 19px;
   font-weight: 400;
+  margin-left: 16px;
+  margin-top: 10px;
   font-size: 13px;
   line-height: 19px;
-  color: #ff5c00;
+  color: var(--orangeColor);
 `;
-
-export const Label = styled.label`
-  margin: 5px 0;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 29px;
-  margin-left: 10px;
-`;
-
 export const Input = styled.input`
-  width: calc((408 / 408.5) * 100%);
-  height: calc((45 / 1080) * 100vh);
-  min-height: 25px;
-  border: 2px solid black;
+  width: 386px;
+  height: 46px;
+  background: #ffffff;
+  border: 1px solid #000000;
   border-radius: 40px;
-  padding: 0 7%;
+  margin-top: 10px;
+  padding-left: 16px;
+  font-style: normal;
+  font-weight: 500;
   font-size: 16px;
+  line-height: 19px;
   &:focus {
     outline: none;
   }
+`;
+
+export const Label = styled.label`
+  color: #191919;
+  width: 108px;
+  height: 19px;
+  margin-left: 16px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
 `;

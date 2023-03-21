@@ -14,7 +14,7 @@ export const HeaderWrapper = styled.div`
   align-items: center;
 `;
 export const SnackVillage = styled.div`
-  width: 300px;
+  width: 514px;
   height: 100%;
   font-family: "Shrikhand", sans-serif;
   font-style: italic;
@@ -24,7 +24,9 @@ export const SnackVillage = styled.div`
   font-weight: 400;
   display: flex;
   align-items: center;
+  justify-content: center;
   color: #fffbf7;
+  cursor: pointer;
 `;
 export const MainWrapper = styled.div`
   width: 100%;

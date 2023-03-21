@@ -7,7 +7,7 @@ export const PageWrapper = styled.div`
 `;
 export const HeaderWrapper = styled.div`
   width: 100%;
-  height: 80px;
+  height: 60px;
   background-color: var(--subColor);
   display: flex;
   justify-content: center;
@@ -28,7 +28,7 @@ export const SnackVillage = styled.div`
 `;
 export const MainWrapper = styled.div`
   width: 100%;
-  height: calc(100vh - 90px + 20px);
+  height: calc(100vh - 60px);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   background: url("images/loginBg.png");

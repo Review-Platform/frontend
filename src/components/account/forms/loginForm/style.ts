@@ -37,44 +37,50 @@ export const PasswordWrapper = styled.div`
 
 export const LoginBtn = styled.button`
   width: 386px;
-  height: 50px;
-  margin-top: 40px;
-  background: var(--orangeColor);
+  min-height: 50px;
+  margin-top: 30px;
+  background: #e76100;
   border-radius: 40px;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+  border: 0;
   color: white;
-  border-color: var(--orangeColor);
+  outline: none;
   cursor: pointer;
 `;
 
-export const Remember = styled.div`
-  width: calc((141 / 408.5) * 100%);
-  height: calc((23 / 567) * 100%);
-  position: absolute;
-  left: 2.69%;
-  right: 62.79%;
-  top: 77.78%;
-  bottom: 18.17%;
+export const Options = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+
+export const Remember = styled.div`
+  width: 139px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  input {
+    width: 20px;
+    height: 20px;
+  }
   span {
-    font-size: 12px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
   }
 `;
 
 export const FindIdPassword = styled.div`
-  width: calc((167.5 / 408.5) * 100%);
-  height: calc((25 / 567) * 100%);
-  max-width: 130px;
-  position: absolute;
-  right: 3%;
-  top: 77.78%;
-  bottom: 17.81%;
-  font-weight: 400;
-  line-height: 23px;
-  font-size: 12px;
+  width: 136px;
+  height: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -88,36 +94,49 @@ export const FindPassword = styled.span`
   text-decoration: underline;
 `;
 export const RegisterDiv = styled.div`
-  width: calc((320 / 408.5) * 100%);
-  height: calc((23 / 567) * 100%);
-  position: absolute;
-  left: 20.77%;
-  right: 10.89%;
-  top: 95.94%;
-  bottom: 0%;
-  span {
+  width: 219px;
+  height: 23px;
+  margin-top: 50px;
+  gap: 10px;
+  span:first-child {
     font-weight: 400;
-    font-size: 12px;
-    line-height: 23px;
+    font-size: 14px;
+    line-height: 17px;
   }
 `;
 export const Register = styled.span`
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 23px;
+  color: #191919;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
   cursor: pointer;
   text-decoration: underline;
   margin-left: 8px;
 `;
 
+export const SocialBtns = styled.div`
+  width: 130px;
+  height: 34px;
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  img {
+    width: 34px;
+    height: 34px;
+  }
+`;
+
 export const SubmitFail = styled.div`
-  position: absolute;
-  left: 10px;
-  top: 54.95%;
-  bottom: 42.78%;
-  font-size: 13px;
+  width: 350px;
+  height: 19px;
   font-weight: 400;
-  color: #ff5c00;
+  margin-left: 16px;
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--orangeColor);
 `;
 export const Input = styled.input`
   width: 386px;

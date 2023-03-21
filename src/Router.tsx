@@ -3,7 +3,6 @@ import App from "./App";
 import Home from "./pages/Contents/home/Home";
 
 import SignUp from "./pages/account/signup/SignUp";
-import FindIdForm from "./components/account/forms/findIdForm/FindIdForm";
 import FindPasswordForm from "./components/account/forms/findPasswordForm/FindPasswordForm";
 import LoginForm from "./components/account/forms/loginForm/LoginForm";
 import FindIdSuccess from "./components/account/findIdRedirect/FindIdRedirect";
@@ -12,8 +11,9 @@ import Review from "./pages/Contents/review/Review";
 import Contents from "./pages/Contents/Contents";
 import ProductDetail from "./pages/Contents/productDetail/ProductDetail";
 import Login from "./pages/account/login/Login";
-import SignUpForm from "./components/account/forms/signUpForm/SignUpForm";
 import SignUpSuccess from "./components/account/signUpSuccess/SignUpSuccess";
+import FindIdForm from "./components/account/forms/FindIdForm/FindIdForm";
+import SignUpForm from "./components/account/forms/signUpForm/SignUpForm";
 
 const router = createBrowserRouter([
   {

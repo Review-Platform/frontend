@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { getProduct } from "../../../apis/api/productApi";
 import ProductInformation from "../../../components/product/ProductInformation";
@@ -6,8 +7,21 @@ import { ContentsWrapper } from "../ContentsStyles";
 import * as S from "./style";
 
 const Product = () => {
-  const { data } = useQuery<IProductInfo[]>("product", () => getProduct());
+  const { data } = useQuery<IProductInfo[]>("product", getProduct);
   console.log(data);
+
+  const [brand, setBrand] = useState<string[]>([]);
+
+  const onCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const currentBrandList = [...brand];
+    const newBrandList = currentBrandList.includes(e.currentTarget.value)
+      ? currentBrandList.filter((brand) => brand !== e.currentTarget.value)
+      : [...currentBrandList, e.currentTarget.value];
+
+    setBrand(newBrandList);
+  };
+
+  console.log(brand);
 
   return (
     <ContentsWrapper>
@@ -26,31 +40,48 @@ const Product = () => {
             <S.FilterTitle>BRAND</S.FilterTitle>
             <S.CategoryArea>
               <S.CategoryContainer>
-                <S.Category id="orion" name="brand" value="orion"></S.Category>
+                <S.Category
+                  onChange={onCheck}
+                  id="orion"
+                  name="brand"
+                  value="ORION"
+                ></S.Category>
                 <S.CategoryLabel htmlFor="orion">오리온</S.CategoryLabel>
               </S.CategoryContainer>
               <S.CategoryContainer>
-                <S.Category id="lotte" name="brand" value="lotte"></S.Category>
+                <S.Category
+                  onChange={onCheck}
+                  id="lotte"
+                  name="brand"
+                  value="LOTTE"
+                ></S.Category>
                 <S.CategoryLabel htmlFor="lotte">롯데</S.CategoryLabel>
               </S.CategoryContainer>
               <S.CategoryContainer>
                 <S.Category
-                  id="haetae"
+                  onChange={onCheck}
+                  id="haitai"
                   name="brand"
-                  value="haetae"
+                  value="HAITAI"
                 ></S.Category>
                 <S.CategoryLabel htmlFor="haetae">해태</S.CategoryLabel>
               </S.CategoryContainer>
               <S.CategoryContainer>
                 <S.Category
+                  onChange={onCheck}
                   id="nongshim"
                   name="brand"
-                  value="nongshim"
+                  value="NONGSHIM"
                 ></S.Category>
                 <S.CategoryLabel htmlFor="nongshim">농심</S.CategoryLabel>
               </S.CategoryContainer>
               <S.CategoryContainer>
-                <S.Category id="crown" name="brand" value="crown"></S.Category>
+                <S.Category
+                  onChange={onCheck}
+                  id="crown"
+                  name="brand"
+                  value="CROWN"
+                ></S.Category>
                 <S.CategoryLabel htmlFor="crown">크라운</S.CategoryLabel>
               </S.CategoryContainer>
             </S.CategoryArea>
@@ -84,7 +115,7 @@ const Product = () => {
       </S.SearchFilterArea>
       <S.ProductArea>
         {data?.map((product) => (
-          <ProductInformation product={product} />
+          <ProductInformation key={product.id} product={product} />
         ))}
       </S.ProductArea>
     </ContentsWrapper>

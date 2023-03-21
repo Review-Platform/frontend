@@ -1,8 +1,8 @@
-import { Outlet } from "react-router-dom";
 import * as S from "./style";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import SignUpForm from "../../../components/account/forms/signUpForm/SignUpForm";
 
-function Login() {
+function SignUp() {
   const navigate = useNavigate();
   const handleHeaderClick = () => navigate("/");
   return (
@@ -24,4 +24,4 @@ function Login() {
     </S.PageWrapper>
   );
 }
-export default Login;
+export default SignUp;

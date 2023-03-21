@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PageWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 925px;
   padding: 0;
 `;
 export const HeaderWrapper = styled.div`
@@ -30,14 +30,14 @@ export const SnackVillage = styled.div`
 `;
 export const MainWrapper = styled.div`
   width: 100%;
-  height: calc(100vh - 60px);
+  height: 865px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 `;
 export const Bg = styled.img`
   position: absolute;
   width: 100%;
-  height: calc(100vh - 60px);
+  height: 865px;
   z-index: -1;
 `;
 export const MainLeft = styled.div`

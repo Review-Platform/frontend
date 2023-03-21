@@ -5,7 +5,7 @@ import Home from "./pages/Contents/home/Home";
 import SignUp from "./pages/account/SignUp";
 import FindIdForm from "./components/account/forms/FindIdForm";
 import FindPasswordForm from "./components/account/forms/FindPasswordForm";
-import LoginForm from "./components/account/forms/LoginForm";
+import LoginForm from "./components/account/forms/loginForm/LoginForm";
 import FindIdSuccess from "./components/account/FindIdRedirect";
 import Product from "./pages/Contents/product/Product";
 import Review from "./pages/Contents/review/Review";

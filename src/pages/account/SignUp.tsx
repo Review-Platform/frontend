@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Header from "../../components/account/Header";
 import LoginImage from "../../components/account/LoginImage";
-import LoginForm from "../../components/account/forms/LoginForm";
+import LoginForm from "../../components/account/forms/loginForm/LoginForm";
 import SignUpForm from "../../components/account/forms/SignUpForm";
 import {
   Container,

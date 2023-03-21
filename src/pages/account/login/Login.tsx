@@ -8,8 +8,12 @@ function Login() {
         <S.SnackVillage>Snack Village</S.SnackVillage>
       </S.HeaderWrapper>
       <S.MainWrapper>
-        <S.MainLeft></S.MainLeft>
-        <S.MainRight></S.MainRight>
+        <S.MainLeft>
+          <S.AnywayImg src={require("../../../imgs/loginPage/anyway.png")} />
+        </S.MainLeft>
+        <S.MainRight>
+          <Outlet />
+        </S.MainRight>
       </S.MainWrapper>
     </S.PageWrapper>
   );

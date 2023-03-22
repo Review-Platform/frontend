@@ -81,13 +81,6 @@ function LoginForm() {
           </a>
         </S.SocialBtns>
       </S.Form>
-      {/* 
-
-  
-
-    
-
-   */}
     </S.FormContainer>
   );
 }

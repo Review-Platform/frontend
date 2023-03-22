@@ -14,6 +14,7 @@ import Login from "./pages/account/login/Login";
 import SignUpSuccess from "./components/account/signUpSuccess/SignUpSuccess";
 import FindIdForm from "./components/account/forms/FindIdForm/FindIdForm";
 import SignUpForm from "./components/account/forms/signUpForm/SignUpForm";
+import KakaoRedirect from "./components/account/oauthRedirect/KakaoRedirect";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
             element: <SignUpSuccess />,
           },
         ],
+      },
+      {
+        path: "oauth/callback/kakao",
+        element: <KakaoRedirect />,
       },
     ],
   },

@@ -14,6 +14,7 @@ const FIND_ID_URI = "findId";
 const FIND_PASSWORD_URI = "sendMail";
 const LOGIN_INFO_URI = "isLogin";
 const LOGOUT_URI = "auth/logout";
+const KAKAO_URI = "auth/authorizationCode";
 
 export const idCheckPost = (id: string) =>
   baseApi.post(ID_CHECK_URI, {
@@ -55,3 +56,8 @@ export const findPasswordPost = (findPasswordForm: IFindPasswordForm) =>
 export const getLoggedInInfo = () => baseApi.get(LOGIN_INFO_URI);
 
 export const postLogout = () => baseApi.post(LOGOUT_URI, {});
+
+export const kakaoLogin = (authorizationCode: string) =>
+  baseApi.post(KAKAO_URI, {
+    authorizationCode,
+  });

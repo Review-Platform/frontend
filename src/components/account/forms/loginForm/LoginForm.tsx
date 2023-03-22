@@ -73,8 +73,12 @@ function LoginForm() {
         </S.RegisterDiv>
         <S.SocialBtns>
           <img src={require("../../../../imgs/loginPage/google.png")} />
-          <img src={require("../../../../imgs/loginPage/naver.png")} />
-          <img src={require("../../../../imgs/loginPage/kakao.png")} />
+          <a href="https://nid.naver.com/oauth2.0/authorize">
+            <img src={require("../../../../imgs/loginPage/naver.png")} />
+          </a>
+          <a href="https://kauth.kakao.com/oauth/authorize?client_id=0aa76e713adf2bcf4610c81e32723493&redirect_uri=http://localhost:3000/oauth/callback/kakao&response_type=code">
+            <img src={require("../../../../imgs/loginPage/kakao.png")} />
+          </a>
         </S.SocialBtns>
       </S.Form>
       {/* 

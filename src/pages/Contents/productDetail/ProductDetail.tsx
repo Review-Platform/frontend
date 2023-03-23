@@ -10,7 +10,6 @@ function ProductDetail() {
   console.log(product);
   return (
     <S.MainWrapper>
-      <S.Title>Review</S.Title>
       <ProductDetailContainer product={product} />
     </S.MainWrapper>
   );

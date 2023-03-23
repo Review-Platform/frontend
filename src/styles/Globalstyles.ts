@@ -61,6 +61,7 @@ a{
 	--subColor:#F48722;
 	--yellowColor:rgba(255, 176, 1, 1);
 	--blackColor:rgba(25, 25, 25, 1);
+	--orangeColor:#E76100;
 }
 `;
 export default GlobalStyle;

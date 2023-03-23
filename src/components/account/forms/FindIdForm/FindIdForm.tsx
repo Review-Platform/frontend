@@ -44,10 +44,7 @@ function FindIdForm() {
         <S.ConfirmBtn>확인</S.ConfirmBtn>
       </S.Form>
     </S.FormContainer>
-    // <S.Form onSubmit={handleSubmit(onValid)}>
-    //
 
-    // </S.Form>
   );
 }
 export default FindIdForm;

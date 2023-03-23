@@ -62,6 +62,7 @@ a{
 	--yellowColor:rgba(255, 176, 1, 1);
 	--blackColor:rgba(25, 25, 25, 1);
 	--orangeColor:#E76100;
+	--redColor:#FF4A00;
 }
 `;
 export default GlobalStyle;

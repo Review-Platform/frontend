@@ -1,26 +1,26 @@
 import styled from "styled-components";
 
-export const Stars = styled.div`
+export const Stars = styled.div<{ size: number }>`
   width: auto;
-  height: 22px;
+  height: ${(props) => props.size}px;
   margin-top: 4px;
   display: flex;
   align-items: center;
 `;
 
-export const FilledStar = styled.svg`
-  width: auto;
-  height: 13px;
+export const FilledStar = styled.svg<{ size: number }>`
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
   fill: rgba(255, 172, 51, 1);
 `;
-export const HalfStar = styled.svg`
-  width: 20px;
-  height: 13px;
+export const HalfStar = styled.svg<{ size: number }>`
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
   fill: rgba(255, 172, 51, 1);
 `;
-export const EmptyStar = styled.svg`
-  width: 20px;
-  height: 13px;
+export const EmptyStar = styled.svg<{ size: number }>`
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
   fill: rgba(255, 172, 51, 1);
 `;
 

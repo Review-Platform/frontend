@@ -17,16 +17,13 @@ export interface IReview {
   content: string;
   flavor: number[];
   grade: number;
-  product: {
-    name: string;
-    avgGrade: number;
-  };
   regTime: string;
   reviewId: number;
-  reviewImages: IReviewImages[];
+  reviewImages?: IReviewImages[];
   tagNames: string[];
   user: {
     userId: string;
     userName: string;
+    userImage?: string;
   };
 }

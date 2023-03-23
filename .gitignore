@@ -20,3 +20,4 @@
 
 npm-debug.log*
 /src/imgs/reviewImg
+/public/images/reviewImg

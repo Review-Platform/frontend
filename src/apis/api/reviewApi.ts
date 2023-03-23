@@ -17,3 +17,7 @@ export const postCreateReview = (
 //리뷰 전체 조회
 export const getAllReviews = () =>
   baseApi.get(`/reviews`).then((res) => res.data);
+
+//리뷰 추천
+export const likeReview = (reviewId: number) =>
+  baseApi.post(`/review-like/${reviewId}`, {}).then((res) => res.data);

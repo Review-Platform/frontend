@@ -15,7 +15,7 @@ function ProductDetail() {
       <S.ReviewsSpan>다른 리뷰글</S.ReviewsSpan>
       <S.ReviewBoxs>
         {product?.reviews?.map((review) => (
-          <ReviewBox product={product} review={review} />
+          <ReviewBox key={review.reviewId} product={product} review={review} />
         ))}
       </S.ReviewBoxs>
     </S.MainWrapper>

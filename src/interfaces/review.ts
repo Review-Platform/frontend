@@ -15,7 +15,7 @@ interface IReviewImages {
 }
 export interface IReview {
   content: string;
-  flavor: number[];
+  flavor: string;
   grade: number;
   regTime: string;
   reviewId: number;

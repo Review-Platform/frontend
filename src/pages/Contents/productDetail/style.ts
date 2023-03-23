@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const MainWrapper = styled.div`
   width: 1200px;
   height: auto;
+  min-height: calc(100vh - 300px);
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -17,7 +17,7 @@ function Login() {
         <S.MainLeft>
           <S.AnywayImg src={require("../../../imgs/loginPage/anyway.png")} />
         </S.MainLeft>
-        <S.MainRight>
+        <S.MainRight> 
           <Outlet />
         </S.MainRight>
       </S.MainWrapper>

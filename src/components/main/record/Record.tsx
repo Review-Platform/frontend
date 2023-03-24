@@ -11,7 +11,9 @@ const Record = () => {
         <S.ContentArea>
           <S.RecordArea>
             <S.RecordLeft>
-              <S.RecordTextImg src={require("../../../imgs/mainPage/SnackRecord.png")} />
+              <S.RecordTextImg
+                src={require("../../../imgs/mainPage/SnackRecord.png")}
+              />
               <TextTop>Snack of routine_ snack village.</TextTop>
               <S.TextArea>
                 <S.RecordText>
@@ -22,7 +24,9 @@ const Record = () => {
               </S.TextArea>
               <S.NavArea onClick={() => navigate("/")}>
                 <S.NavText>이번 달의 스낵 순위 더 알아보기</S.NavText>
-                <S.NavIcon src={require("../../../imgs/mainPage/RightArrow.png")} />
+                <S.NavIcon
+                  src={require("../../../imgs/mainPage/RightArrow.png")}
+                />
               </S.NavArea>
             </S.RecordLeft>
             <S.RecordRight>
@@ -40,7 +44,9 @@ const Record = () => {
             </S.RecordRight>
           </S.RecordArea>
           <S.Review>
-            <S.ReviewTextImg src={require("../../../imgs/mainPage/Review.png")} />
+            <S.ReviewTextImg
+              src={require("../../../imgs/mainPage/Review.png")}
+            />
             <S.RecordText>
               여러 사람들이 직접 남긴 리뷰들을 확인해보세요!
             </S.RecordText>
@@ -48,8 +54,10 @@ const Record = () => {
               자신의 리뷰가 추가될수록, 더 많은 과자 추천을 받아볼 수 있습니다.
             </S.RecordText>
             <S.NavArea onClick={() => navigate("/review")}>
-              S.<S.NavText>리뷰 자세히 보기</S.NavText>
-              <S.NavIcon src={require("../../../imgs/mainPage/RightArrow.png")} />
+              <S.NavText>리뷰 자세히 보기</S.NavText>
+              <S.NavIcon
+                src={require("../../../imgs/mainPage/RightArrow.png")}
+              />
             </S.NavArea>
             <S.SnackInfoArea>
               <MainSnackReview />
@@ -57,7 +65,9 @@ const Record = () => {
             </S.SnackInfoArea>
           </S.Review>
         </S.ContentArea>
-        <S.ImgArea src={require("../../../imgs/mainPage/RecordImg.png")}></S.ImgArea>
+        <S.ImgArea
+          src={require("../../../imgs/mainPage/RecordImg.png")}
+        ></S.ImgArea>
       </S.RecordReviewArea>
       <BottomImg />
     </>

@@ -6,3 +6,11 @@ export interface IProductInfo {
   localPath: string;
   name: string;
 }
+
+export interface IHashTag {
+  [key: string]: boolean;
+}
+
+export interface ISearchForm {
+  keyword: string;
+}

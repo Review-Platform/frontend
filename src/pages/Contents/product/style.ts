@@ -21,15 +21,19 @@ export const Category = styled.input.attrs({
 `;
 
 export const CategoryLabel = styled.label`
-  font-size: 1.3vw;
+  font-size: 20px;
 `;
 
 export const FilterArea = styled.div`
   display: flex;
   height: 60%;
 `;
+
+export const HashtagArea = styled(FilterArea)`
+  height: 100%;
+`;
 export const Filter = styled.div`
-  width: 45%;
+  width: 100%;
   margin: 5vh 4vw;
 `;
 export const FilterTitle = styled.span`
@@ -38,7 +42,7 @@ export const FilterTitle = styled.span`
   border-bottom: 2px solid #f48722;
   padding-bottom: 8px;
   font-weight: bold;
-  font-size: 2.1vw;
+  font-size: 33px;
 `;
 export const TasteFilter = styled(Filter)`
   width: 35%;
@@ -46,8 +50,9 @@ export const TasteFilter = styled(Filter)`
 export const ProductArea = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 92%;
+  width: 1200px;
   padding: 2vh 0 2vh 4vw;
+
   /* padding: 2vh 4vw; */
 `;
 export const RankingNavImg = styled.img`
@@ -73,11 +78,12 @@ export const RoutineImg = styled.img`
 export const RoutineText = styled.span``;
 export const SearchFilterArea = styled.div`
   background-color: white;
-  height: 32vh;
-  width: 92vw;
+  display: flex;
+  height: 210px;
+  width: 1200px;
 `;
 
-export const SearchArea = styled.div`
+export const SearchArea = styled.form`
   display: flex;
   align-items: center;
   padding-left: 4vw;
@@ -85,7 +91,7 @@ export const SearchArea = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  height: 60%;
+  height: 50%;
   width: 80%;
   border: 0;
   border-radius: 6px;
@@ -99,12 +105,26 @@ export const SearchInput = styled.input`
 `;
 
 export const SearchButton = styled.button`
-  height: 60%;
-  width: 10%;
+  height: 50%;
+  width: 20%;
   border: 0;
   border-radius: 5px;
   background-color: #e76100;
   color: white;
   margin-left: 2vw;
   font-size: 1.3vw;
+  cursor: pointer;
+`;
+
+export const LeftArea = styled.div`
+  height: 100%;
+  width: 60%;
+`;
+
+export const RightArea = styled(LeftArea)`
+  width: 40%;
+`;
+
+export const HashTagButtonArea = styled.div`
+  padding: 10px 0;
 `;

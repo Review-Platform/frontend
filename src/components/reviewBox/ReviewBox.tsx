@@ -2,7 +2,7 @@ import { IReview } from "../../interfaces/review";
 import * as S from "./style";
 import { IProductDetail } from "../../interfaces/productDetail";
 import Rating from "../rating/Rating";
-import Hashtag from "../hashtag/Hashtag";
+import Hashtag from "./hashtag/Hashtag";
 import useGetFlavors from "../../hooks/useGetFlavors";
 import { deleteLikeReview, likeReview } from "../../apis/api/reviewApi";
 import { getLoggedInInfo } from "../../apis/api/accountApi";

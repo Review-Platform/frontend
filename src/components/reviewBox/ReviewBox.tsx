@@ -4,7 +4,10 @@ import { IProductDetail } from "../../interfaces/productDetail";
 import Rating from "../rating/Rating";
 import Hashtag from "../hashtag/Hashtag";
 import useGetFlavors from "../../hooks/useGetFlavors";
-import { likeReview } from "../../apis/api/reviewApi";
+import { deleteLikeReview, likeReview } from "../../apis/api/reviewApi";
+import { getLoggedInInfo } from "../../apis/api/accountApi";
+import { loggedInAtom } from "../../atoms/loggedInAtom";
+import { useRecoilValue } from "recoil";
 function ReviewBox({
   review,
   product,
@@ -12,13 +15,20 @@ function ReviewBox({
   review: IReview;
   product: IProductDetail;
 }) {
+  const loggedInInfo = useRecoilValue(loggedInAtom);
+
   const flavorArr = useGetFlavors(review.flavor); //맛 정보 데이터 가공하는 훅
 
-  const handleLikeClick = () => {
-    try {
-      likeReview(review.reviewId).then((res) => console.log(res.data));
-    } catch (error) {
-      console.log(error);
+  const handleLikeClick = async () => {
+    if (loggedInInfo.loggedIn) {
+      try {
+        await likeReview(review.reviewId);
+        console.log("좋아요");
+      } catch (error) {
+        await deleteLikeReview(review.reviewId);
+      }
+    } else {
+      alert("로그인 후 이용해주세요.");
     }
   };
   return (

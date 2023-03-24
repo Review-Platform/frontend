@@ -21,3 +21,6 @@ export const getAllReviews = () =>
 //리뷰 추천
 export const likeReview = (reviewId: number) =>
   baseApi.post(`/review-like/${reviewId}`, {}).then((res) => res.data);
+
+export const deleteLikeReview = (reviewId: number) =>
+  baseApi.delete(`/review-like/${reviewId}`).then((res) => res.data);

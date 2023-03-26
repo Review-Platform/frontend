@@ -37,7 +37,7 @@ const MainHeader = () => {
         />
       </S.ImgArea>
       <S.BottomNav>
-        <S.NavList>
+        <S.BottomNavList>
           <S.BottomNavItem onClick={() => navigate("/")}>
             SNACK VILLAGE
           </S.BottomNavItem>
@@ -48,7 +48,7 @@ const MainHeader = () => {
             REVIEW
           </S.BottomNavItem>
           <S.BottomNavItem>RECORD</S.BottomNavItem>
-        </S.NavList>
+        </S.BottomNavList>
       </S.BottomNav>
     </S.Header>
   );

@@ -12,7 +12,9 @@ export const TopNav = styled.div`
 `;
 
 export const BottomNav = styled.div`
-  margin: 80px 0 10px 0;
+  margin: 80px 0 21px 0;
+  display: flex;
+  justify-content: center;
 `;
 
 export const ImgArea = styled.div`
@@ -32,6 +34,13 @@ export const NavList = styled.ul`
   margin-left: 8vw;
 `;
 
+export const BottomNavList = styled.ul`
+  width: 562px;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+`;
+
 export const TopNavItem = styled.li`
   color: var(--textColor);
   font-weight: 600;
@@ -46,9 +55,8 @@ export const BottomNavItem = styled.li`
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
-  margin-left: 80px;
   cursor: pointer;
-  &:first-child {
-    margin-left: 0;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

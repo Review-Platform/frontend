@@ -2,19 +2,23 @@ import styled from "styled-components";
 
 export const MainWrapper = styled.div`
   width: 1200px;
-  height: 1500px;
+  height: auto;
+  min-height: calc(100vh - 300px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+`;
+export const ReviewsSpan = styled.span`
+  margin-top: 50.73px;
+  color: #ff4a00;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 26px;
+`;
+export const ReviewBoxs = styled.div`
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-
-export const Title = styled.h1`
-  color: var(--textColor);
-  font-size: 16px;
-  font-weight: 500;
-  width: 100%;
-  padding: 0;
-  margin-top: 42px;
-  margin-left: 40px;
-`;
-

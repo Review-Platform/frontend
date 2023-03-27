@@ -4,3 +4,6 @@ const PRODUCT_DETAIL_URI = "products/details";
 
 export const getProductDetail = (id: number) =>
   baseApi(`${PRODUCT_DETAIL_URI}/${id}`);
+
+
+  

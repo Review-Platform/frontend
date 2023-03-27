@@ -31,7 +31,7 @@ export const LogoImg = styled.img`
 export const NavList = styled.ul`
   display: flex;
   margin-right: 30px;
-  margin-left: 8vw;
+  margin-left: 40px;
 `;
 export const BottomNavList = styled.ul`
   display: flex;

@@ -6,7 +6,10 @@ const Review = () => {
 
   return (
     <S.MainWrapper>
-      <h1>This is Review Page !</h1>
+      <S.Banner
+        src={require("../../../imgs/reviewPage/snackRankingBanner.png")}
+      />
+      <S.Title>Reviews</S.Title>
     </S.MainWrapper>
   );
 };

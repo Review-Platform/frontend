@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { RateRightText } from "../main/mainSnackInfo/style";
 
 export const ProductContainer = styled.div`
-  height: 45vh;
-  width: 18vw;
+  height: 350px;
+  width: 230px;
   margin-right: 3vw;
   margin-bottom: 10vh;
 `;

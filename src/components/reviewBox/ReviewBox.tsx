@@ -9,6 +9,7 @@ import { getLoggedInInfo } from "../../apis/api/accountApi";
 import { loggedInAtom } from "../../atoms/loggedInAtom";
 import { useRecoilValue } from "recoil";
 import { useQueryClient } from "react-query";
+import React from "react";
 function ReviewBox({
   review,
   product,
@@ -104,4 +105,4 @@ function ReviewBox({
     </S.Box>
   );
 }
-export default ReviewBox;
+export default React.memo(ReviewBox);

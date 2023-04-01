@@ -5,7 +5,7 @@ function useAllReviews() {
   const { data: allReviews } = useQuery<IReview[]>(
     ["AllReviews"],
     getAllReviews,
-    {}
+    { refetchOnWindowFocus: false }
   );
   console.log(allReviews);
 

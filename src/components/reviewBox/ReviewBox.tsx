@@ -8,6 +8,7 @@ import { deleteLikeReview, likeReview } from "../../apis/api/reviewApi";
 import { getLoggedInInfo } from "../../apis/api/accountApi";
 import { loggedInAtom } from "../../atoms/loggedInAtom";
 import { useRecoilValue } from "recoil";
+import { useQueryClient } from "react-query";
 function ReviewBox({
   review,
   product,
@@ -17,15 +18,20 @@ function ReviewBox({
 }) {
   const loggedInInfo = useRecoilValue(loggedInAtom);
 
+  const queryClient = useQueryClient();
+
   const flavorArr = useGetFlavors(review.flavor); //맛 정보 데이터 가공하는 훅
 
   const handleLikeClick = async () => {
     if (loggedInInfo.loggedIn) {
       try {
         await likeReview(review.reviewId);
-        console.log("좋아요");
+        queryClient.invalidateQueries(["product", product?.id]);
+        queryClient.invalidateQueries(["AllReviews"]);
       } catch (error) {
         await deleteLikeReview(review.reviewId);
+        queryClient.invalidateQueries(["product", product?.id]);
+        queryClient.invalidateQueries(["AllReviews"]);
       }
     } else {
       alert("로그인 후 이용해주세요.");

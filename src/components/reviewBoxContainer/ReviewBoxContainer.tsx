@@ -2,7 +2,6 @@ import * as S from "./style";
 import { useEffect, useState } from "react";
 import { IReview } from "../../interfaces/review";
 import ReviewBox from "../reviewBox/ReviewBox";
-import ScrollToTop from "../ScrollToTop";
 
 function ReviewBoxContainer({ reviews }: { reviews: IReview[] | undefined }) {
   const [reviewArr, setReviewArr] = useState<IReview[]>([]);
@@ -17,7 +16,7 @@ function ReviewBoxContainer({ reviews }: { reviews: IReview[] | undefined }) {
   const handleLikeOrder = () => setIsTimeOrder(false); //추천순으로
 
   useEffect(() => {
-    const temp: IReview[] | undefined = reviews;
+    const temp: IReview[] | undefined = reviews?.reverse();
     if (temp) {
       if (!isTimeOrder) {
         //추천순 선택 시 추천수 내림차순 정렬

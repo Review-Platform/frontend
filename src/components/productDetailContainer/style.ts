@@ -92,4 +92,7 @@ export const HashtagsTitle = styled.h1`
   font-size: 12.12px;
   line-height: 15px;
 `;
-export const Hashtags = styled.div``;
+export const Hashtags = styled.ul`
+  margin-top: 7.2px;
+`;
+export const HashtagList = styled.li``;

@@ -26,8 +26,22 @@ export const Title = styled.div`
   margin-top: 40px;
 `;
 export const SortOrderConatiner = styled.div`
-  width: 840px;
+  width: 808px;
   display: flex;
   justify-content: flex-end;
+  margin-top: 22px;
+  color: var(--redColor);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
 `;
-export const SortOrderItem = styled.div``;
+export const SortOrderItem = styled.div`
+  &:first-child {
+    margin-right: 5px;
+  }
+  &:last-child {
+    margin-left: 5px;
+  }
+  cursor: pointer;
+  margin-bottom: 14px;
+`;

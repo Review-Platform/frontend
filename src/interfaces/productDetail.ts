@@ -9,4 +9,5 @@ export interface IProductDetail {
   localPath: string;
   avg_grade?: number;
   reviews: IReview[];
+  tagNames: string[];
 }

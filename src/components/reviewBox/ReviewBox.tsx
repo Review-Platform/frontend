@@ -13,7 +13,7 @@ function ReviewBox({
   product,
 }: {
   review: IReview;
-  product: IProductDetail;
+  product: IProductDetail | null;
 }) {
   const loggedInInfo = useRecoilValue(loggedInAtom);
 
@@ -39,9 +39,13 @@ function ReviewBox({
             src={`/images/reviewImg/${review.reviewImages[0]?.storedName}`}
           />
         ) : (
-          <S.ReviewImg src={product.originPath} />
+          <S.ReviewImg
+            src={
+              product === null ? review.product?.localPath : product?.originPath
+            }
+          />
         )}
-        <S.ReviewProductName>{product.name}</S.ReviewProductName>
+        <S.ReviewProductName>{product?.name}</S.ReviewProductName>
       </S.LeftContainer>
 
       <S.CenterContainer>
@@ -79,12 +83,12 @@ function ReviewBox({
           <S.HashtagTitle>추천 해시태그</S.HashtagTitle>
           <S.HashtagsRow>
             {review.tagNames.slice(0, 4).map((name, index) => (
-              <Hashtag key={index} name={name} />
+              <Hashtag key={index} name={name} reviewBox={true} />
             ))}
           </S.HashtagsRow>
           <S.HashtagsRow>
             {review.tagNames.slice(4, 8).map((name, index) => (
-              <Hashtag key={index} name={name} />
+              <Hashtag key={index} name={name} reviewBox={true} />
             ))}
           </S.HashtagsRow>
         </S.HashtagContainer>

@@ -11,11 +11,6 @@ const Review = () => {
         src={require("../../../imgs/reviewPage/snackRankingBanner.png")}
       />
       <S.Title>Reviews</S.Title>
-      <S.SortOrderConatiner>
-        <S.SortOrderItem>추천순</S.SortOrderItem>
-        {" | "}
-        <S.SortOrderItem>최신순</S.SortOrderItem>
-      </S.SortOrderConatiner>
       <ReviewBoxContainer reviews={allReviews} />
     </S.MainWrapper>
   );

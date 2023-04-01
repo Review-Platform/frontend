@@ -43,8 +43,11 @@ function ProductDetailContainer({
           <S.InfoHashtags>
             <S.HashtagsTitle>추천 해시태그</S.HashtagsTitle>
             <S.Hashtags>
-              {/* 여기에 해시태그 매핑 */}
-              <S.HashtagList></S.HashtagList>
+              {product?.tagNames.map((tag) => (
+                <S.HashtagList>
+                  <Hashtag reviewBox={false} name={tag} />
+                </S.HashtagList>
+              ))}
             </S.Hashtags>
           </S.InfoHashtags>
         </S.InfoContainer>

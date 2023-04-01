@@ -21,4 +21,5 @@ export interface IReview {
     avgGrade: number;
     localPath: string;
   };
+  reviewLikeCount: number;
 }

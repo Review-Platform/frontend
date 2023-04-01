@@ -20,6 +20,6 @@ export const Container = styled.div<{ big: boolean; reviewBox: boolean }>`
   margin-right: 6px;
   color: var(--redColor);
   font-weight: 500;
-  font-size: 14px;
+  font-size: ${(props) => (props.reviewBox ? "14px" : "9px")};
   line-height: 17px;
 `;

@@ -61,7 +61,9 @@ function ReviewBox({
         </S.RatingContainer>
         <S.RecommendContainer>
           <S.ThumbIcon src={require("../../imgs/reviewBoxImg/thumb.png")} />
-          <S.RecommendNumber>10</S.RecommendNumber>
+          <S.RecommendNumber>
+            {review?.reviewLikeCount ? review.reviewLikeCount : 0}
+          </S.RecommendNumber>
           <S.RecommendBtn onClick={handleLikeClick}>추천하기</S.RecommendBtn>
         </S.RecommendContainer>
         <S.ReviewText>{review.content}</S.ReviewText>

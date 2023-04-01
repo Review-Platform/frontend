@@ -5,12 +5,26 @@ import ReviewBox from "../reviewBox/ReviewBox";
 import ScrollToTop from "../ScrollToTop";
 
 function ReviewBoxContainer({ reviews }: { reviews: IReview[] | undefined }) {
+  const [reviewArr, setReviewArr] = useState<IReview[]>([]);
   const [pageNum, setPageNum] = useState(1);
   const [pageArr, setPageArr] = useState<number[]>([1]);
+  const [isTimeOrder, setIsTimeOrder] = useState(true);
   const handlePageChange = (i: number) => {
     setPageNum(i);
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 500);
   };
+  const handleTimeOrder = () => setIsTimeOrder(true); //최신순으로
+  const handleLikeOrder = () => setIsTimeOrder(false); //추천순으로
+
+  useEffect(() => {
+    const temp: IReview[] | undefined = reviews;
+    if (temp) {
+      temp.sort((a, b) => a.reviewLikeCount - b.reviewLikeCount);
+      setReviewArr(temp);
+    } else {
+      setReviewArr([]);
+    }
+  }, [handleTimeOrder, handleLikeOrder]);
 
   useEffect(() => {
     if (reviews?.length) {
@@ -22,8 +36,17 @@ function ReviewBoxContainer({ reviews }: { reviews: IReview[] | undefined }) {
 
   return (
     <S.Container>
+      <S.SortOrderConatiner>
+        <S.SortOrderItem selected={!isTimeOrder} onClick={handleLikeOrder}>
+          추천순
+        </S.SortOrderItem>
+        {" | "}
+        <S.SortOrderItem selected={isTimeOrder} onClick={handleTimeOrder}>
+          최신순
+        </S.SortOrderItem>
+      </S.SortOrderConatiner>
       <S.ReviewBoxs>
-        {reviews?.slice((pageNum - 1) * 6, pageNum * 6).map((review) => (
+        {reviewArr?.slice((pageNum - 1) * 6, pageNum * 6).map((review) => (
           <S.ReviewBoxList key={review.reviewId}>
             <ReviewBox review={review} product={null} />
           </S.ReviewBoxList>

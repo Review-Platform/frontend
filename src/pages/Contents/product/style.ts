@@ -15,8 +15,8 @@ export const CategoryContainer = styled.div`
 export const Category = styled.input.attrs({
   type: "checkbox",
 })`
-  width: 1.3vw;
-  height: 1.3vw;
+  width: 17px;
+  height: 17px;
   cursor: pointer;
 `;
 
@@ -51,8 +51,7 @@ export const ProductArea = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 1200px;
-  padding: 2vh 0 2vh 4vw;
-
+  padding: 2vh 0 0 4vw;
   /* padding: 2vh 4vw; */
 `;
 export const RankingNavImg = styled.img`
@@ -96,11 +95,11 @@ export const SearchInput = styled.input`
   border: 0;
   border-radius: 6px;
   padding-left: 15px;
-  font-size: 1.3vw;
+  font-size: 18px;
   background-color: #ffe5c7;
   ::placeholder {
     color: #ff5c00;
-    font-size: 1.3vw;
+    font-size: 18px;
   }
 `;
 
@@ -112,7 +111,7 @@ export const SearchButton = styled.button`
   background-color: #e76100;
   color: white;
   margin-left: 2vw;
-  font-size: 1.3vw;
+  font-size: 18px;
   cursor: pointer;
 `;
 

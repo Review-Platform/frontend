@@ -49,7 +49,7 @@ export const ProductNameArea = styled.div`
 
 export const ProductName = styled.span`
   color: white;
-  font-size: 1.3vw;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
 `;

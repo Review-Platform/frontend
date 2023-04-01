@@ -13,12 +13,26 @@ import { useForm } from "react-hook-form";
 import HashTagButton from "../../../components/hashTag/HashTagButton";
 
 const Product = () => {
+  const [page, setPage] = useState(1);
+
+  const limit = 16;
+  const offset = (page - 1) * limit;
+
   const [keyword, setKeyword] = useState("");
   const { data } = useQuery<IProductInfo[]>("product", getProduct, {
+    // select: (products) => {
+    //   const searched = products.filter((product) =>
+    //     product.name.includes(keyword)
+    //   );
+    //   const filtered = searched.filter((product) =>
+    //     brand.includes(product.brand)
+    //   );
+    //   return filtered;
+    // },
     select: (products) =>
       products.filter((product) => product.name.includes(keyword)),
   });
-  const { register, handleSubmit, setValue } = useForm<ISearchForm>();
+  const { register, handleSubmit } = useForm<ISearchForm>();
 
   const [brand, setBrand] = useState<string[]>([]);
   const [selectedHash, setSelectedHash] = useState<string[]>([]);
@@ -42,10 +56,10 @@ const Product = () => {
 
   const onValid = (value: ISearchForm) => {
     setKeyword(value.keyword);
-    setValue("keyword", "");
   };
 
-  console.log(selectedHash);
+  console.log(data);
+  console.log(brand);
 
   return (
     <ContentsWrapper>
@@ -140,13 +154,15 @@ const Product = () => {
         </S.RightArea>
       </S.SearchFilterArea>
       <S.ProductArea>
-        {data?.map((product) =>
-          brand.length === 0 ? (
-            <ProductInformation key={product.id} product={product} />
-          ) : brand.includes(product.brand) ? (
-            <ProductInformation key={product.id} product={product} />
-          ) : null
-        )}
+        {data
+          ?.map((product) =>
+            brand.length === 0 ? (
+              <ProductInformation key={product.id} product={product} />
+            ) : brand.includes(product.brand) ? (
+              <ProductInformation key={product.id} product={product} />
+            ) : null
+          )
+          .slice(offset, offset + limit)}
       </S.ProductArea>
     </ContentsWrapper>
   );

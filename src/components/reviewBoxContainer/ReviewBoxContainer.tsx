@@ -19,7 +19,10 @@ function ReviewBoxContainer({ reviews }: { reviews: IReview[] | undefined }) {
   useEffect(() => {
     const temp: IReview[] | undefined = reviews;
     if (temp) {
-      temp.sort((a, b) => a.reviewLikeCount - b.reviewLikeCount);
+      if (!isTimeOrder) {
+        //추천순 선택 시 추천수 내림차순 정렬
+        temp.sort((a, b) => b.reviewLikeCount - a.reviewLikeCount);
+      }
       setReviewArr(temp);
     } else {
       setReviewArr([]);

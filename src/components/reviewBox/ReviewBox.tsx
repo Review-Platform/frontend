@@ -5,11 +5,9 @@ import Rating from "../rating/Rating";
 import Hashtag from "./hashtag/Hashtag";
 import useGetFlavors from "../../hooks/useGetFlavors";
 import { deleteLikeReview, likeReview } from "../../apis/api/reviewApi";
-import { getLoggedInInfo } from "../../apis/api/accountApi";
 import { loggedInAtom } from "../../atoms/loggedInAtom";
 import { useRecoilValue } from "recoil";
-import { useQueryClient } from "react-query";
-import React from "react";
+import React, { useEffect, useState } from "react";
 function ReviewBox({
   review,
   product,
@@ -19,20 +17,23 @@ function ReviewBox({
 }) {
   const loggedInInfo = useRecoilValue(loggedInAtom);
 
-  const queryClient = useQueryClient();
+  const [likeCount, setLikeCount] = useState<number>(0);
 
   const flavorArr = useGetFlavors(review.flavor); //맛 정보 데이터 가공하는 훅
+
+  useEffect(() => {
+    setLikeCount(review.reviewLikeCount);
+  }, []);
 
   const handleLikeClick = async () => {
     if (loggedInInfo.loggedIn) {
       try {
         await likeReview(review.reviewId);
-        queryClient.invalidateQueries(["product", product?.id]);
-        queryClient.invalidateQueries(["AllReviews"]);
+        //추천 성공하면
+        setLikeCount((prev) => prev + 1);
       } catch (error) {
         await deleteLikeReview(review.reviewId);
-        queryClient.invalidateQueries(["product", product?.id]);
-        queryClient.invalidateQueries(["AllReviews"]);
+        setLikeCount((prev) => prev - 1);
       }
     } else {
       alert("로그인 후 이용해주세요.");
@@ -69,7 +70,7 @@ function ReviewBox({
         <S.RecommendContainer>
           <S.ThumbIcon src={require("../../imgs/reviewBoxImg/thumb.png")} />
           <S.RecommendNumber>
-            {review?.reviewLikeCount ? review.reviewLikeCount : 0}
+            {review?.reviewLikeCount ? likeCount : 0}
           </S.RecommendNumber>
           <S.RecommendBtn onClick={handleLikeClick}>추천하기</S.RecommendBtn>
         </S.RecommendContainer>

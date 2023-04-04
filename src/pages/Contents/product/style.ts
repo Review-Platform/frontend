@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import { ContentsWrapper } from "../ContentsStyles";
+
+export const ContentsWrapperTwo = styled(ContentsWrapper)`
+  border-top: none;
+`;
 
 export const CategoryArea = styled.div`
   display: flex;
@@ -51,26 +56,26 @@ export const ProductArea = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 1200px;
-  padding: 2vh 0 0 4vw;
+  padding: 20px 0 0 0;
   /* padding: 2vh 4vw; */
 `;
 export const RankingNavImg = styled.img`
-  width: 100%;
-  height: 35vh;
+  width: 1200px;
+  height: 200px;
 `;
 
 export const RoutineArea = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 10vw;
-  height: 37vh;
-  width: 100%;
+  height: 200px;
+  width: 1200px;
+  padding-left: 10px;
 `;
 
 export const RoutineImg = styled.img`
-  height: 5vh;
-  width: 30vw;
+  height: 42px;
+  width: 370px;
   margin-bottom: 20px;
 `;
 

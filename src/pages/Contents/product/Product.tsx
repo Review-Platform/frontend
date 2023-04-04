@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getProduct } from "../../../apis/api/productApi";
 import ProductInformation from "../../../components/product/ProductInformation";
@@ -11,29 +11,13 @@ import { ContentsWrapper } from "../ContentsStyles";
 import * as S from "./style";
 import { useForm } from "react-hook-form";
 import HashTagButton from "../../../components/hashTag/HashTagButton";
+import Pagination from "../../../components/pagination/Pagination";
+import styled from "styled-components";
 
 const Product = () => {
-  const [page, setPage] = useState(1);
-
-  const limit = 16;
-  const offset = (page - 1) * limit;
-
+  const [total, setTotal] = useState(16);
   const [keyword, setKeyword] = useState("");
-  const { data } = useQuery<IProductInfo[]>("product", getProduct, {
-    // select: (products) => {
-    //   const searched = products.filter((product) =>
-    //     product.name.includes(keyword)
-    //   );
-    //   const filtered = searched.filter((product) =>
-    //     brand.includes(product.brand)
-    //   );
-    //   return filtered;
-    // },
-    select: (products) =>
-      products.filter((product) => product.name.includes(keyword)),
-  });
-  const { register, handleSubmit } = useForm<ISearchForm>();
-
+  const [page, setPage] = useState(1);
   const [brand, setBrand] = useState<string[]>([]);
   const [selectedHash, setSelectedHash] = useState<string[]>([]);
   const [hashTag, setHashTag] = useState<IHashTag>({
@@ -45,6 +29,19 @@ const Product = () => {
     오리지날: false,
     다이어트: false,
   });
+
+  const limit = 16;
+  const offset = (page - 1) * limit;
+
+  const { data } = useQuery<IProductInfo[]>("product", getProduct, {
+    select: (products) =>
+      products.filter((product) => product.name.includes(keyword)),
+    onSuccess: (data) => {
+      setTotal(data.length);
+    },
+  });
+
+  const { register, handleSubmit } = useForm<ISearchForm>();
 
   const onCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     const currentBrandList = [...brand];
@@ -58,11 +55,20 @@ const Product = () => {
     setKeyword(value.keyword);
   };
 
-  console.log(data);
-  console.log(brand);
+  useEffect(() => {
+    const afterTotal = data
+      ?.map((product) =>
+        brand.length === 0 ? true : brand.includes(product.brand) ? true : false
+      )
+      .filter((value) => value !== false).length;
+    console.log(afterTotal);
+    setTotal((prev) => afterTotal as any);
+  }, [brand]);
+
+  console.log(total);
 
   return (
-    <ContentsWrapper>
+    <S.ContentsWrapperTwo>
       <S.RankingNavImg
         src={require("../../../imgs/navImage/rankingNavImage.png")}
       />
@@ -162,9 +168,11 @@ const Product = () => {
               <ProductInformation key={product.id} product={product} />
             ) : null
           )
+          .filter((product) => product !== null)
           .slice(offset, offset + limit)}
       </S.ProductArea>
-    </ContentsWrapper>
+      <Pagination total={total} limit={limit} page={page} setPage={setPage} />
+    </S.ContentsWrapperTwo>
   );
 };
 export default Product;

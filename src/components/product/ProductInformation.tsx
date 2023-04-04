@@ -19,8 +19,8 @@ const ProductInformation = ({ product }: { product: IProductInfo }) => {
           </S.ProductName>
         </S.ProductNameArea>
       </S.ProductInfo>
-      <S.ProductRating>
-        {/* {product.grade >= 1 ? (
+      {/* <S.ProductRating> */}
+      {/* {product.grade >= 1 ? (
           <RateImg src={require("../../imgs/FullStar.png")} />
         ) : product.grade >= 0.5 ? (
           <RateImg src={require("../../imgs/HalfStar.png")} />
@@ -60,7 +60,7 @@ const ProductInformation = ({ product }: { product: IProductInfo }) => {
         )}
 
         <RateText>{product.grade}/5</RateText> */}
-      </S.ProductRating>
+      {/* </S.ProductRating> */}
     </S.ProductContainer>
   );
 };

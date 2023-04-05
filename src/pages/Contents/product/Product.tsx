@@ -7,12 +7,10 @@ import {
   IProductInfo,
   ISearchForm,
 } from "../../../interfaces/productInfo";
-import { ContentsWrapper } from "../ContentsStyles";
 import * as S from "./style";
 import { useForm } from "react-hook-form";
 import HashTagButton from "../../../components/hashTag/HashTagButton";
 import Pagination from "../../../components/pagination/Pagination";
-import styled from "styled-components";
 
 const Product = () => {
   const [total, setTotal] = useState(16);

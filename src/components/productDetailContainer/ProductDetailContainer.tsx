@@ -5,6 +5,7 @@ import { useState } from "react";
 import CreateReviewModal from "../createReviewModal/CreateReviewModal";
 import { useRecoilValue } from "recoil";
 import { ILoggedInAtom, loggedInAtom } from "../../atoms/loggedInAtom";
+import Hashtag from "../reviewBox/hashtag/Hashtag";
 function ProductDetailContainer({
   product,
 }: {
@@ -41,7 +42,13 @@ function ProductDetailContainer({
           </S.InfoCalorie>
           <S.InfoHashtags>
             <S.HashtagsTitle>추천 해시태그</S.HashtagsTitle>
-            <S.Hashtags></S.Hashtags>
+            <S.Hashtags>
+              {product?.tagNames.map((tag) => (
+                <S.HashtagList>
+                  <Hashtag reviewBox={false} name={tag} />
+                </S.HashtagList>
+              ))}
+            </S.Hashtags>
           </S.InfoHashtags>
         </S.InfoContainer>
       </S.DetailContainer>

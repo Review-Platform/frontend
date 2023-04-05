@@ -1,30 +1,43 @@
-import React, { SetStateAction } from "react";
-import styled from "styled-components";
+import { useState } from "react";
 import { PaginationProps } from "../../interfaces/pagination";
 import * as S from "./style";
 
 const Pagination = ({ total = 1, limit, page, setPage }: PaginationProps) => {
   const numPages = Math.ceil(total / limit);
+  const MaxOffset = Math.ceil(numPages / 5);
+
+  const [offset, setOffset] = useState(0);
+  const pageArr = Array.from({ length: numPages }, (v, i) => i + 1);
+
   return (
     <>
       <S.Nav>
-        <S.Button onClick={() => setPage(page - 1)} disabled={page === 1}>
+        <S.Button
+          onClick={() => {
+            setOffset((prev) => (prev ? prev - 1 : 0));
+          }}
+          disabled={offset === 0}
+        >
           &lt;
         </S.Button>
-        {Array(numPages)
-          .fill(null)
-          .map((_, i) => (
-            <S.Button
-              key={i + 1}
-              onClick={() => setPage(i + 1)}
-              aria-current={page === i + 1 ? "page" : undefined}
-            >
-              {i + 1}
-            </S.Button>
-          ))}
+        {pageArr.slice(offset * 5, offset * 5 + 5).map((i) => (
+          <S.Button
+            key={i}
+            onClick={() => {
+              setPage(i);
+              window.scrollTo(0, 500);
+            }}
+            aria-current={page === i ? "page" : undefined}
+          >
+            {i}
+          </S.Button>
+        ))}
+
         <S.Button
-          onClick={() => setPage(page + 1)}
-          disabled={page === numPages}
+          onClick={() => {
+            setOffset((prev) => prev + 1);
+          }}
+          disabled={offset === MaxOffset - 1}
         >
           &gt;
         </S.Button>

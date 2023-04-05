@@ -8,7 +8,6 @@ import ReviewBox from "../../../components/reviewBox/ReviewBox";
 function ProductDetail() {
   const { id } = useParams();
   const product: IProductDetail = useProductDetail(Number(id));
-  console.log(product);
   return (
     <S.MainWrapper>
       <ProductDetailContainer product={product} />

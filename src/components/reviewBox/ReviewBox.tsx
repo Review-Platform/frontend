@@ -5,28 +5,40 @@ import Rating from "../rating/Rating";
 import Hashtag from "./hashtag/Hashtag";
 import useGetFlavors from "../../hooks/useGetFlavors";
 import { deleteLikeReview, likeReview } from "../../apis/api/reviewApi";
-import { getLoggedInInfo } from "../../apis/api/accountApi";
 import { loggedInAtom } from "../../atoms/loggedInAtom";
 import { useRecoilValue } from "recoil";
+import React, { useEffect, useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
 function ReviewBox({
   review,
   product,
 }: {
   review: IReview;
-  product: IProductDetail;
+  product: IProductDetail | null;
 }) {
+  const queryClient = useQueryClient();
   const loggedInInfo = useRecoilValue(loggedInAtom);
-
   const flavorArr = useGetFlavors(review.flavor); //맛 정보 데이터 가공하는 훅
+
+  const { mutateAsync: likeCancelMutate } = useMutation(deleteLikeReview, {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(["AllReviews"]);
+      await queryClient.invalidateQueries(["product", product?.id]);
+      console.log("추천 취소 성공");
+    },
+  });
+  const { mutateAsync: likeMutate } = useMutation(likeReview, {
+    onError: async () => await likeCancelMutate(review.reviewId),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(["AllReviews"]);
+      await queryClient.invalidateQueries(["product", product?.id]);
+      console.log("추천 성공");
+    },
+  });
 
   const handleLikeClick = async () => {
     if (loggedInInfo.loggedIn) {
-      try {
-        await likeReview(review.reviewId);
-        console.log("좋아요");
-      } catch (error) {
-        await deleteLikeReview(review.reviewId);
-      }
+      await likeMutate(review.reviewId);
     } else {
       alert("로그인 후 이용해주세요.");
     }
@@ -34,14 +46,29 @@ function ReviewBox({
   return (
     <S.Box>
       <S.LeftContainer>
-        {review.reviewImages?.length ? (
+        <S.ReviewImg
+          src={
+            review.reviewImages?.length
+              ? `/images/reviewImg/${review.reviewImages[0]?.storedName}`
+              : `/images/productImg/${review.product?.localPath}`
+          }
+        />
+        {/* {review.reviewImages?.length ? (
           <S.ReviewImg
-            src={`/images/reviewImg/${review.reviewImages[0]?.storedName}`}
+            src={
+              review.reviewImages.length
+                ? `/images/reviewImg/${review.reviewImages[0]?.storedName}`
+                : `/images/productImg/${review.product?.localPath}`
+            }
           />
         ) : (
-          <S.ReviewImg src={product.originPath} />
-        )}
-        <S.ReviewProductName>{product.name}</S.ReviewProductName>
+          <S.ReviewImg
+            src={
+              product === null ? review.product?.localPath : product?.localPath
+            }
+          />
+        )} */}
+        <S.ReviewProductName>{product?.name}</S.ReviewProductName>
       </S.LeftContainer>
 
       <S.CenterContainer>
@@ -57,7 +84,9 @@ function ReviewBox({
         </S.RatingContainer>
         <S.RecommendContainer>
           <S.ThumbIcon src={require("../../imgs/reviewBoxImg/thumb.png")} />
-          <S.RecommendNumber>10</S.RecommendNumber>
+          <S.RecommendNumber>
+            {review.reviewLikeCount ? review.reviewLikeCount : 0}
+          </S.RecommendNumber>
           <S.RecommendBtn onClick={handleLikeClick}>추천하기</S.RecommendBtn>
         </S.RecommendContainer>
         <S.ReviewText>{review.content}</S.ReviewText>
@@ -79,12 +108,12 @@ function ReviewBox({
           <S.HashtagTitle>추천 해시태그</S.HashtagTitle>
           <S.HashtagsRow>
             {review.tagNames.slice(0, 4).map((name, index) => (
-              <Hashtag key={index} name={name} />
+              <Hashtag key={index} name={name} reviewBox={true} />
             ))}
           </S.HashtagsRow>
           <S.HashtagsRow>
             {review.tagNames.slice(4, 8).map((name, index) => (
-              <Hashtag key={index} name={name} />
+              <Hashtag key={index} name={name} reviewBox={true} />
             ))}
           </S.HashtagsRow>
         </S.HashtagContainer>

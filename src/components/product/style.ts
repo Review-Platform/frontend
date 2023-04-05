@@ -3,9 +3,9 @@ import { RateRightText } from "../main/mainSnackInfo/style";
 
 export const ProductContainer = styled.div`
   height: 350px;
-  width: 230px;
-  margin-right: 3vw;
-  margin-bottom: 10vh;
+  width: 250px;
+  margin: 0 25px;
+  /* margin-bottom: 5px; */
 `;
 
 export const ProductInfo = styled.div`
@@ -49,7 +49,7 @@ export const ProductNameArea = styled.div`
 
 export const ProductName = styled.span`
   color: white;
-  font-size: 1.3vw;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
 `;

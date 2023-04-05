@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import { ContentsWrapper } from "../ContentsStyles";
+
+export const ContentsWrapperTwo = styled(ContentsWrapper)`
+  border-top: none;
+`;
 
 export const CategoryArea = styled.div`
   display: flex;
@@ -15,8 +20,8 @@ export const CategoryContainer = styled.div`
 export const Category = styled.input.attrs({
   type: "checkbox",
 })`
-  width: 1.3vw;
-  height: 1.3vw;
+  width: 17px;
+  height: 17px;
   cursor: pointer;
 `;
 
@@ -51,27 +56,26 @@ export const ProductArea = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 1200px;
-  padding: 2vh 0 2vh 4vw;
-
+  padding: 20px 0 0 0;
   /* padding: 2vh 4vw; */
 `;
 export const RankingNavImg = styled.img`
-  width: 100%;
-  height: 35vh;
+  width: 1200px;
+  height: 200px;
 `;
 
 export const RoutineArea = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 10vw;
-  height: 37vh;
-  width: 100%;
+  height: 200px;
+  width: 1200px;
+  padding-left: 10px;
 `;
 
 export const RoutineImg = styled.img`
-  height: 5vh;
-  width: 30vw;
+  height: 42px;
+  width: 370px;
   margin-bottom: 20px;
 `;
 
@@ -96,11 +100,11 @@ export const SearchInput = styled.input`
   border: 0;
   border-radius: 6px;
   padding-left: 15px;
-  font-size: 1.3vw;
+  font-size: 18px;
   background-color: #ffe5c7;
   ::placeholder {
     color: #ff5c00;
-    font-size: 1.3vw;
+    font-size: 18px;
   }
 `;
 
@@ -112,7 +116,7 @@ export const SearchButton = styled.button`
   background-color: #e76100;
   color: white;
   margin-left: 2vw;
-  font-size: 1.3vw;
+  font-size: 18px;
   cursor: pointer;
 `;
 

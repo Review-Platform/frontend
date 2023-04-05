@@ -9,5 +9,5 @@ export const ContentsWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0;
-  padding:0;
+  padding: 0;
 `;

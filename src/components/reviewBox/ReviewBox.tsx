@@ -8,6 +8,7 @@ import { deleteLikeReview, likeReview } from "../../apis/api/reviewApi";
 import { loggedInAtom } from "../../atoms/loggedInAtom";
 import { useRecoilValue } from "recoil";
 import React, { useEffect, useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
 function ReviewBox({
   review,
   product,
@@ -15,26 +16,29 @@ function ReviewBox({
   review: IReview;
   product: IProductDetail | null;
 }) {
+  const queryClient = useQueryClient();
   const loggedInInfo = useRecoilValue(loggedInAtom);
-
-  const [likeCount, setLikeCount] = useState<number>(0);
-
   const flavorArr = useGetFlavors(review.flavor); //맛 정보 데이터 가공하는 훅
 
-  useEffect(() => {
-    setLikeCount(review.reviewLikeCount);
-  }, []);
+  const { mutateAsync: likeCancelMutate } = useMutation(deleteLikeReview, {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(["AllReviews"]);
+      await queryClient.invalidateQueries(["product", product?.id]);
+      console.log("추천 취소 성공");
+    },
+  });
+  const { mutateAsync: likeMutate } = useMutation(likeReview, {
+    onError: async () => await likeCancelMutate(review.reviewId),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(["AllReviews"]);
+      await queryClient.invalidateQueries(["product", product?.id]);
+      console.log("추천 성공");
+    },
+  });
 
   const handleLikeClick = async () => {
     if (loggedInInfo.loggedIn) {
-      try {
-        await likeReview(review.reviewId);
-        //추천 성공하면
-        setLikeCount((prev) => prev + 1);
-      } catch (error) {
-        await deleteLikeReview(review.reviewId);
-        setLikeCount((prev) => prev - 1);
-      }
+      await likeMutate(review.reviewId);
     } else {
       alert("로그인 후 이용해주세요.");
     }
@@ -42,17 +46,28 @@ function ReviewBox({
   return (
     <S.Box>
       <S.LeftContainer>
-        {review.reviewImages?.length ? (
+        <S.ReviewImg
+          src={
+            review.reviewImages?.length
+              ? `/images/reviewImg/${review.reviewImages[0]?.storedName}`
+              : `/images/productImg/${review.product?.localPath}`
+          }
+        />
+        {/* {review.reviewImages?.length ? (
           <S.ReviewImg
-            src={`/images/reviewImg/${review.reviewImages[0]?.storedName}`}
+            src={
+              review.reviewImages.length
+                ? `/images/reviewImg/${review.reviewImages[0]?.storedName}`
+                : `/images/productImg/${review.product?.localPath}`
+            }
           />
         ) : (
           <S.ReviewImg
             src={
-              product === null ? review.product?.localPath : product?.originPath
+              product === null ? review.product?.localPath : product?.localPath
             }
           />
-        )}
+        )} */}
         <S.ReviewProductName>{product?.name}</S.ReviewProductName>
       </S.LeftContainer>
 
@@ -70,7 +85,7 @@ function ReviewBox({
         <S.RecommendContainer>
           <S.ThumbIcon src={require("../../imgs/reviewBoxImg/thumb.png")} />
           <S.RecommendNumber>
-            {review?.reviewLikeCount ? likeCount : 0}
+            {review.reviewLikeCount ? review.reviewLikeCount : 0}
           </S.RecommendNumber>
           <S.RecommendBtn onClick={handleLikeClick}>추천하기</S.RecommendBtn>
         </S.RecommendContainer>
@@ -106,4 +121,4 @@ function ReviewBox({
     </S.Box>
   );
 }
-export default React.memo(ReviewBox);
+export default ReviewBox;

@@ -25,3 +25,10 @@ export const Title = styled.div`
   width: 840px;
   margin-top: 40px;
 `;
+export const Loading = styled.div`
+  color: var(--redColor);
+  font-family: "Shrikhand";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+`;

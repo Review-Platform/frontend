@@ -2,9 +2,14 @@ import * as S from "./style";
 import { useEffect, useState } from "react";
 import { IReview } from "../../interfaces/review";
 import ReviewBox from "../reviewBox/ReviewBox";
+import { useQueryClient } from "react-query";
+import useAllReviews from "../../hooks/useAllReviews";
 
-function ReviewBoxContainer({ reviews }: { reviews: IReview[] | undefined }) {
-  const [reviewArr, setReviewArr] = useState<IReview[]>([]);
+function ReviewBoxContainer() {
+  const { allReviews: reviews, timeOrderArr, likeOrderArr } = useAllReviews();
+  console.log(timeOrderArr, likeOrderArr);
+  const queryClient = useQueryClient();
+
   const [pageNum, setPageNum] = useState(1);
   const [pageArr, setPageArr] = useState<number[]>([1]);
   const [isTimeOrder, setIsTimeOrder] = useState(true);
@@ -12,21 +17,12 @@ function ReviewBoxContainer({ reviews }: { reviews: IReview[] | undefined }) {
     setPageNum(i);
     window.scrollTo(0, 500);
   };
-  const handleTimeOrder = () => setIsTimeOrder(true); //최신순으로
-  const handleLikeOrder = () => setIsTimeOrder(false); //추천순으로
-
-  useEffect(() => {
-    const temp: IReview[] | undefined = reviews?.reverse();
-    if (temp) {
-      if (!isTimeOrder) {
-        //추천순 선택 시 추천수 내림차순 정렬
-        temp.sort((a, b) => b.reviewLikeCount - a.reviewLikeCount);
-      }
-      setReviewArr(temp);
-    } else {
-      setReviewArr([]);
-    }
-  }, [handleTimeOrder, handleLikeOrder]);
+  const handleTimeOrder = async () => {
+    setIsTimeOrder(true);
+  }; //최신순으로
+  const handleLikeOrder = async () => {
+    setIsTimeOrder(false);
+  }; //추천순으로
 
   useEffect(() => {
     if (reviews?.length) {
@@ -48,11 +44,17 @@ function ReviewBoxContainer({ reviews }: { reviews: IReview[] | undefined }) {
         </S.SortOrderItem>
       </S.SortOrderConatiner>
       <S.ReviewBoxs>
-        {reviewArr?.slice((pageNum - 1) * 6, pageNum * 6).map((review) => (
-          <S.ReviewBoxList key={review.reviewId}>
-            <ReviewBox review={review} product={null} />
-          </S.ReviewBoxList>
-        ))}
+        {isTimeOrder
+          ? timeOrderArr.slice((pageNum - 1) * 6, pageNum * 6).map((review) => (
+              <S.ReviewBoxList key={review.reviewId}>
+                <ReviewBox review={review} product={null} />
+              </S.ReviewBoxList>
+            ))
+          : likeOrderArr.slice((pageNum - 1) * 6, pageNum * 6).map((review) => (
+              <S.ReviewBoxList key={review.reviewId}>
+                <ReviewBox review={review} product={null} />
+              </S.ReviewBoxList>
+            ))}
       </S.ReviewBoxs>
       <S.PageBtnsContainer>
         {pageArr.map((i) => (

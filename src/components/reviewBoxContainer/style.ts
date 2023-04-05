@@ -44,8 +44,6 @@ export const PageBtnsContainer = styled.div`
   height: 22px;
   display: flex;
   justify-content: center;
-  position: absolute;
-  bottom: 30px;
 `;
 export const PageBtn = styled.div<{ clicked: boolean }>`
   width: 11px;

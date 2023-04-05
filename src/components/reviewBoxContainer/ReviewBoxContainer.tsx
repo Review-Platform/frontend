@@ -1,34 +1,25 @@
 import * as S from "./style";
 import { useEffect, useState } from "react";
-import { IReview } from "../../interfaces/review";
 import ReviewBox from "../reviewBox/ReviewBox";
-import { useQueryClient } from "react-query";
 import useAllReviews from "../../hooks/useAllReviews";
+import Pagination from "../pagination/Pagination";
 
 function ReviewBoxContainer() {
   const { allReviews: reviews, timeOrderArr, likeOrderArr } = useAllReviews();
-  console.log(timeOrderArr, likeOrderArr);
-  const queryClient = useQueryClient();
 
-  const [pageNum, setPageNum] = useState(1);
-  const [pageArr, setPageArr] = useState<number[]>([1]);
-  const [isTimeOrder, setIsTimeOrder] = useState(true);
-  const handlePageChange = (i: number) => {
-    setPageNum(i);
-    window.scrollTo(0, 500);
-  };
-  const handleTimeOrder = async () => {
+  const [page, setPage] = useState(1); //현재 페이지
+  const [total, setTotal] = useState(6); //전체 가능한 페이지
+  const [isTimeOrder, setIsTimeOrder] = useState(true); //최신순, 추천순 설정
+  const handleTimeOrder = () => {
     setIsTimeOrder(true);
   }; //최신순으로
-  const handleLikeOrder = async () => {
+  const handleLikeOrder = () => {
     setIsTimeOrder(false);
   }; //추천순으로
 
   useEffect(() => {
     if (reviews?.length) {
-      const maxPages = Math.ceil(reviews?.length / 6);
-      const arr = Array.from({ length: maxPages }, (v, i) => i + 1);
-      setPageArr(arr);
+      setTotal(reviews.length);
     }
   }, [reviews]);
 
@@ -45,28 +36,18 @@ function ReviewBoxContainer() {
       </S.SortOrderConatiner>
       <S.ReviewBoxs>
         {isTimeOrder
-          ? timeOrderArr.slice((pageNum - 1) * 6, pageNum * 6).map((review) => (
+          ? timeOrderArr.slice((page - 1) * 6, page * 6).map((review) => (
               <S.ReviewBoxList key={review.reviewId}>
                 <ReviewBox review={review} product={null} />
               </S.ReviewBoxList>
             ))
-          : likeOrderArr.slice((pageNum - 1) * 6, pageNum * 6).map((review) => (
+          : likeOrderArr.slice((page - 1) * 6, page * 6).map((review) => (
               <S.ReviewBoxList key={review.reviewId}>
                 <ReviewBox review={review} product={null} />
               </S.ReviewBoxList>
             ))}
       </S.ReviewBoxs>
-      <S.PageBtnsContainer>
-        {pageArr.map((i) => (
-          <S.PageBtn
-            clicked={pageNum === i ? true : false}
-            onClick={() => handlePageChange(i)}
-            key={i}
-          >
-            {i}
-          </S.PageBtn>
-        ))}
-      </S.PageBtnsContainer>
+      <Pagination total={total} limit={6} page={page} setPage={setPage} />
     </S.Container>
   );
 }

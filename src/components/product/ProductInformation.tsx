@@ -11,7 +11,7 @@ const ProductInformation = ({ product }: { product: IProductInfo }) => {
           <S.ProductBackgroundImage
             src={require("../../imgs/background/productBackground.png")}
           ></S.ProductBackgroundImage>
-          <S.ProductImage src={`${product.localPath}`} />
+          <S.ProductImage src={`/images/productImg/${product.name}.jpg`} />
         </S.ProductImageArea>
         <S.ProductNameArea>
           <S.ProductName onClick={() => navigate(`/product/${product.id}`)}>

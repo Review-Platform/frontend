@@ -24,7 +24,7 @@ function ProductDetailContainer({
     <>
       <S.DetailContainer>
         <S.ImgContainer>
-          <S.Img src={product?.originPath} />
+          <S.Img src={product?.localPath.split("public")[1]} />
         </S.ImgContainer>
         <S.InfoContainer>
           <S.InfoBrandName>{product?.brand}</S.InfoBrandName>

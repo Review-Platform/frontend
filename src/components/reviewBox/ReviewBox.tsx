@@ -43,16 +43,34 @@ function ReviewBox({
       alert("로그인 후 이용해주세요.");
     }
   };
+  console.log(product?.localPath.split("public")[1]);
   return (
     <S.Box>
       <S.LeftContainer>
-        <S.ReviewImg
+        {product ? (
+          <S.ReviewImg
+            src={
+              review.reviewImages?.length
+                ? `/images/reviewImg/${review.reviewImages[0]?.storedName}`
+                : `${product.localPath.split("public")[1]}`
+            }
+          />
+        ) : (
+          <S.ReviewImg
+            src={
+              review.reviewImages?.length
+                ? `/images/reviewImg/${review.reviewImages[0]?.storedName}`
+                : `${review.product?.localPath.split("public")[1]}`
+            }
+          />
+        )}
+        {/* <S.ReviewImg
           src={
             review.reviewImages?.length
               ? `/images/reviewImg/${review.reviewImages[0]?.storedName}`
               : `/images/productImg/${review.product?.localPath}`
           }
-        />
+        /> */}
         {/* {review.reviewImages?.length ? (
           <S.ReviewImg
             src={

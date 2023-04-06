@@ -12,9 +12,11 @@ function ReviewBoxContainer() {
   const [isTimeOrder, setIsTimeOrder] = useState(true); //최신순, 추천순 설정
   const handleTimeOrder = () => {
     setIsTimeOrder(true);
+    setPage(1);
   }; //최신순으로
   const handleLikeOrder = () => {
     setIsTimeOrder(false);
+    setPage(1);
   }; //추천순으로
 
   useEffect(() => {

@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Contents/home/Home";
-
 import SignUp from "./pages/account/signup/SignUp";
 import FindPasswordForm from "./components/account/forms/findPasswordForm/FindPasswordForm";
 import LoginForm from "./components/account/forms/loginForm/LoginForm";
@@ -14,6 +13,7 @@ import Login from "./pages/account/login/Login";
 import SignUpSuccess from "./components/account/signUpSuccess/SignUpSuccess";
 import FindIdForm from "./components/account/forms/FindIdForm/FindIdForm";
 import SignUpForm from "./components/account/forms/signUpForm/SignUpForm";
+import Record from "./pages/Contents/Record/Record";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +39,10 @@ const router = createBrowserRouter([
           {
             path: "review",
             element: <Review />,
+          },
+          {
+            path: "record",
+            element: <Record />,
           },
         ],
       },

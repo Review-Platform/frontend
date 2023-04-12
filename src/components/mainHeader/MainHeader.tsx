@@ -49,7 +49,9 @@ const MainHeader = () => {
           <S.BottomNavItem onClick={() => navigate("/review")}>
             REVIEW
           </S.BottomNavItem>
-          <S.BottomNavItem>RECORD</S.BottomNavItem>
+          <S.BottomNavItem onClick={() => navigate("/record")}>
+            RECORD
+          </S.BottomNavItem>
         </S.BottomNavList>
       </S.BottomNav>
     </S.Header>

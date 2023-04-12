@@ -1,9 +1,12 @@
 import useRecord from "../../../hooks/useRecord";
 import * as S from "./style";
+import RecordProductInformation from "../../../components/record/RecordProductInformation";
 
 function Record() {
-  const { myBest, mostReviews } = useRecord();
-  console.log(myBest, mostReviews);
+  const { myBestProd, mostReviewsProd, seeNextMyBest, seeNextMostReviews } =
+    useRecord();
+
+  const handleSeeNextMyBest = () => seeNextMyBest();
   return (
     <S.MainWrapper>
       <S.RankingTitle>Snack Ranking</S.RankingTitle>
@@ -30,9 +33,18 @@ function Record() {
             <S.RecordItem>
               <S.ItemTitle>이번 달 나의 최애 스낵</S.ItemTitle>
               <S.Underline />
+              <S.RecordContents>
+                {myBestProd ? (
+                  <RecordProductInformation product={myBestProd} />
+                ) : null}
+                <S.RecordContentsRight>
+                  <S.RankingNumber>1st</S.RankingNumber>
+                  <S.NextBtn onClick={handleSeeNextMyBest}>{">"}</S.NextBtn>
+                </S.RecordContentsRight>
+              </S.RecordContents>
             </S.RecordItem>
             <S.RecordItem>
-              <S.ItemTitle>많은 리뷰의 과자를 확인해보세요.</S.ItemTitle>
+              <S.ItemTitle>리뷰가 많은 과자를 확인해보세요.</S.ItemTitle>
               <S.UnderlineThird />
             </S.RecordItem>
             <S.RecordItem>

@@ -146,3 +146,37 @@ export const UnderlineLast = styled.div`
   border-top: 3px solid var(--redColor);
   width: 380px;
 `;
+export const RecordContents = styled.div`
+  margin-top: 26px;
+  width: 100%;
+  display: flex;
+`;
+export const RecordContentsRight = styled.div`
+  margin-top: 10px;
+  margin-left: 18px;
+  height: 100%;
+  width: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const RankingNumber = styled.div`
+  height: 28px;
+  font-weight: 700;
+  font-size: 34px;
+  color: var(--redColor);
+`;
+export const NextBtn = styled.button`
+  width: 36px;
+  height: 36px;
+  margin-top: 16px;
+  background-color: #ff7b00;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+`;

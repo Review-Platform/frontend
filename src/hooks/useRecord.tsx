@@ -12,12 +12,12 @@ function useRecord() {
   >(["record", "mostReviews"], getMostReviews);
 
   const [myBestIdx, setMyBestIdx] = useState(0);
+  const [myBestRank, setMyBestRank] = useState<string>("1st");
   const [mostReviewsIdx, setMostReviewsIdx] = useState(0);
   const [myBestProd, setMyBestProd] = useState<IRecordProduct>();
   const [mostReviewsProd, setMostReviewsProd] = useState<IRecordProduct>();
 
   const seeNextMyBest = () => {
-    console.log("Clicked");
     setMyBestIdx((prev) => (prev === 2 ? 0 : prev + 1));
   };
   const seeNextMostReviews = () => {
@@ -25,10 +25,22 @@ function useRecord() {
   };
 
   useEffect(() => {
-    if (myBestIsSuccess) setMyBestProd(myBest[myBestIdx]);
+    if (myBestIsSuccess) {
+      setMyBestProd(myBest[myBestIdx]);
+    }
+    if (myBestIdx === 0) setMyBestRank("1st");
+    if (myBestIdx === 1) setMyBestRank("2nd");
+    if (myBestIdx === 2) setMyBestRank("3rd");
+
     if (mostReviewsIsSuccess) setMostReviewsProd(mostReviews[mostReviewsIdx]);
   }, [myBest, mostReviews, myBestIdx, mostReviewsIdx]);
 
-  return { myBestProd, mostReviewsProd, seeNextMyBest, seeNextMostReviews };
+  return {
+    myBestProd,
+    mostReviewsProd,
+    seeNextMyBest,
+    seeNextMostReviews,
+    myBestRank,
+  };
 }
 export default useRecord;

@@ -3,8 +3,13 @@ import * as S from "./style";
 import RecordProductInformation from "../../../components/record/RecordProductInformation";
 
 function Record() {
-  const { myBestProd, mostReviewsProd, seeNextMyBest, seeNextMostReviews } =
-    useRecord();
+  const {
+    myBestProd,
+    mostReviewsProd,
+    seeNextMyBest,
+    seeNextMostReviews,
+    myBestRank,
+  } = useRecord();
 
   const handleSeeNextMyBest = () => seeNextMyBest();
   return (
@@ -30,6 +35,7 @@ function Record() {
               <S.ItemTitle>이번 달 나의 스낵 키워드</S.ItemTitle>
               <S.Underline />
             </S.RecordItem>
+
             <S.RecordItem>
               <S.ItemTitle>이번 달 나의 최애 스낵</S.ItemTitle>
               <S.Underline />
@@ -38,11 +44,12 @@ function Record() {
                   <RecordProductInformation product={myBestProd} />
                 ) : null}
                 <S.RecordContentsRight>
-                  <S.RankingNumber>1st</S.RankingNumber>
+                  <S.RankingNumber>{myBestRank}</S.RankingNumber>
                   <S.NextBtn onClick={handleSeeNextMyBest}>{">"}</S.NextBtn>
                 </S.RecordContentsRight>
               </S.RecordContents>
             </S.RecordItem>
+
             <S.RecordItem>
               <S.ItemTitle>리뷰가 많은 과자를 확인해보세요.</S.ItemTitle>
               <S.UnderlineThird />

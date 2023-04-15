@@ -105,6 +105,7 @@ export const GridContainer = styled.div`
   height: 769px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 `;
 export const RecordItem = styled.div`
   width: 100%;
@@ -179,4 +180,59 @@ export const NextBtn = styled.button`
   align-items: center;
   font-size: 18px;
   cursor: pointer;
+`;
+export const HashtagGrid = styled.div`
+  margin-top: 26px;
+  display: grid;
+  width: 435px;
+  height: 242px;
+  grid-template-columns: 200.12fr 94.67fr 111.45fr;
+  grid-template-rows: 110.77fr 55.38fr 49.36fr;
+  column-gap: 14.38px;
+  row-gap: 13px;
+  div {
+    font-weight: 700;
+    line-height: 160%;
+    color: white;
+  }
+`;
+export const GridItem_1 = styled.div`
+  padding: 12px;
+  grid-row: 1/4;
+  grid-column: 1/2;
+  background-color: #47a400;
+  border-radius: 5px;
+  font-size: 26px;
+`;
+export const GridItem_2 = styled.div`
+  padding: 12px;
+  grid-column: 2/4;
+  grid-row: 1/2;
+  background-color: var(--redColor);
+  border-radius: 5px;
+  font-size: 20px;
+`;
+export const GridItem_3 = styled.div`
+  padding: 12px;
+  grid-column: 2/3;
+  grid-row: 2/4;
+  background-color: var(--yellowColor);
+  border-radius: 5px;
+  font-size: 16px;
+`;
+export const GridItem_4 = styled.div`
+  padding: 10px;
+  grid-column: 3/4;
+  grid-row: 2/3;
+  background-color: #ff7b00;
+  border-radius: 5px;
+  font-size: 14px;
+`;
+export const GridItem_5 = styled.div`
+  padding: 10px;
+  grid-column: 3/4;
+  grid-row: 3/4;
+  background-color: #ffc700;
+  border-radius: 5px;
+  font-size: 14px;
 `;

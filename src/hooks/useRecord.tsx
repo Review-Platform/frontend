@@ -1,9 +1,16 @@
 import { useQuery } from "react-query";
-import { getMyBest, getMostReviews } from "../apis/api/recordApi";
+import {
+  getMyBest,
+  getMostReviews,
+  getMyHashtags,
+} from "../apis/api/recordApi";
 import { IRecordProduct } from "../interfaces/record";
 import { useEffect, useState } from "react";
 
 function useRecord() {
+  const { data: myHashtags, isSuccess: myHashtagsIsSuccess } = useQuery<
+    string[]
+  >(["record", "myHashtags"], getMyHashtags);
   const { data: myBest, isSuccess: myBestIsSuccess } = useQuery<
     IRecordProduct[]
   >(["record", "myBest"], getMyBest);
@@ -36,6 +43,7 @@ function useRecord() {
   }, [myBest, mostReviews, myBestIdx, mostReviewsIdx]);
 
   return {
+    myHashtags,
     myBestProd,
     mostReviewsProd,
     seeNextMyBest,

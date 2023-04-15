@@ -4,13 +4,13 @@ import RecordProductInformation from "../../../components/record/RecordProductIn
 
 function Record() {
   const {
+    myHashtags,
     myBestProd,
     mostReviewsProd,
     seeNextMyBest,
     seeNextMostReviews,
     myBestRank,
   } = useRecord();
-
   const handleSeeNextMyBest = () => seeNextMyBest();
   return (
     <S.MainWrapper>
@@ -31,11 +31,19 @@ function Record() {
             레코드는 본인이 직접 선호하고 추천했던 리뷰들이 반영됩니다.
           </S.RecordDescription>
           <S.GridContainer>
+            {/*이번 달 나의 스낵 키워드*/}
             <S.RecordItem>
               <S.ItemTitle>이번 달 나의 스낵 키워드</S.ItemTitle>
               <S.Underline />
+              <S.HashtagGrid>
+                <S.GridItem_1>#{myHashtags?.[0]}</S.GridItem_1>
+                <S.GridItem_2>#{myHashtags?.[1]}</S.GridItem_2>
+                <S.GridItem_3>#{myHashtags?.[2]}</S.GridItem_3>
+                <S.GridItem_4>#{myHashtags?.[3]}</S.GridItem_4>
+                <S.GridItem_5>#{myHashtags?.[4]}</S.GridItem_5>
+              </S.HashtagGrid>
             </S.RecordItem>
-
+            {/*이번 달 나의 최애 스낵*/}
             <S.RecordItem>
               <S.ItemTitle>이번 달 나의 최애 스낵</S.ItemTitle>
               <S.Underline />
@@ -49,11 +57,12 @@ function Record() {
                 </S.RecordContentsRight>
               </S.RecordContents>
             </S.RecordItem>
-
+            {/*리뷰가 많은 과자를 확인해보세요.*/}
             <S.RecordItem>
               <S.ItemTitle>리뷰가 많은 과자를 확인해보세요.</S.ItemTitle>
               <S.UnderlineThird />
             </S.RecordItem>
+            {/*이 과자 리뷰에 가장 많은 추천을 받았어요.*/}
             <S.RecordItem>
               <S.ItemTitle>
                 이 과자 리뷰에 가장 많은 추천을 받았어요.

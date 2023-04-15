@@ -4,7 +4,7 @@ export interface IRecordProduct {
   hashtags: string[] | null;
   productId: number;
 }
-export interface IRecords {
-  myBest: IRecordProduct[];
-  mostReviews: IRecordProduct[];
+export interface IRankingProduct {
+  snackName: string;
+  grade: number;
 }

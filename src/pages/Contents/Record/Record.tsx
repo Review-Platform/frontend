@@ -4,6 +4,7 @@ import RecordProductInformation from "../../../components/record/RecordProductIn
 
 function Record() {
   const {
+    ranking,
     myHashtags,
     myBestProd,
     mostReviewsProd,
@@ -11,7 +12,6 @@ function Record() {
     seeNextMostReviews,
     myBestRank,
   } = useRecord();
-  const handleSeeNextMyBest = () => seeNextMyBest();
   return (
     <S.MainWrapper>
       <S.RankingTitle>Snack Ranking</S.RankingTitle>
@@ -21,7 +21,38 @@ function Record() {
           월마다 재선정됩니다.
         </S.RankingDescriptionText>
       </S.RankingDescription>
-      <S.Ranking></S.Ranking>
+      {ranking ? (
+        <S.RankingContainer>
+          {ranking.map((i, index) => (
+            <S.RankingItem key={i.snackName}>
+              <S.Rank>{index + 1}위</S.Rank>
+              <S.RankingItemName>{i.snackName}</S.RankingItemName>
+              <S.RankingItemGrade>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  version="1.0"
+                  width="26px"
+                  height="26px"
+                  viewBox="0 0 1280.000000 720.000000"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <metadata>
+                    Created by potrace 1.15, written by Peter Selinger 2001-2017
+                  </metadata>
+                  <g
+                    transform="translate(0.000000,720.000000) scale(0.100000,-0.100000)"
+                    fill="#F48722"
+                    stroke="none"
+                  >
+                    <path d="M5842 5866 c-445 -871 -557 -1085 -575 -1089 -12 -3 -553 -90 -1202 -193 -649 -103 -1182 -189 -1185 -191 -2 -2 384 -392 858 -866 l862 -862 -190 -1204 c-104 -663 -188 -1207 -186 -1209 2 -2 491 245 1087 547 595 303 1085 551 1089 551 4 0 495 -248 1090 -550 595 -303 1084 -549 1086 -547 2 2 -81 546 -186 1208 l-190 1204 862 862 c474 474 860 864 858 866 -3 2 -536 88 -1185 191 -649 103 -1190 190 -1202 193 -17 4 -135 227 -575 1089 -304 596 -555 1084 -558 1084 -3 0 -254 -488 -558 -1084z" />
+                  </g>
+                </svg>
+                {`${Math.floor(i.grade)}.${Math.round((i.grade % 1) * 10)}`}
+              </S.RankingItemGrade>
+            </S.RankingItem>
+          ))}
+        </S.RankingContainer>
+      ) : null}
       <S.RecordBox>
         <S.RecordTitle>Snack Record</S.RecordTitle>
         <S.RecordContainer>
@@ -49,18 +80,39 @@ function Record() {
               <S.Underline />
               <S.RecordContents>
                 {myBestProd ? (
-                  <RecordProductInformation product={myBestProd} />
+                  <RecordProductInformation big={true} product={myBestProd} />
                 ) : null}
-                <S.RecordContentsRight>
+                <S.RecordContentsRightFirst>
                   <S.RankingNumber>{myBestRank}</S.RankingNumber>
-                  <S.NextBtn onClick={handleSeeNextMyBest}>{">"}</S.NextBtn>
-                </S.RecordContentsRight>
+                  <S.NextBtn onClick={seeNextMyBest}>{">"}</S.NextBtn>
+                </S.RecordContentsRightFirst>
               </S.RecordContents>
             </S.RecordItem>
             {/*리뷰가 많은 과자를 확인해보세요.*/}
             <S.RecordItem>
               <S.ItemTitle>리뷰가 많은 과자를 확인해보세요.</S.ItemTitle>
               <S.UnderlineThird />
+              <S.RecordContents>
+                {mostReviewsProd ? (
+                  <RecordProductInformation
+                    big={false}
+                    product={mostReviewsProd}
+                  />
+                ) : null}
+                <S.RecordContentsRightSecond>
+                  <S.NextBtn onClick={seeNextMostReviews}>{">"}</S.NextBtn>
+                  <S.ListKeywordsText>
+                    이런 키워드에 해당 돼요.
+                  </S.ListKeywordsText>
+                  {mostReviewsProd ? (
+                    <S.KeywordsList>
+                      <li>#{mostReviewsProd?.hashtags?.[2]}</li>
+                      <li>#{mostReviewsProd?.hashtags?.[1]}</li>
+                      <li>#{mostReviewsProd?.hashtags?.[0]}</li>
+                    </S.KeywordsList>
+                  ) : null}
+                </S.RecordContentsRightSecond>
+              </S.RecordContents>
             </S.RecordItem>
             {/*이 과자 리뷰에 가장 많은 추천을 받았어요.*/}
             <S.RecordItem>

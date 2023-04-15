@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const ProductContainer = styled(motion.div)`
-  width: 295px;
-  height: 242px;
+export const ProductContainer = styled(motion.div)<{ big: boolean }>`
+  width: ${(props) => (props.big ? "295px" : "280px")};
+  height: ${(props) => (props.big ? "242px" : "230px")};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,10 +11,10 @@ export const ProductContainer = styled(motion.div)`
   border-radius: 5px;
 `;
 
-export const ProductImageArea = styled.div`
+export const ProductImageArea = styled.div<{ big: boolean }>`
   margin-top: 12px;
-  width: 269.66px;
-  height: 170.45px;
+  width: ${(props) => (props.big ? "269.66px" : "256px")};
+  height: ${(props) => (props.big ? "170.45px" : "162px")};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,9 +23,9 @@ export const ProductImageArea = styled.div`
   cursor: pointer;
 `;
 
-export const ProductImage = styled(motion.img)`
-  width: 166.68px;
-  height: 145.2px;
+export const ProductImage = styled(motion.img)<{ big: boolean }>`
+  width: ${(props) => (props.big ? "166.68px" : "158.24px")};
+  height: ${(props) => (props.big ? "145.2px" : "138px")};
 `;
 
 export const ProductName = styled.div`

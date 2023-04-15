@@ -1,9 +1,14 @@
 import { baseApi } from "../utils/instance";
 
+const RANKING_URI = "topTenSnacks";
 const MYHASHTAGS_URI = "myBestHashTags";
 const MYBEST_URI = "myBestSnack";
 const MOSTREVIEWS_URT = "bestReviewProducts";
 const TOPREVIEW_URI = "topReview";
+
+//탑텐 랭킹
+export const getRanking = () =>
+  baseApi.get(RANKING_URI).then((res) => res.data);
 
 //이번 달 나의 스낵 키워드
 export const getMyHashtags = () =>

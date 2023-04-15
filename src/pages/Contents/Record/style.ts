@@ -37,14 +37,64 @@ export const RankingDescriptionText = styled.span`
   line-height: 160%;
 `;
 
-export const Ranking = styled.div`
+export const RankingContainer = styled.div`
   margin-top: 46px;
   width: 1120px;
   height: 266px;
-  border: 0.5px solid black;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+`;
+export const Rank = styled.div`
+  margin-left: 7px;
+  width: 32px;
+  height: 30px;
+  font-weight: 700;
+`;
+export const RankingItemName = styled.div`
+  margin-left: 20px;
+  width: auto;
+  height: 30px;
+`;
+export const RankingItemGrade = styled.div`
+  position: absolute;
+  right: 7px;
+  display: flex;
+  align-items: center;
+  svg {
+    margin-bottom: 2.5px;
+  }
+`;
+export const RankingItem = styled.div`
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px dashed #ff2617;
+  &:nth-child(2n-1) {
+    border-right: 1px solid #ff2617;
+    div:last-child {
+      right: 58px;
+    }
+  }
+  &:nth-child(2n) {
+    padding-left: 44px;
+  }
+  &:nth-last-child(1),
+  :nth-last-child(2) {
+    border-bottom: none;
+  }
+  display: flex;
+  align-items: center;
+  position: relative;
+  div {
+    font-size: 16px;
+    line-height: 30px;
+    color: #ff2617;
+  }
 `;
 
 export const RecordBox = styled.div`
+  width: 44px;
+  height: 19px;
   margin-top: 54px;
   width: 1200px;
   height: 1145px;
@@ -152,11 +202,10 @@ export const RecordContents = styled.div`
   width: 100%;
   display: flex;
 `;
-export const RecordContentsRight = styled.div`
-  margin-top: 10px;
+export const RecordContentsRightFirst = styled.div`
+  margin-top: 6px;
   margin-left: 18px;
   height: 100%;
-  width: 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -235,4 +284,61 @@ export const GridItem_5 = styled.div`
   background-color: #ffc700;
   border-radius: 5px;
   font-size: 14px;
+`;
+export const RecordContentsRightSecond = styled.div`
+  margin-left: 18px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+export const ListKeywordsText = styled.div`
+  margin-top: 24px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 160%;
+  color: var(--redColor);
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--redColor);
+`;
+
+export const KeywordsList = styled.ul`
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  li {
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding-top: 4px;
+    padding-left: 12px;
+  }
+  li:first-child {
+    width: 90px;
+    height: 32px;
+    background-color: var(--redColor);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 160%;
+    color: white;
+  }
+  li:nth-child(2) {
+    width: 116px;
+    height: 32px;
+    background-color: #ffb001;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 160%;
+    color: white;
+  }
+  li:nth-child(3) {
+    width: 140px;
+    height: 32px;
+    background-color: #ff7b00;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 160%;
+    color: white;
+  }
 `;

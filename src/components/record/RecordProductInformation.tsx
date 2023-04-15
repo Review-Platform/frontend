@@ -5,17 +5,25 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 
-const RecordProductInformation = ({ product }: { product: IRecordProduct }) => {
+const RecordProductInformation = ({
+  product,
+  big,
+}: {
+  big: boolean;
+  product: IRecordProduct;
+}) => {
   const navigate = useNavigate();
 
   return (
-    <S.ProductContainer>
+    <S.ProductContainer big={big}>
       <S.ProductImageArea
+        big={big}
         onClick={() => navigate(`/product/${product.productId}`)}
       >
         <AnimatePresence mode="wait">
           {product.images && (
             <S.ProductImage
+              big={big}
               key={product.images}
               src={product.images.split("public")[1]}
               initial={{ opacity: 0.2, x: 30 }}

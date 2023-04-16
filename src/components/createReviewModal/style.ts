@@ -10,6 +10,7 @@ export const ModalBg = styled.div`
   top: 0;
   backdrop-filter: blur(4px);
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
 `;
 
 export const Modal = styled.form`

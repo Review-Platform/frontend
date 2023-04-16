@@ -3,22 +3,25 @@ import { useEffect, useState } from "react";
 import ReviewBox from "../reviewBox/ReviewBox";
 import useAllReviews from "../../hooks/useAllReviews";
 import Pagination from "../pagination/Pagination";
+import { IReview } from "../../interfaces/review";
+import { IProductDetail } from "../../interfaces/productDetail";
+import useSortOrder from "../../hooks/useSortOrder";
 
-function ReviewBoxContainer() {
-  const { allReviews: reviews, timeOrderArr, likeOrderArr } = useAllReviews();
-
+function ReviewBoxContainer({
+  reviews,
+  timeOrderArr,
+  likeOrderArr,
+  product,
+}: {
+  reviews: IReview[];
+  timeOrderArr: IReview[];
+  likeOrderArr: IReview[];
+  product: IProductDetail | null;
+}) {
   const [page, setPage] = useState(1); //현재 페이지
   const [total, setTotal] = useState(6); //전체 가능한 페이지
-  const [isTimeOrder, setIsTimeOrder] = useState(true); //최신순, 추천순 설정
-  const handleTimeOrder = () => {
-    setIsTimeOrder(true);
-    setPage(1);
-  }; //최신순으로
-  const handleLikeOrder = () => {
-    setIsTimeOrder(false);
-    setPage(1);
-  }; //추천순으로
-
+  const { isTimeOrder, handleTimeOrder, handleLikeOrder } =
+    useSortOrder(setPage);
   useEffect(() => {
     if (reviews?.length) {
       setTotal(reviews.length);
@@ -40,12 +43,12 @@ function ReviewBoxContainer() {
         {isTimeOrder
           ? timeOrderArr.slice((page - 1) * 6, page * 6).map((review) => (
               <S.ReviewBoxList key={review.reviewId}>
-                <ReviewBox review={review} product={null} />
+                <ReviewBox review={review} product={product} />
               </S.ReviewBoxList>
             ))
           : likeOrderArr.slice((page - 1) * 6, page * 6).map((review) => (
               <S.ReviewBoxList key={review.reviewId}>
-                <ReviewBox review={review} product={null} />
+                <ReviewBox review={review} product={product} />
               </S.ReviewBoxList>
             ))}
       </S.ReviewBoxs>

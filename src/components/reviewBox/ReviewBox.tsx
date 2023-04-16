@@ -64,29 +64,7 @@ function ReviewBox({
             }
           />
         )}
-        {/* <S.ReviewImg
-          src={
-            review.reviewImages?.length
-              ? `/images/reviewImg/${review.reviewImages[0]?.storedName}`
-              : `/images/productImg/${review.product?.localPath}`
-          }
-        /> */}
-        {/* {review.reviewImages?.length ? (
-          <S.ReviewImg
-            src={
-              review.reviewImages.length
-                ? `/images/reviewImg/${review.reviewImages[0]?.storedName}`
-                : `/images/productImg/${review.product?.localPath}`
-            }
-          />
-        ) : (
-          <S.ReviewImg
-            src={
-              product === null ? review.product?.localPath : product?.localPath
-            }
-          />
-        )} */}
-        <S.ReviewProductName>{product?.name}</S.ReviewProductName>
+        <S.ReviewProductName>{review.product?.name}</S.ReviewProductName>
       </S.LeftContainer>
 
       <S.CenterContainer>

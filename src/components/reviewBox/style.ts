@@ -26,12 +26,14 @@ export const ReviewImg = styled.img`
   margin-top: 12px;
 `;
 
-export const ReviewProductName = styled.span`
+export const ReviewProductName = styled.div`
+  margin-left: 3px;
   color: #ff4a00;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 30px;
   margin-top: 10px;
+  text-align: center;
 `;
 
 export const CenterContainer = styled.div`

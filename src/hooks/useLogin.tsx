@@ -1,13 +1,5 @@
-import {
-  loginPost,
-  rememberPost,
-  getLoggedInInfo,
-} from "../apis/api/accountApi";
-import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { loggedInAtom } from "../atoms/loggedInAtom";
+import { loginPost, rememberPost } from "../apis/api/accountApi";
 import { ILoginForm } from "../interfaces/accountForm";
-import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 
 function useLogin() {

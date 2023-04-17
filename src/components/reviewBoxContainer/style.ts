@@ -3,7 +3,7 @@ import { IntroImgRight } from "../main/introduction/style";
 
 export const Container = styled.div`
   width: 808px;
-  height: 1600px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,13 +30,26 @@ export const SortOrderItem = styled.div<{ selected: boolean }>`
   margin-bottom: 14px;
 `;
 
-export const ReviewBoxs = styled.ul`
+export const ReviewBoxsHorizontal = styled.ul`
   width: 808px;
   height: 1400px;
   display: flex;
   flex-direction: column;
 `;
-export const ReviewBoxList = styled.li``;
+export const ReviewBoxsVertical = styled.ul`
+  width: auto;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  column-gap: 20px;
+  row-gap: 30px;
+  margin-bottom: 20px;
+`;
+export const ReviewBoxList = styled.li`
+  display: flex;
+  justify-content: center;
+`;
 export const PageBtnsContainer = styled.div`
   margin-top: 40px;
   margin-bottom: 30px;

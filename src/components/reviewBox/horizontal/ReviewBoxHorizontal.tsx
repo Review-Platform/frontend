@@ -117,4 +117,4 @@ function ReviewBoxHorizontal({
     </S.Box>
   );
 }
-export default ReviewBoxHorizontal;
+export default React.memo(ReviewBoxHorizontal);

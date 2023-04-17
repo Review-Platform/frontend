@@ -1,6 +1,6 @@
 import * as S from "./style";
 import useAllReviews from "../../../hooks/useAllReviews";
-import ReviewBoxContainer from "../../../components/reviewBoxContainer/ReviewBoxContainer";
+import ReviewBoxContainerVertical from "../../../components/reviewBoxContainer/vertical/ReviewBoxContainerVertical";
 const Review = () => {
   const { allReviews, timeOrderArr, likeOrderArr } = useAllReviews();
   return (
@@ -10,7 +10,7 @@ const Review = () => {
       />
       <S.Title>Reviews</S.Title>
       {allReviews ? (
-        <ReviewBoxContainer
+        <ReviewBoxContainerVertical
           reviews={allReviews}
           timeOrderArr={timeOrderArr}
           likeOrderArr={likeOrderArr}

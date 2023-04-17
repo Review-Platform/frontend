@@ -1,14 +1,14 @@
 import * as S from "./style";
 import { useEffect, useState } from "react";
-import ReviewBoxHorizontal from "../reviewBox/horizontal/ReviewBoxHorizontal";
-import useAllReviews from "../../hooks/useAllReviews";
-import Pagination from "../pagination/Pagination";
-import { IReview } from "../../interfaces/review";
-import { IProductDetail } from "../../interfaces/productDetail";
-import useSortOrder from "../../hooks/useSortOrder";
-import ReviewBoxVertical from "../reviewBox/vertical/ReviewBoxVertical";
+import ReviewBoxHorizontal from "../../reviewBox/horizontal/ReviewBoxHorizontal";
+import useAllReviews from "../../../hooks/useAllReviews";
+import Pagination from "../../pagination/Pagination";
+import { IReview } from "../../../interfaces/review";
+import { IProductDetail } from "../../../interfaces/productDetail";
+import useSortOrder from "../../../hooks/useSortOrder";
+import ReviewBoxVertical from "../../reviewBox/vertical/ReviewBoxVertical";
 
-function ReviewBoxContainer({
+function ReviewBoxContainerHorizontal({
   reviews,
   timeOrderArr,
   likeOrderArr,
@@ -25,9 +25,10 @@ function ReviewBoxContainer({
     useSortOrder(setPage);
   useEffect(() => {
     if (reviews?.length) {
-      setTotal(reviews.length);
+      setTotal(Math.ceil(reviews.length / 6));
     }
   }, [reviews]);
+  const handleSeeMoreBtnClick = () => setPage((prev) => prev + 1);
 
   return (
     <S.Container>
@@ -41,38 +42,35 @@ function ReviewBoxContainer({
         </S.SortOrderItem>
       </S.SortOrderConatiner>
       {/* 제품상세정보 페이지에 보여지는 리뷰 (horizontal) */}
-      {product === null ? (
-        <S.ReviewBoxsVertical>
-          {isTimeOrder
-            ? timeOrderArr.slice((page - 1) * 6, page * 6).map((review) => (
-                <S.ReviewBoxList key={review.reviewId}>
-                  <ReviewBoxVertical review={review} product={product} />
-                </S.ReviewBoxList>
-              ))
-            : likeOrderArr.slice((page - 1) * 6, page * 6).map((review) => (
-                <S.ReviewBoxList key={review.reviewId}>
-                  <ReviewBoxVertical review={review} product={product} />
-                </S.ReviewBoxList>
-              ))}
-        </S.ReviewBoxsVertical>
-      ) : (
+      {product === null ? null : (
         <S.ReviewBoxsHorizontal>
           {isTimeOrder
-            ? timeOrderArr.slice((page - 1) * 6, page * 6).map((review) => (
+            ? timeOrderArr.slice(0, page * 6).map((review) => (
                 <S.ReviewBoxList key={review.reviewId}>
                   <ReviewBoxHorizontal review={review} product={product} />
                 </S.ReviewBoxList>
               ))
-            : likeOrderArr.slice((page - 1) * 6, page * 6).map((review) => (
+            : likeOrderArr.slice(0, page * 6).map((review) => (
                 <S.ReviewBoxList key={review.reviewId}>
                   <ReviewBoxHorizontal review={review} product={product} />
                 </S.ReviewBoxList>
               ))}
         </S.ReviewBoxsHorizontal>
       )}
-
-      <Pagination total={total} limit={6} page={page} setPage={setPage} />
+      {page === total ? null : (
+        <S.SeeMoreBtn onClick={handleSeeMoreBtnClick}>
+          더보기
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="var(--redColor)"
+            height="20px"
+            viewBox="0 0 448 512"
+          >
+            <path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+          </svg>
+        </S.SeeMoreBtn>
+      )}
     </S.Container>
   );
 }
-export default ReviewBoxContainer;
+export default ReviewBoxContainerHorizontal;

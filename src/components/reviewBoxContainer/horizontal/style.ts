@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IntroImgRight } from "../main/introduction/style";
+import { IntroImgRight } from "../../main/introduction/style";
 
 export const Container = styled.div`
   width: 808px;
@@ -32,7 +32,7 @@ export const SortOrderItem = styled.div<{ selected: boolean }>`
 
 export const ReviewBoxsHorizontal = styled.ul`
   width: 808px;
-  height: 1400px;
+  height: auto;
   display: flex;
   flex-direction: column;
 `;
@@ -69,5 +69,20 @@ export const PageBtn = styled.div<{ clicked: boolean }>`
   line-height: 22px;
   color: var(--redColor);
   margin-right: 15px;
+  cursor: pointer;
+`;
+
+export const SeeMoreBtn = styled.div`
+  width: auto;
+  height: 30px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--redColor);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
   cursor: pointer;
 `;

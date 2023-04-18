@@ -342,3 +342,43 @@ export const KeywordsList = styled.ul`
     color: white;
   }
 `;
+
+export const NoDataBox = styled.div`
+  margin-top: 30px;
+  width: 420px;
+  height: 280px;
+  background-color: #fff3d9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+`;
+export const NoDataText = styled.div`
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 192px;
+  height: 52px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  color: var(--redColor);
+  white-space: pre-line;
+`;
+export const Go = styled.div`
+  margin-top: 14px;
+  width: auto;
+  height: 25px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 160%;
+  color: var(--redColor);
+  border-bottom: 1px solid var(--redColor);
+  text-align: center;
+  cursor: pointer;
+`;
+export const NoDataImage = styled.img`
+  width: 160px;
+  height: 160px;
+`;

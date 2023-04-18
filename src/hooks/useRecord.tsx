@@ -50,7 +50,8 @@ function useRecord() {
 
   useEffect(() => {
     if (myBestIsSuccess) {
-      setMyBestProd(myBest[myBestIdx]);
+      if (myBest.length < 3) setMyBestProd(null);
+      else setMyBestProd(myBest[myBestIdx]);
     }
     if (myBestIsError) {
       setMyBestProd(null);
@@ -75,6 +76,7 @@ function useRecord() {
     seeNextMyBest,
     seeNextMostReviews,
     myBestRank,
+    topReview,
   };
 }
 export default useRecord;

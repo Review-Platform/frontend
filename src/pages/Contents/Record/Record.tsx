@@ -1,6 +1,9 @@
 import useRecord from "../../../hooks/useRecord";
 import * as S from "./style";
 import RecordProductInformation from "../../../components/record/RecordProductInformation";
+import { useRecoilValue } from "recoil";
+import { loggedInAtom } from "../../../atoms/loggedInAtom";
+import { useNavigate } from "react-router-dom";
 
 function Record() {
   const {
@@ -11,7 +14,12 @@ function Record() {
     seeNextMyBest,
     seeNextMostReviews,
     myBestRank,
+    topReview,
   } = useRecord();
+  const navigate = useNavigate();
+  const loggedInInfo = useRecoilValue(loggedInAtom);
+  const handleGoLogin = () => navigate("/login");
+  const handleGoProduct = () => navigate("/product");
   return (
     <S.MainWrapper>
       <S.RankingTitle>Snack Ranking</S.RankingTitle>
@@ -66,27 +74,73 @@ function Record() {
             <S.RecordItem>
               <S.ItemTitle>이번 달 나의 스낵 키워드</S.ItemTitle>
               <S.Underline />
-              <S.HashtagGrid>
-                <S.GridItem_1>#{myHashtags?.[0]}</S.GridItem_1>
-                <S.GridItem_2>#{myHashtags?.[1]}</S.GridItem_2>
-                <S.GridItem_3>#{myHashtags?.[2]}</S.GridItem_3>
-                <S.GridItem_4>#{myHashtags?.[3]}</S.GridItem_4>
-                <S.GridItem_5>#{myHashtags?.[4]}</S.GridItem_5>
-              </S.HashtagGrid>
+              {loggedInInfo ? (
+                myHashtags?.length && myHashtags.length > 4 ? (
+                  <S.HashtagGrid>
+                    <S.GridItem_1>#{myHashtags?.[0]}</S.GridItem_1>
+                    <S.GridItem_2>#{myHashtags?.[1]}</S.GridItem_2>
+                    <S.GridItem_3>#{myHashtags?.[2]}</S.GridItem_3>
+                    <S.GridItem_4>#{myHashtags?.[3]}</S.GridItem_4>
+                    <S.GridItem_5>#{myHashtags?.[4]}</S.GridItem_5>
+                  </S.HashtagGrid>
+                ) : (
+                  <S.NoDataBox>
+                    <S.NoDataImage
+                      src={require("../../../imgs/recordPage/notLoggedIn.png")}
+                    />
+                    <S.NoDataText>
+                      더 많은 리뷰를 작성하여{"\n"}나만의 레코드를 확인해보세요!
+                    </S.NoDataText>
+                    <S.Go onClick={handleGoProduct}>리뷰쓰러가기</S.Go>
+                  </S.NoDataBox>
+                )
+              ) : (
+                <S.NoDataBox>
+                  <S.NoDataImage
+                    src={require("../../../imgs/recordPage/notLoggedIn.png")}
+                  />
+                  <S.NoDataText>
+                    로그인해서 나만의 레코드를 {"\n"} 더 자세히 확인해보세요!
+                  </S.NoDataText>
+                  <S.Go onClick={handleGoLogin}>로그인하기</S.Go>
+                </S.NoDataBox>
+              )}
             </S.RecordItem>
             {/*이번 달 나의 최애 스낵*/}
             <S.RecordItem>
               <S.ItemTitle>이번 달 나의 최애 스낵</S.ItemTitle>
               <S.Underline />
-              <S.RecordContents>
-                {myBestProd ? (
-                  <RecordProductInformation big={true} product={myBestProd} />
-                ) : null}
-                <S.RecordContentsRightFirst>
-                  <S.RankingNumber>{myBestRank}</S.RankingNumber>
-                  <S.NextBtn onClick={seeNextMyBest}>{">"}</S.NextBtn>
-                </S.RecordContentsRightFirst>
-              </S.RecordContents>
+              {loggedInInfo ? (
+                myBestProd ? (
+                  <S.RecordContents>
+                    <RecordProductInformation big={true} product={myBestProd} />
+                    <S.RecordContentsRightFirst>
+                      <S.RankingNumber>{myBestRank}</S.RankingNumber>
+                      <S.NextBtn onClick={seeNextMyBest}>{">"}</S.NextBtn>
+                    </S.RecordContentsRightFirst>
+                  </S.RecordContents>
+                ) : (
+                  <S.NoDataBox>
+                    <S.NoDataImage
+                      src={require("../../../imgs/recordPage/notLoggedIn.png")}
+                    />
+                    <S.NoDataText>
+                      더 많은 리뷰를 작성하여{"\n"}나만의 레코드를 확인해보세요!
+                    </S.NoDataText>
+                    <S.Go onClick={handleGoProduct}>리뷰쓰러가기</S.Go>
+                  </S.NoDataBox>
+                )
+              ) : (
+                <S.NoDataBox>
+                  <S.NoDataImage
+                    src={require("../../../imgs/recordPage/notLoggedIn.png")}
+                  />
+                  <S.NoDataText>
+                    로그인해서 나만의 레코드를 {"\n"} 더 자세히 확인해보세요!
+                  </S.NoDataText>
+                  <S.Go onClick={handleGoLogin}>로그인하기</S.Go>
+                </S.NoDataBox>
+              )}
             </S.RecordItem>
             {/*리뷰가 많은 과자를 확인해보세요.*/}
             <S.RecordItem>

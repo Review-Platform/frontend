@@ -3,7 +3,8 @@ import { ButtonProps } from "../../interfaces/hashTagButton";
 
 export const HashTagBtn = styled.button<ButtonProps>`
   border-radius: 20px;
-  height: 40px;
+  height: 33px;
+  /* width: 61px; */
   margin-right: 7px;
   margin-bottom: 10px;
   border: 1px solid #f48722;
@@ -14,5 +15,5 @@ export const HashTagBtn = styled.button<ButtonProps>`
 export const HashTagText = styled.span`
   color: #f48722;
   margin: 5px 7px;
-  font-size: 18px;
+  font-size: 14px;
 `;

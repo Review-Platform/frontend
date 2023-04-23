@@ -49,10 +49,20 @@ table {
 body{
 	width:100vw;
 	height:100vh;
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 a{
   text-decoration:none;
   color:inherit;
-}`;
+}
+:root{
+	--mainColor: #FF4A00;
+	--textColor:rgba(255, 74, 0, 1);
+	--subColor:#F48722;
+	--yellowColor:rgba(255, 176, 1, 1);
+	--blackColor:rgba(25, 25, 25, 1);
+	--orangeColor:#E76100;
+	--redColor:#FF4A00;
+}
+`;
 export default GlobalStyle;

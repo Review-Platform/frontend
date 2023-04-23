@@ -1,14 +1,19 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import Home from "./pages/Home";
-import Login from "./pages/account/Login";
-import SignUp from "./pages/account/SignUp";
-import FindIdForm from "./components/account/forms/FindIdForm";
-import FindPasswordForm from "./components/account/forms/FindPasswordForm";
-import LoginForm from "./components/account/forms/LoginForm";
-import FindIdSuccess from "./components/account/FindIdRedirect";
-import Product from "./pages/product/Product";
-import Review from "./pages/review/Review";
+import Home from "./pages/Contents/home/Home";
+
+import SignUp from "./pages/account/signup/SignUp";
+import FindPasswordForm from "./components/account/forms/findPasswordForm/FindPasswordForm";
+import LoginForm from "./components/account/forms/loginForm/LoginForm";
+import FindIdSuccess from "./components/account/findIdRedirect/FindIdRedirect";
+import Product from "./pages/Contents/product/Product";
+import Review from "./pages/Contents/review/Review";
+import Contents from "./pages/Contents/Contents";
+import ProductDetail from "./pages/Contents/productDetail/ProductDetail";
+import Login from "./pages/account/login/Login";
+import SignUpSuccess from "./components/account/signUpSuccess/SignUpSuccess";
+import FindIdForm from "./components/account/forms/FindIdForm/FindIdForm";
+import SignUpForm from "./components/account/forms/signUpForm/SignUpForm";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +22,25 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />,
+        element: <Contents />,
+        children: [
+          {
+            path: "",
+            element: <Home />,
+          },
+          {
+            path: "product",
+            element: <Product />,
+          },
+          {
+            path: "product/:id",
+            element: <ProductDetail />,
+          },
+          {
+            path: "review",
+            element: <Review />,
+          },
+        ],
       },
       {
         path: "login",
@@ -44,14 +67,16 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp />,
-      },
-      {
-        path: "product",
-        element: <Product />,
-      },
-      {
-        path: "review",
-        element: <Review />,
+        children: [
+          {
+            path: "",
+            element: <SignUpForm />,
+          },
+          {
+            path: "success",
+            element: <SignUpSuccess />,
+          },
+        ],
       },
     ],
   },

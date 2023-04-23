@@ -248,6 +248,11 @@ export const ReviewExampleContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+export const ReviewBoxWrapper = styled.div`
+  width: 808px;
+  height: 218px;
+  pointer-events: none;
+`;
 export const ReviewArrowBtn = styled.button`
   margin-left: 24px;
   width: 56px;

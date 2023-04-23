@@ -117,7 +117,9 @@ function Home() {
             </S.ReviewLink>
             <S.ReviewLinkBorder />
             <S.ReviewExampleContainer>
-              <ReviewBoxHorizontal review={ReviewExample} product={null} />{" "}
+              <S.ReviewBoxWrapper>
+                <ReviewBoxHorizontal review={ReviewExample} product={null} />{" "}
+              </S.ReviewBoxWrapper>
               <S.ReviewArrowBtn onClick={handleGoReviewClick}>
                 {">"}
               </S.ReviewArrowBtn>

@@ -33,6 +33,7 @@ export const FilterArea = styled.div`
   display: flex;
   width: 414px;
   height: 66px;
+  margin-bottom: 7px;
 `;
 
 export const HashtagArea = styled(FilterArea)`

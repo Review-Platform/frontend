@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./style";
-import { IRecordProduct } from "../../interfaces/record";
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import React from "react";
+import { IRecordProduct, ITopReviewProduct } from "../../interfaces/record";
+import { AnimatePresence } from "framer-motion";
 
 const RecordProductInformation = ({
   product,

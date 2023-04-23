@@ -7,7 +7,8 @@ function useAllReviews() {
   const [likeOrderArr, setLikeOrderArr] = useState<IReview[]>([]);
   const { data: allReviews, isLoading } = useQuery<IReview[]>(
     ["AllReviews"],
-    getAllReviews
+    getAllReviews,
+    { suspense: true }
   );
   useEffect(() => {
     setTimeOrderArr(allReviews ? [...allReviews.reverse()] : []);

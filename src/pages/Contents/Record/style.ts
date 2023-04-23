@@ -12,7 +12,7 @@ export const MainWrapper = styled.div`
 export const RankingTitle = styled.div`
   width: 100%;
   padding-left: 40px;
-  margin-top: 94px;
+  margin-top: 70px;
   text-align: start;
   font-family: "Shrikhand";
   font-style: italic;
@@ -381,4 +381,35 @@ export const Go = styled.div`
 export const NoDataImage = styled.img`
   width: 160px;
   height: 160px;
+`;
+
+export const ShowReviewLikesText = styled.div`
+  width: 105px;
+  height: 106px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 160%;
+  white-space: pre-line;
+`;
+export const BigText = styled.span`
+  font-weight: 700;
+  font-size: 26px;
+`;
+export const ReviewLikeNumber = styled.span`
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 160%;
+  color: var(--redColor);
+`;
+export const GotoReviewsLink = styled.div`
+  margin-top: 14px;
+  width: 86px;
+  height: 22px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 160%;
+  color: #e76100;
+  border-bottom: 1px solid var(--redColor);
+  text-align: center;
+  cursor: pointer;
 `;

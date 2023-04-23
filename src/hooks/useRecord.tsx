@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQueries, useQuery } from "react-query";
 import {
   getMyBest,
   getMostReviews,
@@ -6,10 +6,23 @@ import {
   getRanking,
   getTopReview,
 } from "../apis/api/recordApi";
-import { IRankingProduct, IRecordProduct } from "../interfaces/record";
+import {
+  IRankingProduct,
+  IRecordProduct,
+  ITopReviewProduct,
+} from "../interfaces/record";
 import { useEffect, useState } from "react";
 
 function useRecord() {
+  // const data = useQueries([
+  //   { queryKey: ["record", "ranking"], queryFn: getRanking },
+  //   { queryKey: ["record", "myHashtags"], queryFn: getMyHashtags, retry: 0 },
+  //   { queryKey: ["record", "myBest"], queryFn: getMyBest, retry: 0 },
+  //   { queryKey: ["record", "mostReviews"], queryFn: getMostReviews },
+  //   { queryKey: ["record", "topReivew"], queryFn: getTopReview },
+  // ]);
+  // console.log(data);
+
   const { data: ranking, isSuccess: rankingIsSuccess } = useQuery<
     IRankingProduct[]
   >(["record", "ranking"], getRanking);
@@ -28,10 +41,8 @@ function useRecord() {
   const { data: mostReviews, isSuccess: mostReviewsIsSuccess } = useQuery<
     IRecordProduct[]
   >(["record", "mostReviews"], getMostReviews);
-  const { data: topReview, isSuccess: topReivewIsSuccess } = useQuery(
-    ["record", "topReivew"],
-    getTopReview
-  );
+  const { data: topReview, isSuccess: topReivewIsSuccess } =
+    useQuery<ITopReviewProduct>(["record", "topReivew"], getTopReview);
 
   const [myBestIdx, setMyBestIdx] = useState(0);
   const [myBestRank, setMyBestRank] = useState<string>("1st");
@@ -78,5 +89,6 @@ function useRecord() {
     myBestRank,
     topReview,
   };
+  // return data;
 }
 export default useRecord;

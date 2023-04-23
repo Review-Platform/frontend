@@ -4,6 +4,8 @@ import RecordProductInformation from "../../../components/record/RecordProductIn
 import { useRecoilValue } from "recoil";
 import { loggedInAtom } from "../../../atoms/loggedInAtom";
 import { useNavigate } from "react-router-dom";
+import { Suspense } from "react";
+import { Loading } from "../review/style";
 
 function Record() {
   const {
@@ -20,6 +22,7 @@ function Record() {
   const loggedInInfo = useRecoilValue(loggedInAtom);
   const handleGoLogin = () => navigate("/login");
   const handleGoProduct = () => navigate("/product");
+  const handleGoReviews = () => navigate("/review");
   return (
     <S.MainWrapper>
       <S.RankingTitle>Snack Ranking</S.RankingTitle>
@@ -75,7 +78,7 @@ function Record() {
               <S.ItemTitle>이번 달 나의 스낵 키워드</S.ItemTitle>
               <S.Underline />
               {loggedInInfo ? (
-                myHashtags?.length && myHashtags.length > 4 ? (
+                myHashtags && myHashtags.length > 4 ? (
                   <S.HashtagGrid>
                     <S.GridItem_1>#{myHashtags?.[0]}</S.GridItem_1>
                     <S.GridItem_2>#{myHashtags?.[1]}</S.GridItem_2>
@@ -174,6 +177,24 @@ function Record() {
                 이 과자 리뷰에 가장 많은 추천을 받았어요.
               </S.ItemTitle>
               <S.UnderlineLast />
+              <S.RecordContents>
+                {mostReviewsProd ? (
+                  <RecordProductInformation
+                    big={false}
+                    product={mostReviewsProd}
+                  />
+                ) : null}
+                <S.RecordContentsRightSecond>
+                  <S.ShowReviewLikesText>
+                    이 리뷰에{"\n"} <S.BigText>총</S.BigText>{" "}
+                    <S.ReviewLikeNumber>10명</S.ReviewLikeNumber>이{"\n"}
+                    추천했어요.
+                  </S.ShowReviewLikesText>
+                  <S.GotoReviewsLink onClick={handleGoReviews}>
+                    리뷰 자세히 보기
+                  </S.GotoReviewsLink>
+                </S.RecordContentsRightSecond>
+              </S.RecordContents>
             </S.RecordItem>
           </S.GridContainer>
         </S.RecordContainer>

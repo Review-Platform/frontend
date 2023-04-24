@@ -13,6 +13,7 @@ export const Title = styled.h2`
   color: #ff2617;
   margin-bottom: 18px;
   margin-top: 54px;
+  font-weight: 700;
 `;
 
 export const MyImage = styled.img`

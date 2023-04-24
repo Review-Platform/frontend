@@ -15,7 +15,7 @@ import SignUpSuccess from "./components/account/signUpSuccess/SignUpSuccess";
 import FindIdForm from "./components/account/forms/FindIdForm/FindIdForm";
 import SignUpForm from "./components/account/forms/signUpForm/SignUpForm";
 import MyPage from "./pages/Contents/mypage/MyPage";
-import ModifyInfo from "./pages/Contents/mypage/modifyInfo/ModifyInfo";
+import ModifyInfo from "./pages/Contents/modifyInfo/ModifyInfo";
 
 const router = createBrowserRouter([
   {

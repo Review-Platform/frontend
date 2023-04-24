@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import * as S from "./style";
 import { IModifyForm } from "../../../interfaces/modifyForm";
+import ModalComponent from "../../../components/modal/Modal";
 
 const ModifyInfo = () => {
   const { register, handleSubmit, formState, setError, watch } =
@@ -13,6 +14,7 @@ const ModifyInfo = () => {
   const imageRef = useRef<HTMLInputElement>(null);
   const [errorMsg, setErrorMsg] = useState<string | undefined>("");
   const [errorMsgTwo, setErrorMsgTwo] = useState<string | undefined>("");
+  const [open, setOpen] = useState(false);
 
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -143,7 +145,14 @@ const ModifyInfo = () => {
         </S.CategoryArea>
       </S.ModifyArea>
       <S.ButtonArea>
-        <S.Button>회원 탈퇴</S.Button>
+        {open && (
+          <ModalComponent
+            open={open}
+            setOpen={setOpen}
+            children="정말 탈퇴하시겠습니까 ?"
+          />
+        )}
+        <S.Button onClick={() => setOpen(true)}>회원 탈퇴</S.Button>
         <S.Button>회원정보 저장</S.Button>
       </S.ButtonArea>
     </S.ModifyInfoContainer>

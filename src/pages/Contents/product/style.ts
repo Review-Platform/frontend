@@ -114,7 +114,7 @@ export const SearchInput = styled.input`
   background-color: #ffe5c7;
   ::placeholder {
     color: #ff5c00;
-    font-size: 18px;
+    font-size: 16px;
   }
 `;
 

@@ -14,6 +14,8 @@ import Login from "./pages/account/login/Login";
 import SignUpSuccess from "./components/account/signUpSuccess/SignUpSuccess";
 import FindIdForm from "./components/account/forms/FindIdForm/FindIdForm";
 import SignUpForm from "./components/account/forms/signUpForm/SignUpForm";
+import MyPage from "./pages/Contents/mypage/MyPage";
+import ModifyInfo from "./pages/Contents/modifyInfo/ModifyInfo";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
           {
             path: "review",
             element: <Review />,
+          },
+          {
+            path: "mypage",
+            element: <MyPage />,
+          },
+          {
+            path: "modify-info/:id",
+            element: <ModifyInfo />,
           },
         ],
       },

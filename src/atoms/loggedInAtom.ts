@@ -9,6 +9,6 @@ export const loggedInAtom = atom<ILoggedInAtom>({
   key: "loggedIn",
   default: {
     loggedIn: false,
-    id: "",
+    id: "12",
   },
 });

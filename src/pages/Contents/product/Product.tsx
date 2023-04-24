@@ -64,6 +64,7 @@ const Product = () => {
   }, [brand]);
 
   console.log(total);
+  console.log(data);
 
   return (
     <S.ContentsWrapperTwo>

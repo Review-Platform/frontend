@@ -64,7 +64,10 @@ function ReviewBoxHorizontal({
             }
           />
         )}
+
+
         <S.ReviewProductName>{review.product?.name}</S.ReviewProductName>
+
       </S.LeftContainer>
 
       <S.CenterContainer>

@@ -64,7 +64,7 @@ function ReviewBoxHorizontal({
             }
           />
         )}
-        <S.ReviewProductName>{product?.name}</S.ReviewProductName>
+        <S.ReviewProductName>{review.product?.name}</S.ReviewProductName>
       </S.LeftContainer>
 
       <S.CenterContainer>

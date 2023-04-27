@@ -1,8 +1,9 @@
 export interface IRecordProduct {
   name: string;
   images: string;
-  hashtags: string[] | null;
   productId: number;
+  hashtags?: string[];
+  reviewLikeCount?: number;
 }
 export interface ITopReviewProduct {
   id: number;

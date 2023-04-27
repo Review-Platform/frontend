@@ -11,14 +11,18 @@ export const ProductContainer = styled(motion.div)<{ big: boolean }>`
   border-radius: 5px;
 `;
 
-export const ProductImageArea = styled.div<{ big: boolean }>`
+export const ProductImageArea = styled.div<{
+  big: boolean;
+  isTopReview: boolean;
+}>`
   margin-top: 12px;
   width: ${(props) => (props.big ? "269.66px" : "256px")};
   height: ${(props) => (props.big ? "170.45px" : "162px")};
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("/images/productBackground.png");
+  background: ${(props) =>
+    props.isTopReview ? "white" : `url("/images/productBackground.png")`};
   background-size: cover;
   cursor: pointer;
 `;

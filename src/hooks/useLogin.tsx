@@ -7,10 +7,10 @@ function useLogin() {
   const { mutateAsync: rememberPostMutate } = useMutation(
     (loginForm: ILoginForm) => rememberPost(loginForm),
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["loggedInInfo"]);
-        queryClient.invalidateQueries(["record", "myBest"]);
-        queryClient.invalidateQueries(["record", "myHashtags"]);
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(["loggedInInfo"]);
+        await queryClient.invalidateQueries(["record", "myHashtags"]);
+        await queryClient.invalidateQueries(["record", "myBest"]);
       },
     }
   );

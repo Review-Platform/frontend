@@ -16,6 +16,7 @@ const RecordProductInformation = ({
     <S.ProductContainer big={big}>
       <S.ProductImageArea
         big={big}
+        isTopReview={product.reviewLikeCount ? true : false}
         onClick={() => navigate(`/product/${product.productId}`)}
       >
         <AnimatePresence mode="wait">

@@ -2,9 +2,8 @@ import styled from "styled-components";
 import { RateRightText } from "../main/mainSnackInfo/style";
 
 export const ProductContainer = styled.div`
-  height: 350px;
-  width: 250px;
-  margin: 0 25px;
+  height: 175px;
+  width: 196px;
   /* margin-bottom: 5px; */
 `;
 
@@ -19,8 +18,7 @@ export const ProductInfo = styled.div`
 `;
 
 export const ProductImageArea = styled.div`
-  height: 85%;
-  padding: 8px 8px;
+  padding: 5px 8px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -29,27 +27,27 @@ export const ProductImageArea = styled.div`
 `;
 
 export const ProductBackgroundImage = styled.img`
-  width: 100%;
-  height: 100%;
+  height: 113.4px;
+  width: 179.2px;
 `;
 
 export const ProductImage = styled.img`
   position: absolute;
-  height: 90%;
-  width: 90%;
+  height: 105px;
+  width: 105px;
 `;
 
 export const ProductNameArea = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15%;
+  height: 39.21px;
   padding: 0 10px;
 `;
 
 export const ProductName = styled.span`
   color: white;
-  font-size: 18px;
+  font-size: 12.6px;
   font-weight: bold;
   cursor: pointer;
 `;

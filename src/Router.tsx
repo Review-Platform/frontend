@@ -14,6 +14,8 @@ import SignUpSuccess from "./components/account/signUpSuccess/SignUpSuccess";
 import FindIdForm from "./components/account/forms/FindIdForm/FindIdForm";
 import SignUpForm from "./components/account/forms/signUpForm/SignUpForm";
 import Record from "./pages/Contents/Record/Record";
+import MyPage from "./pages/Contents/mypage/MyPage";
+import ModifyInfo from "./pages/Contents/modifyInfo/ModifyInfo";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
           {
             path: "record",
             element: <Record />,
+          },
+          {
+            path: "mypage",
+            element: <MyPage />,
+          },
+          {
+            path: "modify-info/:id",
+            element: <ModifyInfo />,
           },
         ],
       },

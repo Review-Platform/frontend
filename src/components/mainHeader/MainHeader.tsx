@@ -18,7 +18,9 @@ const MainHeader = () => {
       <S.TopNav>
         {loggedIn.loggedIn ? (
           <S.NavList>
-            <S.TopNavItem>{loggedIn.id}님</S.TopNavItem>
+            <S.TopNavItem onClick={() => navigate("/mypage")}>
+              {loggedIn.id}님
+            </S.TopNavItem>
             <S.TopNavItem onClick={handleLogoutClick}>로그아웃</S.TopNavItem>
           </S.NavList>
         ) : (

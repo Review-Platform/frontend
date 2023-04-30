@@ -12,6 +12,7 @@ export const Banner = styled.img`
   margin-top: 50px;
   width: 840px;
   height: 140px;
+  cursor: pointer;
 `;
 export const Title = styled.div`
   color: #ffd600;

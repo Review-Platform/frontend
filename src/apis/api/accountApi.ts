@@ -1,6 +1,9 @@
 import axios from "axios";
 import { baseApi } from "../utils/instance";
 import {
+  IChangePasswordForm,
+  IChangePasswordProps,
+  IChangeUserInfoForm,
   IFindIdForm,
   IFindPasswordForm,
   ILoginForm,
@@ -14,6 +17,8 @@ const FIND_ID_URI = "findId";
 const FIND_PASSWORD_URI = "sendMail";
 const LOGIN_INFO_URI = "isLogin";
 const LOGOUT_URI = "auth/logout";
+const CHANGE_PASSWORD_URI = "auth/changePassword";
+const CHANGE_USER_INFO_URI = "auth/changeUserInfo";
 
 export const idCheckPost = (id: string) =>
   baseApi.post(ID_CHECK_URI, {
@@ -55,3 +60,15 @@ export const findPasswordPost = (findPasswordForm: IFindPasswordForm) =>
 export const getLoggedInInfo = () => baseApi.get(LOGIN_INFO_URI);
 
 export const postLogout = () => baseApi.post(LOGOUT_URI, {});
+
+export const changePassword = (changePasswordForm: IChangePasswordProps) =>
+  baseApi.post(CHANGE_PASSWORD_URI, {
+    originalPassword: changePasswordForm.originalPassword,
+    newPassword: changePasswordForm.newPassword,
+  });
+
+export const changeUserInfo = (changeUserInfoForm: IChangeUserInfoForm) =>
+  baseApi.post(CHANGE_USER_INFO_URI, {
+    image: changeUserInfoForm.image,
+    nickname: changeUserInfoForm.nickname,
+  });

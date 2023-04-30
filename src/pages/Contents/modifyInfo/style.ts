@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
-export const ModifyInfoContainer = styled.form`
+export const ModifyInfoContainer = styled.div`
   width: 1140px;
   height: 920px;
   padding: 61px 98px;
   background-color: #ffffff;
 `;
+
+export const FormArea = styled.form``;
 
 export const InfoArea = styled.div``;
 
@@ -92,6 +94,7 @@ export const ImageDeleteButton = styled.button`
   border-radius: 5px;
   margin: 0 4px;
   background-color: #ffffff;
+  cursor: pointer;
 `;
 
 export const CategoryArea = styled.div`
@@ -127,6 +130,7 @@ export const Text = styled.span``;
 export const ButtonArea = styled.div`
   display: flex;
   justify-content: center;
+  margin-bottom: 30px;
 `;
 
 export const Button = styled.button`
@@ -142,6 +146,7 @@ export const Button = styled.button`
   font-size: 16px;
   font-weight: 500;
   margin: 0 7px;
+  cursor: pointer;
 `;
 
 export const ErrorMessage = styled.span`

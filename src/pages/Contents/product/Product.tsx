@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import { getProduct } from "../../../apis/api/productApi";
 import ProductInformation from "../../../components/product/ProductInformation";

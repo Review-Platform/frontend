@@ -8,6 +8,7 @@ const MyPage = () => {
   const navigate = useNavigate();
   const loginInfo = useRecoilValue<ILoggedInAtom>(loggedInAtom);
   const [email, setEmail] = useState("king@naver.com");
+
   return (
     <S.MyPageContainer>
       <S.MyPageArea>

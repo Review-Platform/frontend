@@ -16,6 +16,7 @@ import SignUpForm from "./components/account/forms/signUpForm/SignUpForm";
 import Record from "./pages/Contents/Record/Record";
 import MyPage from "./pages/Contents/mypage/MyPage";
 import ModifyInfo from "./pages/Contents/modifyInfo/ModifyInfo";
+import NotFound from "./pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,7 @@ const router = createBrowserRouter([
         ],
       },
     ],
+    errorElement: <NotFound />,
   },
 ]);
 

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getAllReviews } from "../apis/api/reviewApi";
 import { IReview } from "../interfaces/review";

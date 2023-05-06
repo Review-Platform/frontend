@@ -1,7 +1,7 @@
 import * as S from "./style";
+import React from "react";
 import { useEffect, useState } from "react";
 import ReviewBoxHorizontal from "../../reviewBox/horizontal/ReviewBoxHorizontal";
-import useAllReviews from "../../../hooks/useAllReviews";
 import Pagination from "../../pagination/Pagination";
 import { IReview } from "../../../interfaces/review";
 import { IProductDetail } from "../../../interfaces/productDetail";
@@ -75,4 +75,4 @@ function ReviewBoxContainerVertical({
     </S.Container>
   );
 }
-export default ReviewBoxContainerVertical;
+export default React.memo(ReviewBoxContainerVertical);

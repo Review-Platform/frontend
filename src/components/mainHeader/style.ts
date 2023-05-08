@@ -32,6 +32,8 @@ export const NavList = styled.ul`
   display: flex;
   margin-right: 30px;
   margin-left: 40px;
+  justify-content: center;
+  align-items: center;
 `;
 export const BottomNavList = styled.ul`
   display: flex;
@@ -43,8 +45,12 @@ export const TopNavItem = styled.li`
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
-  margin-left: 50px;
+  margin-left: 10px;
   cursor: pointer;
+`;
+
+export const LogOutText = styled(TopNavItem)`
+  margin-left: 50px;
 `;
 
 export const BottomNavItem = styled.li`
@@ -56,4 +62,10 @@ export const BottomNavItem = styled.li`
   &:first-child {
     margin-left: 0;
   }
+`;
+
+export const ProfileImage = styled.img`
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
 `;

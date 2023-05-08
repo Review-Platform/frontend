@@ -80,6 +80,7 @@ const ModifyInfo = () => {
 
   const onValidChangePassword = (data: IChangePasswordForm) => {
     console.log("Valid password !");
+    console.log(data);
     mutate2({
       originalPassword: data.originalPassword,
       newPassword: data.newPassword,

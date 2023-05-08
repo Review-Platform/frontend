@@ -1,14 +1,20 @@
 import { atom } from "recoil";
 
 export interface ILoggedInAtom {
-  loggedIn: boolean;
   id: string;
+  loggedIn: boolean;
+  nickname: string;
+  userEmail: string;
+  userImage: File | null;
 }
 
 export const loggedInAtom = atom<ILoggedInAtom>({
   key: "loggedIn",
   default: {
+    id: "",
     loggedIn: false,
-    id: "12",
+    nickname: "",
+    userEmail: "",
+    userImage: null,
   },
 });

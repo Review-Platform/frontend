@@ -18,19 +18,31 @@ const MainHeader = () => {
       <S.TopNav>
         {loggedIn.loggedIn ? (
           <S.NavList>
-            <S.TopNavItem onClick={() => navigate("/mypage")}>
-              {loggedIn.id}님
-            </S.TopNavItem>
-            <S.TopNavItem onClick={handleLogoutClick}>로그아웃</S.TopNavItem>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <S.ProfileImage
+                src={loggedIn.userImage === null ? "/images/default.png" : ""}
+              />
+              <S.TopNavItem onClick={() => navigate("/mypage")}>
+                {loggedIn.id}님
+              </S.TopNavItem>
+            </div>
+
+            <S.LogOutText onClick={handleLogoutClick}>로그아웃</S.LogOutText>
           </S.NavList>
         ) : (
           <S.NavList>
             <S.TopNavItem onClick={() => navigate("/login")}>
               로그인
             </S.TopNavItem>
-            <S.TopNavItem onClick={() => navigate("/signup")}>
+            <S.LogOutText onClick={() => navigate("/signup")}>
               회원가입
-            </S.TopNavItem>
+            </S.LogOutText>
           </S.NavList>
         )}
       </S.TopNav>

@@ -12,6 +12,7 @@ import * as S from "./style";
 import { useForm } from "react-hook-form";
 import HashTagButton from "../../../components/hashTag/HashTagButton";
 import Pagination from "../../../components/pagination/Pagination";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
   const [total, setTotal] = useState(16);
@@ -41,6 +42,7 @@ const Product = () => {
   });
 
   const { register, handleSubmit } = useForm<ISearchForm>();
+  const navigate = useNavigate();
 
   const onCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     const currentBrandList = [...brand];
@@ -71,6 +73,7 @@ const Product = () => {
     <S.ContentsWrapperTwo>
       <S.RankingNavImg
         src={require("../../../imgs/navImage/rankingNavImage.png")}
+        onClick={() => navigate("/record")}
       />
       <S.RoutineArea>
         <S.RoutineImg src={require("../../../imgs/logo/routineLogo.png")} />

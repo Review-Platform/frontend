@@ -66,6 +66,8 @@ export const ProductArea = styled.div`
 export const RankingNavImg = styled.img`
   width: 840px;
   height: 140px;
+  cursor: pointer;
+  margin-top: 50px;
 `;
 
 export const RoutineArea = styled.div`

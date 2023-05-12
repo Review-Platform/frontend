@@ -3,12 +3,14 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { ILoggedInAtom, loggedInAtom } from "../../../atoms/loggedInAtom";
 import * as S from "./style";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
+import { myReviews } from "../../../apis/api/reviewApi";
 
 const MyPage = () => {
   const navigate = useNavigate();
   const loginInfo = useRecoilValue<ILoggedInAtom>(loggedInAtom);
   const [email, setEmail] = useState("king@naver.com");
-
+  // const { data } = useQuery(["myReviews", loginInfo.id], myReviews);
   return (
     <S.MyPageContainer>
       <S.MyPageArea>

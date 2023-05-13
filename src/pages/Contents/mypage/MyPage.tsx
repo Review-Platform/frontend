@@ -37,9 +37,13 @@ const MyPage = () => {
       <S.ReviewArea>
         <S.Title>내가 쓴 리뷰</S.Title>
         <S.ReviewList>
-          {data?.map((review) => (
-            <ReviewBoxHorizontal review={review} product={null} />
-          ))}
+          {data?.length ? (
+            data?.map((review) => (
+              <ReviewBoxHorizontal review={review} product={null} />
+            ))
+          ) : (
+            <S.SubTitle>작성하신 리뷰가 없습니다.</S.SubTitle>
+          )}
         </S.ReviewList>
       </S.ReviewArea>
     </S.MyPageContainer>

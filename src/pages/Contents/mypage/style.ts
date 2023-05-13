@@ -65,4 +65,9 @@ export const TotalInfoArea = styled.div`
   display: flex;
 `;
 
-export const ReviewList = styled.div``;
+export const ReviewList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 50px;
+`;

@@ -7,4 +7,5 @@ export const LoadingDiv = styled.div`
   font-weight: 600;
   font-size: 40px;
   color: var(--redColor);
+  height: 100vh;
 `;

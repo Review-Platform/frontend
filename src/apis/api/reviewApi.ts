@@ -27,4 +27,4 @@ export const deleteLikeReview = (reviewId: number) =>
 
 //내가 쓴 리뷰
 export const myReviews = () =>
-  baseApi.get("/myReviews").then((res) => res.data);
+  baseApi.get("/auth/myReviews").then((res) => res.data);

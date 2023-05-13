@@ -5,12 +5,15 @@ import * as S from "./style";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { myReviews } from "../../../apis/api/reviewApi";
+import { IReview } from "../../../interfaces/review";
+import ReviewBoxHorizontal from "../../../components/reviewBox/horizontal/ReviewBoxHorizontal";
 
 const MyPage = () => {
   const navigate = useNavigate();
   const loginInfo = useRecoilValue<ILoggedInAtom>(loggedInAtom);
   const [email, setEmail] = useState("king@naver.com");
-  const { data } = useQuery(["myReviews", loginInfo.id], myReviews);
+  const { data } = useQuery<IReview[]>(["myReviews", loginInfo.id], myReviews);
+  console.log(data);
   return (
     <S.MyPageContainer>
       <S.MyPageArea>
@@ -33,7 +36,11 @@ const MyPage = () => {
       </S.MyPageArea>
       <S.ReviewArea>
         <S.Title>내가 쓴 리뷰</S.Title>
-        <S.ReviewList></S.ReviewList>
+        <S.ReviewList>
+          {data?.map((review) => (
+            <ReviewBoxHorizontal review={review} product={null} />
+          ))}
+        </S.ReviewList>
       </S.ReviewArea>
     </S.MyPageContainer>
   );

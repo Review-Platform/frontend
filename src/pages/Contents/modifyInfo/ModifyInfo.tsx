@@ -15,6 +15,9 @@ import {
   IChangeUserInfoForm,
 } from "../../../interfaces/accountForm";
 import { useMutation, useQuery } from "react-query";
+import { useRecoilState } from "recoil";
+import { ILoggedInAtom, loggedInAtom } from "../../../atoms/loggedInAtom";
+import { userInfo } from "os";
 
 const ModifyInfo = () => {
   const { register, handleSubmit, formState, setError, watch, setValue } =
@@ -47,12 +50,25 @@ const ModifyInfo = () => {
     },
     onError: (res) => console.log("error !", res),
   });
-
+  const [loginInfo, setLoginInfo] = useRecoilState<ILoggedInAtom>(loggedInAtom);
   const [imagePreview, setImagePreview] = useState("");
-  const image = watch("image");
-  const imageRef = useRef<HTMLInputElement>(null);
 
-  const [errorMsg, setErrorMsg] = useState<string | undefined>("");
+  const image = watch("image");
+  // const imageRef = useRef<HTMLInputElement>();
+  // const imageRef = useRef();
+
+  // const saveImgFile = () => {
+  //   if (imageRef.current !== undefined && imageRef.current.files !== null) {
+  //     const file = imageRef.current.files[0];
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onloadend = () => {
+  //       setImagePreview(reader.result as string);
+  //     };
+  //   }
+  // };
+
+  const [errorMsg, setErrorMsg] = useState<string | undefined>();
   const [errorMsgTwo, setErrorMsgTwo] = useState<string | undefined>("");
   const [open, setOpen] = useState(false);
 
@@ -62,16 +78,28 @@ const ModifyInfo = () => {
     //   imageRef.current.value = "";
     //   setImagePreview(`/images/default.png`);
     // }
-    setImagePreview(`/images/default.png`);
+    setImagePreview("/images/default.png");
   };
 
   const onValidChangeUserInfo = (data: IChangeUserInfoForm) => {
     // 회원정보 수정 API 호출 파트
+    console.log(data);
+    const formData = new FormData();
+
+    formData.append("imageFile", data.image[0]);
+
+    formData.append("nickname", data.nickname);
+    for (let key of formData.keys()) {
+      console.log(key);
+    }
+
+    // FormData의 value 확인
+    for (let value of formData.values()) {
+      console.log(value);
+    }
+
     console.log("Valid user info !");
-    mutate({
-      image: data.image,
-      nickname: data.nickname,
-    });
+    mutate(formData);
   };
 
   const onInValidChangeUserInfo = () => {
@@ -101,12 +129,41 @@ const ModifyInfo = () => {
     }
   };
 
+  // const encodeFileToBase64 = (fileBlob: File) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(fileBlob);
+  //   return new Promise((resolve) => {
+  //     reader.onload = () => {
+  //       setImagePreview(reader.result as string);
+  //     };
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   if (loginInfo.userImage) {
+  //     // const file = image;
+  //     // 브라우저의 메모리에 있는 파일의 url을 가져오기 위한 방법이 URL.createObjectURL(file)
+  //     // setImagePreview(URL.createObjectURL(file));
+
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(loginInfo.userImage);
+
+  //     reader.onload = () => {
+  //       const result = reader.result;
+  //       setImagePreview(result as string);
+  //     };
+  //   }
+  // }, [loginInfo.userImage]);
   useEffect(() => {
     if (image && image.length > 0) {
       const file = image[0];
-      // 브라우저의 메모리에 있는 파일의 url을 가져오기 위한 방법이 URL.createObjectURL(file)
       setImagePreview(URL.createObjectURL(file));
     }
+    // const reader = new FileReader();
+    // reader.readAsDataURL(image[0]);
+    // reader.onloadend = () => {
+    //   setImagePreview(reader.result);
+    // };
   }, [image]);
 
   return (
@@ -115,6 +172,7 @@ const ModifyInfo = () => {
         <S.Title>기본 회원 정보</S.Title>
       </S.TitleArea>
       <S.FormArea
+        encType="multipart/form-data"
         onSubmit={handleSubmit(onValidChangeUserInfo, onInValidChangeUserInfo)}
       >
         <S.InfoArea>
@@ -129,7 +187,6 @@ const ModifyInfo = () => {
                 id="ex_file"
                 type="file"
                 accept="image/*"
-                // ref={imageRef}
               />
               <S.ImageDeleteButton onClick={handleDeletePreviewFile}>
                 삭제

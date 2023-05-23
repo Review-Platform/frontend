@@ -18,6 +18,7 @@ import { useMutation, useQuery } from "react-query";
 import { useRecoilState } from "recoil";
 import { ILoggedInAtom, loggedInAtom } from "../../../atoms/loggedInAtom";
 import { userInfo } from "os";
+import axios from "axios";
 
 const ModifyInfo = () => {
   const { register, handleSubmit, formState, setError, watch, setValue } =
@@ -81,7 +82,7 @@ const ModifyInfo = () => {
     setImagePreview("/images/default.png");
   };
 
-  const onValidChangeUserInfo = (data: IChangeUserInfoForm) => {
+  const onValidChangeUserInfo = async (data: IChangeUserInfoForm) => {
     // 회원정보 수정 API 호출 파트
     console.log(data);
     const formData = new FormData();
@@ -98,8 +99,23 @@ const ModifyInfo = () => {
       console.log(value);
     }
 
-    console.log("Valid user info !");
-    mutate(formData);
+    // console.log("Valid user info !");
+    // mutate(formData);
+    // console.log(formData);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/auth/changeUserInfo",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const onInValidChangeUserInfo = () => {
@@ -179,7 +195,9 @@ const ModifyInfo = () => {
           <S.CategoryArea>
             <S.Category>프로필 이미지</S.Category>
             {/* <S.Image src={profileImage?.toString()} /> */}
-            <S.Image src={imagePreview} />
+            <S.Image
+              src={imagePreview === "" ? "/images/default.png" : imagePreview}
+            />
             <S.ImageButtonArea>
               <S.ImageInputLabel htmlFor="ex_file">사진 변경</S.ImageInputLabel>
               <S.ImageInput

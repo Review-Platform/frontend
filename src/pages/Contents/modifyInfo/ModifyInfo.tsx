@@ -87,17 +87,14 @@ const ModifyInfo = () => {
     console.log(data);
     const formData = new FormData();
 
+    const dto = {
+      nickname: data.nickname,
+    };
     formData.append("imageFile", data.image[0]);
-
-    formData.append("nickname", data.nickname);
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
-
-    // FormData의 value 확인
-    for (let value of formData.values()) {
-      console.log(value);
-    }
+    formData.append(
+      "dto",
+      new Blob([JSON.stringify(data.nickname)], { type: "application/json" })
+    );
 
     // console.log("Valid user info !");
     // mutate(formData);
@@ -105,12 +102,7 @@ const ModifyInfo = () => {
     try {
       const response = await axios.post(
         "http://localhost:8080/auth/changeUserInfo",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        formData
       );
       console.log(response);
     } catch (e) {

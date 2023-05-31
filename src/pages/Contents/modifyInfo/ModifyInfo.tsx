@@ -38,12 +38,12 @@ const ModifyInfo = () => {
     },
   });
 
-  const { mutate } = useMutation("changeUserInfo", changeUserInfo, {
-    onSuccess: (res) => {
-      console.log("change success !!", res);
-    },
-    onError: (res) => console.log("error !!", res),
-  });
+  // const { mutate } = useMutation("changeUserInfo", changeUserInfo, {
+  //   onSuccess: (res) => {
+  //     console.log("change success !!", res);
+  //   },
+  //   onError: (res) => console.log("error !!", res),
+  // });
 
   const { mutate: mutate2 } = useMutation("changePassword", changePassword, {
     onSuccess: (res) => {
@@ -84,26 +84,23 @@ const ModifyInfo = () => {
 
   const onValidChangeUserInfo = async (data: IChangeUserInfoForm) => {
     // 회원정보 수정 API 호출 파트
-    console.log(data);
+    console.log(data.image[0]);
     const formData = new FormData();
 
     const dto = {
       nickname: data.nickname,
     };
-    formData.append("imageFile", data.image[0]);
-    formData.append(
-      "dto",
-      new Blob([JSON.stringify(data.nickname)], { type: "application/json" })
-    );
+    formData.append("image", data.image[0]);
+    // formData.append(
+    //   "nickname",
+    //   new Blob([data.nickname], { type: "application/json" })
+    // );
 
     // console.log("Valid user info !");
     // mutate(formData);
     // console.log(formData);
     try {
-      const response = await axios.post(
-        "http://localhost:8080/auth/changeUserInfo",
-        formData
-      );
+      const response = await changeUserInfo(formData, data.nickname);
       console.log(response);
     } catch (e) {
       console.log(e);

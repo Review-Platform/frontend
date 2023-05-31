@@ -72,7 +72,8 @@ export const changePassword = (changePasswordForm: IChangePasswordProps) =>
 //     image: changeUserInfoForm.image,
 //     nickname: changeUserInfoForm.nickname,
 //   });
-export const changeUserInfo = (formData: FormData) =>
+export const changeUserInfo = (formData: FormData, nickname: string) =>
   baseApi.post(CHANGE_USER_INFO_URI, formData, {
     headers: { "Content-Type": "multipart/form-data" },
+    params: { nickname },
   });

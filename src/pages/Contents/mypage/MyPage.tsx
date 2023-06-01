@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { ILoggedInAtom, loggedInAtom } from "../../../atoms/loggedInAtom";
 import * as S from "./style";
 import { useNavigate } from "react-router-dom";
-
-import { getLoggedInInfo } from "../../../apis/api/accountApi";
-import { useQueryClient } from "react-query";
+import { useQuery } from "react-query";
+import { myReviews } from "../../../apis/api/reviewApi";
+import { IReview } from "../../../interfaces/review";
+import ReviewBoxHorizontal from "../../../components/reviewBox/horizontal/ReviewBoxHorizontal";
 
 interface IUserInfo {
   id: string;
@@ -14,19 +14,11 @@ interface IUserInfo {
   userEmail: string;
   userImage: File | null;
 }
-import { useQuery } from "react-query";
-import { myReviews } from "../../../apis/api/reviewApi";
-import { IReview } from "../../../interfaces/review";
-import ReviewBoxHorizontal from "../../../components/reviewBox/horizontal/ReviewBoxHorizontal";
-
 
 const MyPage = () => {
   const navigate = useNavigate();
   const loginInfo = useRecoilValue<ILoggedInAtom>(loggedInAtom);
 
-
-
-  
   const { data } = useQuery<IReview[]>(["myReviews", loginInfo.id], myReviews);
 
   return (

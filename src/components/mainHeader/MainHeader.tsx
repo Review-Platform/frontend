@@ -29,7 +29,8 @@ const MainHeader = () => {
                 src={loggedIn.userImage === null ? "/images/default.png" : ""}
               />
               <S.TopNavItem onClick={() => navigate("/mypage")}>
-                {loggedIn.id}님
+                {loggedIn.nickname}
+                <span style={{ fontWeight: 500, fontSize: "15px" }}>님</span>
               </S.TopNavItem>
             </div>
 

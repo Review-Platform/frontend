@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const ModifyInfoContainer = styled.div`
   width: 1140px;
-  height: 920px;
+  height: auto;
+  min-height: 920px;
   padding: 61px 98px;
   background-color: #ffffff;
 `;

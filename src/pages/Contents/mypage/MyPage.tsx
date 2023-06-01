@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { ILoggedInAtom, loggedInAtom } from "../../../atoms/loggedInAtom";
 import * as S from "./style";
 import { useNavigate } from "react-router-dom";
+
 import { getLoggedInInfo } from "../../../apis/api/accountApi";
 import { useQueryClient } from "react-query";
 
@@ -13,15 +14,20 @@ interface IUserInfo {
   userEmail: string;
   userImage: File | null;
 }
+import { useQuery } from "react-query";
+import { myReviews } from "../../../apis/api/reviewApi";
+import { IReview } from "../../../interfaces/review";
+import ReviewBoxHorizontal from "../../../components/reviewBox/horizontal/ReviewBoxHorizontal";
+
 
 const MyPage = () => {
   const navigate = useNavigate();
   const loginInfo = useRecoilValue<ILoggedInAtom>(loggedInAtom);
 
-  // const queryClient = useQueryClient();
-  // const userInfo = queryClient.getQueryData<IUserInfo>(["loggedInInfo"]);
 
-  // console.log(userInfo);
+
+  
+  const { data } = useQuery<IReview[]>(["myReviews", loginInfo.id], myReviews);
 
   return (
     <S.MyPageContainer>
@@ -47,7 +53,15 @@ const MyPage = () => {
       </S.MyPageArea>
       <S.ReviewArea>
         <S.Title>내가 쓴 리뷰</S.Title>
-        <S.ReviewList></S.ReviewList>
+        <S.ReviewList>
+          {data?.length ? (
+            data?.map((review) => (
+              <ReviewBoxHorizontal review={review} product={null} />
+            ))
+          ) : (
+            <S.SubTitle>작성하신 리뷰가 없습니다.</S.SubTitle>
+          )}
+        </S.ReviewList>
       </S.ReviewArea>
     </S.MyPageContainer>
   );

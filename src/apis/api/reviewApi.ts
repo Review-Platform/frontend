@@ -1,6 +1,4 @@
-import { ICreateReviewForm } from "../../interfaces/createReviewForm";
 import { baseApi } from "../utils/instance";
-
 //리뷰 작성
 export const postCreateReview = (
   formData: FormData,
@@ -13,7 +11,6 @@ export const postCreateReview = (
     },
   });
 };
-
 //리뷰 전체 조회
 export const getAllReviews = () =>
   baseApi.get(`/reviews`).then((res) => res.data);
@@ -24,3 +21,7 @@ export const likeReview = (reviewId: number) =>
 
 export const deleteLikeReview = (reviewId: number) =>
   baseApi.delete(`/review-like/${reviewId}`).then((res) => res.data);
+
+//내가 쓴 리뷰
+export const myReviews = () =>
+  baseApi.get("/auth/myReviews").then((res) => res.data);

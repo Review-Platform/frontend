@@ -6,7 +6,10 @@ export const MyPageContainer = styled.div`
 `;
 export const MyPageArea = styled.div``;
 
-export const ReviewArea = styled.div``;
+export const ReviewArea = styled.div`
+  height: auto;
+  min-height: 400px;
+`;
 
 export const Title = styled.h2`
   font-size: 26px;
@@ -65,4 +68,17 @@ export const TotalInfoArea = styled.div`
   display: flex;
 `;
 
-export const ReviewList = styled.div``;
+export const ReviewList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 50px;
+`;
+
+export const SubTitle = styled.div`
+  font-size: 20px;
+  color: #ff2617;
+  margin-bottom: 18px;
+  margin-top: 30px;
+  font-weight: 500;
+`;

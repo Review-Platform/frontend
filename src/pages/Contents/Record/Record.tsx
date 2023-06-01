@@ -23,6 +23,7 @@ function Record() {
   const handleGoLogin = () => navigate("/login");
   const handleGoProduct = () => navigate("/product");
   const handleGoReviews = () => navigate("/review");
+  console.log(topReview);
   return (
     <S.MainWrapper>
       <Suspense fallback={<Loading />}>
@@ -193,7 +194,10 @@ function Record() {
                   <S.RecordContentsRightSecond>
                     <S.ShowReviewLikesText>
                       이 리뷰에{"\n"} <S.BigText>총</S.BigText>{" "}
-                      <S.ReviewLikeNumber>10명</S.ReviewLikeNumber>이{"\n"}
+                      <S.ReviewLikeNumber>
+                        {topReview?.reviewLikeCount}명
+                      </S.ReviewLikeNumber>
+                      이{"\n"}
                       추천했어요.
                     </S.ShowReviewLikesText>
                     <S.GotoReviewsLink onClick={handleGoReviews}>

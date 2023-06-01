@@ -1,9 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import React from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
 import * as S from "./style";
-import { IModifyForm } from "../../../interfaces/modifyForm";
 import ModalComponent from "../../../components/modal/Modal";
 import {
   changePassword,
@@ -15,11 +12,14 @@ import {
   IChangeUserInfoForm,
 } from "../../../interfaces/accountForm";
 import { useMutation, useQuery } from "react-query";
+import { ILoggedInAtom } from "../../../atoms/loggedInAtom";
 
 const ModifyInfo = () => {
-  const { register, handleSubmit, formState, setError, watch, setValue } =
+  //기본정보 수정
+  const { register, handleSubmit, watch, setValue } =
     useForm<IChangeUserInfoForm>();
 
+  //비밀번호 수정
   const {
     register: register2,
     handleSubmit: handleSubmit2,
@@ -27,60 +27,64 @@ const ModifyInfo = () => {
     watch: watch2,
   } = useForm<IChangePasswordForm>();
 
-  const { data } = useQuery(["loggedInInfo"], getLoggedInInfo, {
-    onSuccess: (data) => {
-      console.log(data.data);
-      setValue("nickname", data.data.nickname);
-    },
-  });
+  //현재 로그인 정보 가져오기
+  const { data: loggedInData } = useQuery<ILoggedInAtom>(
+    ["loggedInInfo"],
+    getLoggedInInfo,
+    {
+      onSuccess: (data) => {
+        setValue("nickname", data.nickname);
+      },
+    }
+  );
 
-  const { mutate } = useMutation("changeUserInfo", changeUserInfo, {
-    onSuccess: (res) => {
-      console.log("change success !!", res);
-    },
-    onError: (res) => console.log("error !!", res),
-  });
+  //비밀번호 변경 요청
+  const { mutate: changePasswordMutate } = useMutation(
+    "changePassword",
+    changePassword,
+    {
+      onSuccess: (res) => {
+        alert("비밀번호 변경 완료");
+      },
+      onError: (res) => alert("기존 비밀번호가 일치하지 않습니다"),
+    }
+  );
 
-  const { mutate: mutate2 } = useMutation("changePassword", changePassword, {
-    onSuccess: (res) => {
-      console.log("change pw success !!", res);
-    },
-    onError: (res) => console.log("error !", res),
-  });
-
+  //프로필 이미지 미리보기
   const [imagePreview, setImagePreview] = useState("");
   const image = watch("image");
-  const imageRef = useRef<HTMLInputElement>(null);
 
-  const [errorMsg, setErrorMsg] = useState<string | undefined>("");
+  //비밀번호 변경 에러 메시지
+  const [errorMsg, setErrorMsg] = useState<string | undefined>();
   const [errorMsgTwo, setErrorMsgTwo] = useState<string | undefined>("");
+
+  // 변경 확인 모달창 열림 state
   const [open, setOpen] = useState(false);
 
+  //이미지 삭제 클릭
   const handleDeletePreviewFile = (e: React.MouseEvent) => {
     e.preventDefault();
-    // if (imageRef.current) {
-    //   imageRef.current.value = "";
-    //   setImagePreview(`/images/default.png`);
-    // }
-    setImagePreview(`/images/default.png`);
+    setImagePreview("/images/default.png");
   };
 
-  const onValidChangeUserInfo = (data: IChangeUserInfoForm) => {
+  //기본정보 수정 폼 전송
+  const onValidChangeUserInfo = async (data: IChangeUserInfoForm) => {
     // 회원정보 수정 API 호출 파트
-    console.log("Valid user info !");
-    mutate({
-      image: data.image,
-      nickname: data.nickname,
-    });
+    console.log(data);
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+    try {
+      const response = await changeUserInfo(formData, data.nickname);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  const onInValidChangeUserInfo = () => {
-    console.log("Invalid change user info");
-  };
-
+  //비밀번호 변경 폼 전송
   const onValidChangePassword = (data: IChangePasswordForm) => {
     console.log("Valid password !");
-    mutate2({
+    console.log(data);
+    changePasswordMutate({
       originalPassword: data.originalPassword,
       newPassword: data.newPassword,
     });
@@ -103,7 +107,6 @@ const ModifyInfo = () => {
   useEffect(() => {
     if (image && image.length > 0) {
       const file = image[0];
-      // 브라우저의 메모리에 있는 파일의 url을 가져오기 위한 방법이 URL.createObjectURL(file)
       setImagePreview(URL.createObjectURL(file));
     }
   }, [image]);
@@ -114,13 +117,15 @@ const ModifyInfo = () => {
         <S.Title>기본 회원 정보</S.Title>
       </S.TitleArea>
       <S.FormArea
-        onSubmit={handleSubmit(onValidChangeUserInfo, onInValidChangeUserInfo)}
+        encType="multipart/form-data"
+        onSubmit={handleSubmit(onValidChangeUserInfo)}
       >
         <S.InfoArea>
           <S.CategoryArea>
             <S.Category>프로필 이미지</S.Category>
-            {/* <S.Image src={profileImage?.toString()} /> */}
-            <S.Image src={imagePreview} />
+            <S.Image
+              src={imagePreview === "" ? "/images/default.png" : imagePreview}
+            />
             <S.ImageButtonArea>
               <S.ImageInputLabel htmlFor="ex_file">사진 변경</S.ImageInputLabel>
               <S.ImageInput
@@ -128,7 +133,6 @@ const ModifyInfo = () => {
                 id="ex_file"
                 type="file"
                 accept="image/*"
-                // ref={imageRef}
               />
               <S.ImageDeleteButton onClick={handleDeletePreviewFile}>
                 삭제
@@ -138,28 +142,27 @@ const ModifyInfo = () => {
           <S.CategoryArea>
             <S.Category>닉네임</S.Category>
             <S.NickInput
+              defaultValue={loggedInData?.nickname}
               {...register("nickname", {
                 pattern: {
-                  value: /^[가-힣a-zA-Z]+$/,
+                  value: /^[가-힣a-zA-Z\s]+$/,
                   message: "올바르지 않은 닉네임 형식입니다.",
                 },
+                required: false,
               })}
               type="text"
             ></S.NickInput>
           </S.CategoryArea>
           <S.CategoryArea>
             <S.Category>아이디</S.Category>
-            <S.Text></S.Text>
+            <S.Text>{loggedInData?.id}</S.Text>
           </S.CategoryArea>
           <S.CategoryArea>
             <S.Category>이메일</S.Category>
-            <S.Text></S.Text>
+            <S.Text>{loggedInData?.userEmail}</S.Text>
           </S.CategoryArea>
         </S.InfoArea>
         <S.ButtonArea>
-          {/* <S.Button onClick={() => {
-            setValue("")
-          }}>초기화</S.Button> */}
           <S.Button>회원정보 저장</S.Button>
         </S.ButtonArea>
       </S.FormArea>

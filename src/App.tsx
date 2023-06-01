@@ -18,8 +18,7 @@ function App() {
   const setLoggedIn = useSetRecoilState<ILoggedInAtom>(loggedInAtom);
   const { data } = useQuery(["loggedInInfo"], getLoggedInInfo, {
     onSuccess: (data) => {
-      console.log(data.data);
-      setLoggedIn(data.data);
+      setLoggedIn(data);
     },
   });
   return (

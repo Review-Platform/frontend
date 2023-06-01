@@ -1,29 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { ILoggedInAtom, loggedInAtom } from "../../../atoms/loggedInAtom";
 import * as S from "./style";
 import { useNavigate } from "react-router-dom";
+
+import { getLoggedInInfo } from "../../../apis/api/accountApi";
+import { useQueryClient } from "react-query";
+
+interface IUserInfo {
+  id: string;
+  loggedIn: boolean;
+  nickname: string;
+  userEmail: string;
+  userImage: File | null;
+}
 import { useQuery } from "react-query";
 import { myReviews } from "../../../apis/api/reviewApi";
 import { IReview } from "../../../interfaces/review";
 import ReviewBoxHorizontal from "../../../components/reviewBox/horizontal/ReviewBoxHorizontal";
 
+
 const MyPage = () => {
   const navigate = useNavigate();
   const loginInfo = useRecoilValue<ILoggedInAtom>(loggedInAtom);
-  const [email, setEmail] = useState("king@naver.com");
+
+
+
+  
   const { data } = useQuery<IReview[]>(["myReviews", loginInfo.id], myReviews);
-  console.log(data);
+
   return (
     <S.MyPageContainer>
       <S.MyPageArea>
         <S.Title>마이 페이지</S.Title>
         <S.TotalInfoArea>
-          <S.MyImage />
+          <S.MyImage
+            src={loginInfo.userImage === null ? "/images/default.png" : ""}
+          />
           <S.InfoArea>
             <S.MyInfo>
               <S.MyNickName>아이디 : {loginInfo.id}</S.MyNickName>
-              <S.MyEmail>이메일 : {email}</S.MyEmail>
+              <S.MyEmail>이메일 : {loginInfo.userEmail}</S.MyEmail>
             </S.MyInfo>
             <S.InfoModifyArea
               onClick={() => navigate(`/modify-info/${loginInfo.id}`)}

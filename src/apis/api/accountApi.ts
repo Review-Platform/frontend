@@ -57,7 +57,8 @@ export const findPasswordPost = (findPasswordForm: IFindPasswordForm) =>
     userEmail: findPasswordForm.email,
   });
 
-export const getLoggedInInfo = () => baseApi.get(LOGIN_INFO_URI);
+export const getLoggedInInfo = () =>
+  baseApi.get(LOGIN_INFO_URI).then((res) => res.data);
 
 export const postLogout = () => baseApi.post(LOGOUT_URI, {});
 
@@ -67,8 +68,13 @@ export const changePassword = (changePasswordForm: IChangePasswordProps) =>
     newPassword: changePasswordForm.newPassword,
   });
 
-export const changeUserInfo = (changeUserInfoForm: IChangeUserInfoForm) =>
-  baseApi.post(CHANGE_USER_INFO_URI, {
-    image: changeUserInfoForm.image,
-    nickname: changeUserInfoForm.nickname,
+// export const changeUserInfo = (changeUserInfoForm: IChangeUserInfoForm) =>
+//   baseApi.post(CHANGE_USER_INFO_URI, {
+//     image: changeUserInfoForm.image,
+//     nickname: changeUserInfoForm.nickname,
+//   });
+export const changeUserInfo = (formData: FormData, nickname: string) =>
+  baseApi.post(CHANGE_USER_INFO_URI, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+    params: { nickname },
   });
